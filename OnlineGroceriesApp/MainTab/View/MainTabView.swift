@@ -91,6 +91,7 @@ struct MainTabView: View {
                 .padding(.horizontal, 10)
                 .background(Color.white)
                 .cornerRadius(15)
+                
             .shadow(color: Color.black.opacity(0.15), radius: 3, x:0, y: -2)
             }
         }
