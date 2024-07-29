@@ -28,7 +28,7 @@ struct LoginView: View {
                     .frame(width: 40)
                     .padding(.bottom, .screenWidth * 0.1)
                 
-                Text("Loging")
+                Text("Login")
                     .font(.customfont(.semibold, fontSize: 26))
                     .foregroundColor(.primaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

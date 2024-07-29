@@ -143,6 +143,7 @@ extension Color {
         return Color(hex: "030303")
     }
     
+    
     static var secondaryText: Color {
         return Color(hex: "828282")
     }

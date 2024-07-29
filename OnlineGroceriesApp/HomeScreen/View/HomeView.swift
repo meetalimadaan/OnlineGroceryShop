@@ -20,17 +20,21 @@ struct HomeView: View {
                         .frame(width: 25)
 //                        .padding(.bottom, .screenWidth * 0.1)
                     
-                    HStack{
-                        Image("Exclude")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 16, height: 16)
-//                            .padding(.bottom, .screenWidth * 0.1)
-                        
-                        
-                        Text("dhaka, Banassre")
-                            .font(.customfont(.semibold, fontSize: 18))
-                            .foregroundColor(.darkGray)
+                    NavigationLink{
+                        SelectLocationView()
+                    }label: {
+                        HStack{
+                            Image("Exclude")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+    //                            .padding(.bottom, .screenWidth * 0.1)
+                            
+                            
+                            Text("dhaka, Banassre")
+                                .font(.customfont(.semibold, fontSize: 18))
+                                .foregroundColor(.darkGray)
+                        }
                     }
                     
                     SearchTextField(placeholder: "Search Store", txt: $homeVM.txtSearch)
