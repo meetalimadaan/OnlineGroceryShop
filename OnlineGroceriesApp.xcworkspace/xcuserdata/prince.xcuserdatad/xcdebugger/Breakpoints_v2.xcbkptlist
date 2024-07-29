@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "86E1DE87-DDE6-4FE3-A467-55EC761392B6"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA80F841-AF12-4D04-A2F5-4CE591D251FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnlineGroceriesApp/SelectYourLocation/View/SelectLocationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "SelectLocationView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "BA80F841-AF12-4D04-A2F5-4CE591D251FD - 73d43f43012aba78"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnlineGroceriesApp.SelectLocationView.body.getter : some"
+                  moduleName = "OnlineGroceriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prince/Documents/Prince%20Office/iOS%20SwiftUI/OnlineGroceryShop/OnlineGroceriesApp/SelectYourLocation/View/SelectLocationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "536">
+               </Location>
+               <Location
+                  uuid = "BA80F841-AF12-4D04-A2F5-4CE591D251FD - 73d43f43012aba78"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OnlineGroceriesApp.SelectLocationView.body.getter : some"
+                  moduleName = "OnlineGroceriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prince/Documents/Prince%20Office/iOS%20SwiftUI/OnlineGroceryShop/OnlineGroceriesApp/SelectYourLocation/View/SelectLocationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "540">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

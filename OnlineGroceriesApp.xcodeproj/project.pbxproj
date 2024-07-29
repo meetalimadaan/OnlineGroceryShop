@@ -64,6 +64,9 @@
 		A34AA8DF2C53BD8C00048734 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8DE2C53BD8C00048734 /* AddLocationView.swift */; };
 		A34AA8E42C53BE2A00048734 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8E32C53BE2A00048734 /* LocationViewModel.swift */; };
 		A34AA8E82C53CA4A00048734 /* CommonAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */; };
+		A34AA8ED2C5789E400048734 /* OrderAcceptedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8EC2C5789E400048734 /* OrderAcceptedView.swift */; };
+		A34AA8F12C579A1700048734 /* OrderFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8F02C579A1700048734 /* OrderFailedView.swift */; };
+		A34AA8F32C57AC5E00048734 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8F22C57AC5E00048734 /* PopUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +145,9 @@
 		A34AA8DE2C53BD8C00048734 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
 		A34AA8E32C53BE2A00048734 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAppBar.swift; sourceTree = "<group>"; };
+		A34AA8EC2C5789E400048734 /* OrderAcceptedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAcceptedView.swift; sourceTree = "<group>"; };
+		A34AA8F02C579A1700048734 /* OrderFailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderFailedView.swift; sourceTree = "<group>"; };
+		A34AA8F22C57AC5E00048734 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		ABCA27B51DF86BF6ED77A657 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0AB44299B38233D10DC51F6 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DDCB2440134F910B03716A07 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesAppTests.debug.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +212,8 @@
 		013540222C3E65F800F5AB4A /* OnlineGroceriesApp */ = {
 			isa = PBXGroup;
 			children = (
+				A34AA8EE2C57918E00048734 /* OrderFailed */,
+				A34AA8E92C5789B100048734 /* OrderAccepted */,
 				A34AA8DA2C53B91D00048734 /* SelectYourLocation */,
 				0170EAC32C4F9E9200284405 /* FavouriteScreen */,
 				019F837E2C4E84D400AE9372 /* CartScreen */,
@@ -544,6 +552,47 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		A34AA8E92C5789B100048734 /* OrderAccepted */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8EB2C5789C800048734 /* ViewModel */,
+				A34AA8EA2C5789C000048734 /* View */,
+			);
+			path = OrderAccepted;
+			sourceTree = "<group>";
+		};
+		A34AA8EA2C5789C000048734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8EC2C5789E400048734 /* OrderAcceptedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A34AA8EB2C5789C800048734 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A34AA8EE2C57918E00048734 /* OrderFailed */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8EF2C57971100048734 /* View */,
+			);
+			path = OrderFailed;
+			sourceTree = "<group>";
+		};
+		A34AA8EF2C57971100048734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8F02C579A1700048734 /* OrderFailedView.swift */,
+				A34AA8F22C57AC5E00048734 /* PopUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -765,6 +814,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A34AA8ED2C5789E400048734 /* OrderAcceptedView.swift in Sources */,
 				01C148312C3FEF880000BC0E /* CountryPickerUI.swift in Sources */,
 				A34AA8DF2C53BD8C00048734 /* AddLocationView.swift in Sources */,
 				A34AA8E42C53BE2A00048734 /* LocationViewModel.swift in Sources */,
@@ -789,6 +839,7 @@
 				0180BC052C47A87F00577BDE /* SignUpView.swift in Sources */,
 				0114D1D32C411927005579DD /* LineTextField.swift in Sources */,
 				018CBE402C4A86D100C1565E /* ExploreCategoryCell.swift in Sources */,
+				A34AA8F32C57AC5E00048734 /* PopUpView.swift in Sources */,
 				0180BBF42C47A54C00577BDE /* WelcomeView.swift in Sources */,
 				01C310922C49207900BDA053 /* ProductDetailViewModel.swift in Sources */,
 				01C310902C491F2C00BDA053 /* ProductDetailsView.swift in Sources */,
@@ -797,6 +848,7 @@
 				0170EAC82C4FD8CF00284405 /* FavouriteRow.swift in Sources */,
 				0180BC092C47CB5E00577BDE /* MainTabView.swift in Sources */,
 				018CBE3D2C4A838800C1565E /* ExploreVireModel.swift in Sources */,
+				A34AA8F12C579A1700048734 /* OrderFailedView.swift in Sources */,
 				01C310882C48EDCC00BDA053 /* SearchTextField.swift in Sources */,
 				0170EAC62C4F9EC600284405 /* FavouriteView.swift in Sources */,
 				A34AA8DD2C53B98E00048734 /* SelectLocationView.swift in Sources */,

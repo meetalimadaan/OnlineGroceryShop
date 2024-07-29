@@ -22,9 +22,8 @@ struct OnlineGroceriesAppApp: App {
 //                }else{
 //                    WelcomeView()
 //                }
-                SelectLocationView()
-
-//                WelcomeView()
+                
+                WelcomeView()
 //                MainTabView()
 //                LoginView()
             }
