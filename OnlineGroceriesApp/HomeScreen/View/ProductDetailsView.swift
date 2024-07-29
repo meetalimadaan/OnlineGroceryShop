@@ -209,6 +209,7 @@ struct ProductDetailsView: View {
         
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
+        
         .navigationBarHidden(true)
         .ignoresSafeArea()
     }

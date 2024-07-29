@@ -37,7 +37,6 @@
 		0180BC102C47D2BC00577BDE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BC0F2C47D2BC00577BDE /* HomeView.swift */; };
 		0180BC142C47D44000577BDE /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BC132C47D44000577BDE /* ExploreView.swift */; };
 		0180BC162C47E20D00577BDE /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BC152C47E20D00577BDE /* TabButton.swift */; };
-		018CBE2B2C4A37C100C1565E /* SelectLocatonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE2A2C4A37C100C1565E /* SelectLocatonView.swift */; };
 		018CBE2F2C4A432700C1565E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018CBE2E2C4A432700C1565E /* GoogleService-Info.plist */; };
 		018CBE322C4A43C400C1565E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 018CBE312C4A43C400C1565E /* FirebaseAuth */; };
 		018CBE342C4A43C400C1565E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 018CBE332C4A43C400C1565E /* FirebaseDatabase */; };
@@ -58,6 +57,13 @@
 		01C3108E2C490A0B00BDA053 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3108D2C490A0B00BDA053 /* CategoryCell.swift */; };
 		01C310902C491F2C00BDA053 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */; };
 		01C310922C49207900BDA053 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C310912C49207900BDA053 /* ProductDetailViewModel.swift */; };
+		569268ED1B4EB7A9FD703CCB /* Pods_OnlineGroceriesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017A64506F9C47B8F6C6CC70 /* Pods_OnlineGroceriesApp.framework */; };
+		584B8D05ABED00341A253893 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCA27B51DF86BF6ED77A657 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework */; };
+		97FB50FFA7DE41DF2581F464 /* Pods_OnlineGroceriesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124325182B371235EB1DE0D3 /* Pods_OnlineGroceriesAppTests.framework */; };
+		A34AA8DD2C53B98E00048734 /* SelectLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8DC2C53B98E00048734 /* SelectLocationView.swift */; };
+		A34AA8DF2C53BD8C00048734 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8DE2C53BD8C00048734 /* AddLocationView.swift */; };
+		A34AA8E42C53BE2A00048734 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8E32C53BE2A00048734 /* LocationViewModel.swift */; };
+		A34AA8E82C53CA4A00048734 /* CommonAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00ADD554E3550C471FD50EDF /* Pods-OnlineGroceriesAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesAppTests.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		0114D1D22C411927005579DD /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
 		013540202C3E65F800F5AB4A /* OnlineGroceriesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineGroceriesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013540232C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGroceriesAppApp.swift; sourceTree = "<group>"; };
@@ -100,6 +107,7 @@
 		01639D2E2C3EACBB0092D9F1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0170EAC52C4F9EC600284405 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRow.swift; sourceTree = "<group>"; };
+		017A64506F9C47B8F6C6CC70 /* Pods_OnlineGroceriesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0180BBEE2C478A5600577BDE /* UIKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		0180BBF32C47A54C00577BDE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		0180BBF72C47A5A300577BDE /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -111,7 +119,6 @@
 		0180BC0F2C47D2BC00577BDE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0180BC132C47D44000577BDE /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		0180BC152C47E20D00577BDE /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
-		018CBE2A2C4A37C100C1565E /* SelectLocatonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocatonView.swift; sourceTree = "<group>"; };
 		018CBE2E2C4A432700C1565E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		018CBE3C2C4A838800C1565E /* ExploreVireModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreVireModel.swift; sourceTree = "<group>"; };
 		018CBE3F2C4A86D100C1565E /* ExploreCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryCell.swift; sourceTree = "<group>"; };
@@ -127,6 +134,17 @@
 		01C3108D2C490A0B00BDA053 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		01C310912C49207900BDA053 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		1080602B5C37F647CA3C42A7 /* Pods-OnlineGroceriesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp.debug.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		124325182B371235EB1DE0D3 /* Pods_OnlineGroceriesAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33BDE0189C648F2EA2C00BA5 /* Pods-OnlineGroceriesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp.release.xcconfig"; sourceTree = "<group>"; };
+		A1AC3592D52FEE21B7A7D96F /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A34AA8DC2C53B98E00048734 /* SelectLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationView.swift; sourceTree = "<group>"; };
+		A34AA8DE2C53BD8C00048734 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
+		A34AA8E32C53BE2A00048734 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAppBar.swift; sourceTree = "<group>"; };
+		ABCA27B51DF86BF6ED77A657 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0AB44299B38233D10DC51F6 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DDCB2440134F910B03716A07 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesAppTests.debug.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +158,7 @@
 				016F04C02C468733009ACEA4 /* CountryPicker in Frameworks */,
 				018CBE382C4A43C400C1565E /* FirebaseStorage in Frameworks */,
 				018CBE322C4A43C400C1565E /* FirebaseAuth in Frameworks */,
+				569268ED1B4EB7A9FD703CCB /* Pods_OnlineGroceriesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97FB50FFA7DE41DF2581F464 /* Pods_OnlineGroceriesAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				584B8D05ABED00341A253893 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +188,8 @@
 				013540332C3E65FA00F5AB4A /* OnlineGroceriesAppTests */,
 				0135403D2C3E65FA00F5AB4A /* OnlineGroceriesAppUITests */,
 				013540212C3E65F800F5AB4A /* Products */,
+				709B10ADBE93A38379554A56 /* Pods */,
+				1900C78397486CD28B82331B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,6 +206,7 @@
 		013540222C3E65F800F5AB4A /* OnlineGroceriesApp */ = {
 			isa = PBXGroup;
 			children = (
+				A34AA8DA2C53B91D00048734 /* SelectYourLocation */,
 				0170EAC32C4F9E9200284405 /* FavouriteScreen */,
 				019F837E2C4E84D400AE9372 /* CartScreen */,
 				019F83782C4E4A1700AE9372 /* AcoountScreen */,
@@ -259,6 +283,7 @@
 				019F837C2C4E6C7C00AE9372 /* AccountRow.swift */,
 				0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */,
 				0152F9742C5269AE00F46C0B /* CartItemRow.swift */,
+				A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */,
 			);
 			path = UICommom;
 			sourceTree = "<group>";
@@ -299,7 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				0180BBF32C47A54C00577BDE /* WelcomeView.swift */,
-				018CBE2A2C4A37C100C1565E /* SelectLocatonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -471,6 +495,55 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1900C78397486CD28B82331B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				017A64506F9C47B8F6C6CC70 /* Pods_OnlineGroceriesApp.framework */,
+				ABCA27B51DF86BF6ED77A657 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework */,
+				124325182B371235EB1DE0D3 /* Pods_OnlineGroceriesAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		709B10ADBE93A38379554A56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1080602B5C37F647CA3C42A7 /* Pods-OnlineGroceriesApp.debug.xcconfig */,
+				33BDE0189C648F2EA2C00BA5 /* Pods-OnlineGroceriesApp.release.xcconfig */,
+				A1AC3592D52FEE21B7A7D96F /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig */,
+				B0AB44299B38233D10DC51F6 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */,
+				DDCB2440134F910B03716A07 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */,
+				00ADD554E3550C471FD50EDF /* Pods-OnlineGroceriesAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A34AA8DA2C53B91D00048734 /* SelectYourLocation */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8E02C53BDE800048734 /* ViewModel */,
+				A34AA8DB2C53B95000048734 /* View */,
+			);
+			path = SelectYourLocation;
+			sourceTree = "<group>";
+		};
+		A34AA8DB2C53B95000048734 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8DC2C53B98E00048734 /* SelectLocationView.swift */,
+				A34AA8DE2C53BD8C00048734 /* AddLocationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A34AA8E02C53BDE800048734 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A34AA8E32C53BE2A00048734 /* LocationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -478,6 +551,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 013540442C3E65FA00F5AB4A /* Build configuration list for PBXNativeTarget "OnlineGroceriesApp" */;
 			buildPhases = (
+				942EC0FCA5E4CD3672914FF8 /* [CP] Check Pods Manifest.lock */,
 				0135401C2C3E65F800F5AB4A /* Sources */,
 				0135401D2C3E65F800F5AB4A /* Frameworks */,
 				0135401E2C3E65F800F5AB4A /* Resources */,
@@ -503,6 +577,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 013540472C3E65FA00F5AB4A /* Build configuration list for PBXNativeTarget "OnlineGroceriesAppTests" */;
 			buildPhases = (
+				59DEB7FB0464CD17B9AFBA0B /* [CP] Check Pods Manifest.lock */,
 				0135402C2C3E65FA00F5AB4A /* Sources */,
 				0135402D2C3E65FA00F5AB4A /* Frameworks */,
 				0135402E2C3E65FA00F5AB4A /* Resources */,
@@ -521,6 +596,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0135404A2C3E65FA00F5AB4A /* Build configuration list for PBXNativeTarget "OnlineGroceriesAppUITests" */;
 			buildPhases = (
+				91F035BB1B649A70A4AFEC67 /* [CP] Check Pods Manifest.lock */,
 				013540362C3E65FA00F5AB4A /* Sources */,
 				013540372C3E65FA00F5AB4A /* Frameworks */,
 				013540382C3E65FA00F5AB4A /* Resources */,
@@ -615,17 +691,87 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		59DEB7FB0464CD17B9AFBA0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnlineGroceriesAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91F035BB1B649A70A4AFEC67 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		942EC0FCA5E4CD3672914FF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnlineGroceriesApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0135401C2C3E65F800F5AB4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				01C148312C3FEF880000BC0E /* CountryPickerUI.swift in Sources */,
+				A34AA8DF2C53BD8C00048734 /* AddLocationView.swift in Sources */,
+				A34AA8E42C53BE2A00048734 /* LocationViewModel.swift in Sources */,
 				01639D282C3EAB2B0092D9F1 /* ContentView.swift in Sources */,
 				0180BBEF2C478A5600577BDE /* UIKitExtension.swift in Sources */,
 				0180BC0E2C47D08B00577BDE /* HomeViewModel.swift in Sources */,
 				015061502C3FBCCC0097DFE8 /* RoundButton.swift in Sources */,
-				018CBE2B2C4A37C100C1565E /* SelectLocatonView.swift in Sources */,
 				019F837B2C4E4A4200AE9372 /* AccountView.swift in Sources */,
 				0180BC102C47D2BC00577BDE /* HomeView.swift in Sources */,
 				013540242C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift in Sources */,
@@ -653,6 +799,8 @@
 				018CBE3D2C4A838800C1565E /* ExploreVireModel.swift in Sources */,
 				01C310882C48EDCC00BDA053 /* SearchTextField.swift in Sources */,
 				0170EAC62C4F9EC600284405 /* FavouriteView.swift in Sources */,
+				A34AA8DD2C53B98E00048734 /* SelectLocationView.swift in Sources */,
+				A34AA8E82C53CA4A00048734 /* CommonAppBar.swift in Sources */,
 				019F83812C4E91C500AE9372 /* MyCartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -811,6 +959,7 @@
 		};
 		013540452C3E65FA00F5AB4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1080602B5C37F647CA3C42A7 /* Pods-OnlineGroceriesApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -847,6 +996,7 @@
 		};
 		013540462C3E65FA00F5AB4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33BDE0189C648F2EA2C00BA5 /* Pods-OnlineGroceriesApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -883,6 +1033,7 @@
 		};
 		013540482C3E65FA00F5AB4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDCB2440134F910B03716A07 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -902,6 +1053,7 @@
 		};
 		013540492C3E65FA00F5AB4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00ADD554E3550C471FD50EDF /* Pods-OnlineGroceriesAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -921,6 +1073,7 @@
 		};
 		0135404B2C3E65FA00F5AB4A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1AC3592D52FEE21B7A7D96F /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -938,6 +1091,7 @@
 		};
 		0135404C2C3E65FA00F5AB4A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0AB44299B38233D10DC51F6 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

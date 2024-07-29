@@ -1,0 +1,755 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22F583571767DEE5C346147E3126E27D /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3ABDCA3E42B53573502900E50B73CEF8 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4022638523E9F3A7EBA5ACD3BFCB71AE /* Pods-OnlineGroceriesAppTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BE14169EB2B4151FA23C3C2FA6D4AC77 /* Pods-OnlineGroceriesAppTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5875D1455A4BDAEB3891C4A60F215763 /* Pods-OnlineGroceriesAppTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D18C76979274A02BAC8F19DB9A598828 /* Pods-OnlineGroceriesAppTests-dummy.m */; };
+		67F2A74B8B70633306557399EED5355C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		72BE504E57125BCC31EE1D844CAD9203 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A0DC310254E3BB9E8BE46A5D8643F8 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-dummy.m */; };
+		89B5FC03836F1C66E7269621D78106D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		9A7A68240C2CA9BF37AE10769002E168 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		D34EA73B9804001948560520E1C6C710 /* Pods-OnlineGroceriesApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30817538F178F4CA8EA7047C177CF22D /* Pods-OnlineGroceriesApp-dummy.m */; };
+		F49EC99DED7B022547A9F2DA38536DEF /* Pods-OnlineGroceriesApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BAEE4534541CA5C22C8AE073C84BD4 /* Pods-OnlineGroceriesApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82F7F57A6C6DE79EB6F39BABB66AC53D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBD57BFC185C54DD0535A58B49CD0063;
+			remoteInfo = "Pods-OnlineGroceriesApp";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0022AAF01B0C631938BCA25987FB0429 /* Pods-OnlineGroceriesApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OnlineGroceriesApp.modulemap"; sourceTree = "<group>"; };
+		0E6D781812B0B81A9221E2B61C1A506D /* Pods-OnlineGroceriesApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OnlineGroceriesApp-Info.plist"; sourceTree = "<group>"; };
+		2E1F9D71EC4CC86DFDE468452022A0AA /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		30817538F178F4CA8EA7047C177CF22D /* Pods-OnlineGroceriesApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OnlineGroceriesApp-dummy.m"; sourceTree = "<group>"; };
+		3ABDCA3E42B53573502900E50B73CEF8 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-umbrella.h"; sourceTree = "<group>"; };
+		491E7221DD310F2AAD6F3BEEED70D1A6 /* Pods-OnlineGroceriesAppTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-OnlineGroceriesAppTests"; path = Pods_OnlineGroceriesAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D587EAE9486CCE83228DCEA7F077D0D /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.modulemap"; sourceTree = "<group>"; };
+		606DE9622F4E25136A5638D65FD40652 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		73A0DC310254E3BB9E8BE46A5D8643F8 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-dummy.m"; sourceTree = "<group>"; };
+		789EBBAFCEA0B1406FB30386E90BC5E0 /* Pods-OnlineGroceriesApp */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-OnlineGroceriesApp"; path = Pods_OnlineGroceriesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F21295C707C8C5301B2DE6069FAAB84 /* Pods-OnlineGroceriesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OnlineGroceriesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		80A340CAF2C61C1738F6083868567D61 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests"; path = Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		844E157E8E086E3A6AFB933AFA3C3E63 /* Pods-OnlineGroceriesAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OnlineGroceriesAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		869DA0DD32052130FA62C97E64C1C399 /* Pods-OnlineGroceriesApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OnlineGroceriesApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		9C5E69ECDB0C4A11BED117B1844CB091 /* Pods-OnlineGroceriesAppTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OnlineGroceriesAppTests-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A26453EB4A6F2FD52BC69204F95217F8 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OnlineGroceriesAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A2734013E693B8A6DE21E0A5A0B43073 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-Info.plist"; sourceTree = "<group>"; };
+		A55FADA829ACED22ABBBE7174B601AB1 /* Pods-OnlineGroceriesAppTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OnlineGroceriesAppTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A789AC2E23E198E8077200964C46B0D0 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B281DC89877C75676446806C55E98639 /* Pods-OnlineGroceriesApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OnlineGroceriesApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BE14169EB2B4151FA23C3C2FA6D4AC77 /* Pods-OnlineGroceriesAppTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OnlineGroceriesAppTests-umbrella.h"; sourceTree = "<group>"; };
+		D18C76979274A02BAC8F19DB9A598828 /* Pods-OnlineGroceriesAppTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OnlineGroceriesAppTests-dummy.m"; sourceTree = "<group>"; };
+		DA84A636434E548FB740ACF95C7706F2 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		DD08872E38672BC961AB572E00EB44C5 /* Pods-OnlineGroceriesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OnlineGroceriesApp.release.xcconfig"; sourceTree = "<group>"; };
+		E84DA99BB4D99B27A64552EC0843FE69 /* Pods-OnlineGroceriesAppTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OnlineGroceriesAppTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EBA1D4C862A1E78FCE9FF38B5FE94AE4 /* Pods-OnlineGroceriesAppTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-OnlineGroceriesAppTests.modulemap"; sourceTree = "<group>"; };
+		F2BAEE4534541CA5C22C8AE073C84BD4 /* Pods-OnlineGroceriesApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OnlineGroceriesApp-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1BA9ABD40D6FE5A72335572E1B6CDCEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89B5FC03836F1C66E7269621D78106D0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65940E7EE5B4A572792F34A1008676B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67F2A74B8B70633306557399EED5355C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAF36BE646F344225934FF6F96FFDCF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A7A68240C2CA9BF37AE10769002E168 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E447F2DB3D27849DD004AD1927DB4B1 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F29F381AAC5127C3A6BC63B94F110BA7 /* Pods-OnlineGroceriesApp */,
+				C82DB3CFEAF5C1DF0800A2FDA75DBF35 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */,
+				33DB44454305C151AB79B66263F712F7 /* Pods-OnlineGroceriesAppTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		33DB44454305C151AB79B66263F712F7 /* Pods-OnlineGroceriesAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				EBA1D4C862A1E78FCE9FF38B5FE94AE4 /* Pods-OnlineGroceriesAppTests.modulemap */,
+				A55FADA829ACED22ABBBE7174B601AB1 /* Pods-OnlineGroceriesAppTests-acknowledgements.markdown */,
+				E84DA99BB4D99B27A64552EC0843FE69 /* Pods-OnlineGroceriesAppTests-acknowledgements.plist */,
+				D18C76979274A02BAC8F19DB9A598828 /* Pods-OnlineGroceriesAppTests-dummy.m */,
+				9C5E69ECDB0C4A11BED117B1844CB091 /* Pods-OnlineGroceriesAppTests-Info.plist */,
+				BE14169EB2B4151FA23C3C2FA6D4AC77 /* Pods-OnlineGroceriesAppTests-umbrella.h */,
+				A26453EB4A6F2FD52BC69204F95217F8 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */,
+				844E157E8E086E3A6AFB933AFA3C3E63 /* Pods-OnlineGroceriesAppTests.release.xcconfig */,
+			);
+			name = "Pods-OnlineGroceriesAppTests";
+			path = "Target Support Files/Pods-OnlineGroceriesAppTests";
+			sourceTree = "<group>";
+		};
+		531441E07AEB1962A6D68C6FFA4F9441 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				789EBBAFCEA0B1406FB30386E90BC5E0 /* Pods-OnlineGroceriesApp */,
+				80A340CAF2C61C1738F6083868567D61 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */,
+				491E7221DD310F2AAD6F3BEEED70D1A6 /* Pods-OnlineGroceriesAppTests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C82DB3CFEAF5C1DF0800A2FDA75DBF35 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5D587EAE9486CCE83228DCEA7F077D0D /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.modulemap */,
+				606DE9622F4E25136A5638D65FD40652 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-acknowledgements.markdown */,
+				DA84A636434E548FB740ACF95C7706F2 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-acknowledgements.plist */,
+				73A0DC310254E3BB9E8BE46A5D8643F8 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-dummy.m */,
+				A2734013E693B8A6DE21E0A5A0B43073 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-Info.plist */,
+				3ABDCA3E42B53573502900E50B73CEF8 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-umbrella.h */,
+				A789AC2E23E198E8077200964C46B0D0 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig */,
+				2E1F9D71EC4CC86DFDE468452022A0AA /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */,
+			);
+			name = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests";
+			path = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				531441E07AEB1962A6D68C6FFA4F9441 /* Products */,
+				0E447F2DB3D27849DD004AD1927DB4B1 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F29F381AAC5127C3A6BC63B94F110BA7 /* Pods-OnlineGroceriesApp */ = {
+			isa = PBXGroup;
+			children = (
+				0022AAF01B0C631938BCA25987FB0429 /* Pods-OnlineGroceriesApp.modulemap */,
+				B281DC89877C75676446806C55E98639 /* Pods-OnlineGroceriesApp-acknowledgements.markdown */,
+				869DA0DD32052130FA62C97E64C1C399 /* Pods-OnlineGroceriesApp-acknowledgements.plist */,
+				30817538F178F4CA8EA7047C177CF22D /* Pods-OnlineGroceriesApp-dummy.m */,
+				0E6D781812B0B81A9221E2B61C1A506D /* Pods-OnlineGroceriesApp-Info.plist */,
+				F2BAEE4534541CA5C22C8AE073C84BD4 /* Pods-OnlineGroceriesApp-umbrella.h */,
+				7F21295C707C8C5301B2DE6069FAAB84 /* Pods-OnlineGroceriesApp.debug.xcconfig */,
+				DD08872E38672BC961AB572E00EB44C5 /* Pods-OnlineGroceriesApp.release.xcconfig */,
+			);
+			name = "Pods-OnlineGroceriesApp";
+			path = "Target Support Files/Pods-OnlineGroceriesApp";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1D9BBF583598728E3260E410B6D58486 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22F583571767DEE5C346147E3126E27D /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53F1168BCBE26D8CD1B4ADF855E47690 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49EC99DED7B022547A9F2DA38536DEF /* Pods-OnlineGroceriesApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A2B816D2B71119A44122DC04D007EE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4022638523E9F3A7EBA5ACD3BFCB71AE /* Pods-OnlineGroceriesAppTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		40A376C243EF1B7C35BD6D6DB997AB06 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE7CFCA3CB82EAB786C6ACC30A89BB16 /* Build configuration list for PBXNativeTarget "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests" */;
+			buildPhases = (
+				1D9BBF583598728E3260E410B6D58486 /* Headers */,
+				3A528E6C9D6DABF8C59480DECFAAB39E /* Sources */,
+				1BA9ABD40D6FE5A72335572E1B6CDCEB /* Frameworks */,
+				621E92E42374A48E13AA9FCE4F589412 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests";
+			productName = Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests;
+			productReference = 80A340CAF2C61C1738F6083868567D61 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */;
+			productType = "com.apple.product-type.framework";
+		};
+		920C2FF08F07961B3FC4F45E8587D606 /* Pods-OnlineGroceriesAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C49953B043A9D3EB2D01D19273E75A2 /* Build configuration list for PBXNativeTarget "Pods-OnlineGroceriesAppTests" */;
+			buildPhases = (
+				66A2B816D2B71119A44122DC04D007EE /* Headers */,
+				4F1E9A95F9A2962E04E25DB8885CF583 /* Sources */,
+				FAF36BE646F344225934FF6F96FFDCF4 /* Frameworks */,
+				CECFF281FF7BE0B505079BD3B3BFFB6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2AF9E847695489FC5130F06F30F105A6 /* PBXTargetDependency */,
+			);
+			name = "Pods-OnlineGroceriesAppTests";
+			productName = Pods_OnlineGroceriesAppTests;
+			productReference = 491E7221DD310F2AAD6F3BEEED70D1A6 /* Pods-OnlineGroceriesAppTests */;
+			productType = "com.apple.product-type.framework";
+		};
+		EBD57BFC185C54DD0535A58B49CD0063 /* Pods-OnlineGroceriesApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB6A41B935AD583480609CCE3B0C42F5 /* Build configuration list for PBXNativeTarget "Pods-OnlineGroceriesApp" */;
+			buildPhases = (
+				53F1168BCBE26D8CD1B4ADF855E47690 /* Headers */,
+				404C5424C4052AC9B4EA4A0EAA6A07D0 /* Sources */,
+				65940E7EE5B4A572792F34A1008676B9 /* Frameworks */,
+				84FF96E3298BB7466D3873BFD0CBB136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-OnlineGroceriesApp";
+			productName = Pods_OnlineGroceriesApp;
+			productReference = 789EBBAFCEA0B1406FB30386E90BC5E0 /* Pods-OnlineGroceriesApp */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 531441E07AEB1962A6D68C6FFA4F9441 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBD57BFC185C54DD0535A58B49CD0063 /* Pods-OnlineGroceriesApp */,
+				40A376C243EF1B7C35BD6D6DB997AB06 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests */,
+				920C2FF08F07961B3FC4F45E8587D606 /* Pods-OnlineGroceriesAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		621E92E42374A48E13AA9FCE4F589412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84FF96E3298BB7466D3873BFD0CBB136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CECFF281FF7BE0B505079BD3B3BFFB6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A528E6C9D6DABF8C59480DECFAAB39E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72BE504E57125BCC31EE1D844CAD9203 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		404C5424C4052AC9B4EA4A0EAA6A07D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D34EA73B9804001948560520E1C6C710 /* Pods-OnlineGroceriesApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F1E9A95F9A2962E04E25DB8885CF583 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5875D1455A4BDAEB3891C4A60F215763 /* Pods-OnlineGroceriesAppTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2AF9E847695489FC5130F06F30F105A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-OnlineGroceriesApp";
+			target = EBD57BFC185C54DD0535A58B49CD0063 /* Pods-OnlineGroceriesApp */;
+			targetProxy = 82F7F57A6C6DE79EB6F39BABB66AC53D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04399617167663CA40A5084785120764 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F21295C707C8C5301B2DE6069FAAB84 /* Pods-OnlineGroceriesApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		218CE5C4D2AA2D9B394F28D075DDE0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 844E157E8E086E3A6AFB933AFA3C3E63 /* Pods-OnlineGroceriesAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2340042A0A5E19CA4E0DDD2AE6A6AA0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A26453EB4A6F2FD52BC69204F95217F8 /* Pods-OnlineGroceriesAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		9553C89E183877A5CB2F3C6801BEC129 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		99298992738B797244455E7882185CA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD08872E38672BC961AB572E00EB44C5 /* Pods-OnlineGroceriesApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A48A1E8FC2F2B039C9AAE29F28BAFAD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A789AC2E23E198E8077200964C46B0D0 /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F664C4CC07DFA5D3CF2703BDC1AF525E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E1F9D71EC4CC86DFDE468452022A0AA /* Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests/Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */,
+				9553C89E183877A5CB2F3C6801BEC129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C49953B043A9D3EB2D01D19273E75A2 /* Build configuration list for PBXNativeTarget "Pods-OnlineGroceriesAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2340042A0A5E19CA4E0DDD2AE6A6AA0F /* Debug */,
+				218CE5C4D2AA2D9B394F28D075DDE0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE7CFCA3CB82EAB786C6ACC30A89BB16 /* Build configuration list for PBXNativeTarget "Pods-OnlineGroceriesApp-OnlineGroceriesAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A48A1E8FC2F2B039C9AAE29F28BAFAD0 /* Debug */,
+				F664C4CC07DFA5D3CF2703BDC1AF525E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB6A41B935AD583480609CCE3B0C42F5 /* Build configuration list for PBXNativeTarget "Pods-OnlineGroceriesApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04399617167663CA40A5084785120764 /* Debug */,
+				99298992738B797244455E7882185CA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
