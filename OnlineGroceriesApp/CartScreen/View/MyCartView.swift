@@ -37,7 +37,7 @@ struct MyCartView: View {
             ScrollView{
                 LazyVStack{
                  
-                    FavouriteRow()
+                   CartItemRow()
 //
                 }
                 .padding(20)
@@ -51,7 +51,7 @@ struct MyCartView: View {
                 HStack{
                     Spacer()
                     
-                   Text("Favourites")
+                   Text("My Cart")
                         .font(.customfont(.bold, fontSize: 20))
                         .frame(height: 46)
                     
