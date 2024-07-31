@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
-
+import Firebase
 @main
 struct OnlineGroceriesAppApp: App {
-    @StateObject var  mainVM = LoginViewModel.shared
+    init() {
+          
+            FirebaseApp.configure()
+        }
     
     var body: some Scene {
         WindowGroup {
@@ -22,8 +25,8 @@ struct OnlineGroceriesAppApp: App {
 //                }else{
 //                    WelcomeView()
 //                }
-                
                 WelcomeView()
+//                SignUpView()
 //                MainTabView()
 //                LoginView()
             }
