@@ -12,7 +12,7 @@ struct SignUpView: View {
     @StateObject var signVM = SignUpViewModel.shared
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    @State private var navigateToLogin: Bool = false
+    @State private var navigateToHome: Bool = false
     
     var body: some View {
         ZStack {
@@ -85,7 +85,7 @@ struct SignUpView: View {
                                 alertMessage = "Sign-up successful!"
                                 showAlert = true
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                    navigateToLogin = true
+                                    navigateToHome = true
                                 }
                             } else {
                                 alertMessage = "Sign-up failed. Please try again."
@@ -95,7 +95,7 @@ struct SignUpView: View {
                     })
                     .padding(.bottom, .screenWidth * 0.05)
                     
-                    NavigationLink(destination: LoginView(), isActive: $navigateToLogin) {
+                    NavigationLink(destination: MainTabView(), isActive: $navigateToHome) {
                         EmptyView()
                     }
                     

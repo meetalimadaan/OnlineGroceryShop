@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UIView_Shimmer
 struct AccountView: View {
     @StateObject private var accountVM = AccountViewModel.shared
     
@@ -50,13 +50,13 @@ struct AccountView: View {
                                 VStack {
                                     AccountRow(title: "Orders", icon: "Orders icon")
                                     AccountRow(title: "My Details", icon: "My Details icon")
-                                    AccountRow(title: "Delivery Address", icon: "Delivery Address icon")
-                                    AccountRow(title: "About", icon: "About icon")
+                                    AccountRow(title: "Delivery Address", icon: "Delicery address")
+                                    AccountRow(title: "About", icon: "about icon")
                                 }
                                 
                                 VStack {
                                     AccountRow(title: "Notifications", icon: "Bell icon")
-                                    AccountRow(title: "Help", icon: "Help icon")
+                                    AccountRow(title: "Help", icon: "help icon")
                                 }
                                 
                                 Button {

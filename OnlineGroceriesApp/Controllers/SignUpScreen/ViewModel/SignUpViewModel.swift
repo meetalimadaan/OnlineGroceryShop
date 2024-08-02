@@ -44,11 +44,16 @@ class SignUpViewModel: ObservableObject {
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.showingError = true
+                print("Error saving data: \(error)")
                 completion(false)
             } else {
-                print("Data saved successfully for user: \(uid)")
+                print("Data saved successfully for user: \(uid), email: \(email), username: \(username)")
+                UserDefaultsManager.shared.setUsername(username)
+                UserDefaultsManager.shared.setEmail(email)
+                UserDefaultsManager.shared.setUID(uid)
                 completion(true)
             }
         }
     }
 }
+
