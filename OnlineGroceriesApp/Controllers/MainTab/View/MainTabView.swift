@@ -9,23 +9,10 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @StateObject var homeVM = HomeViewModel.shared
+    @StateObject var homeVM = HomeViewModel()
     
     var body: some View {
         ZStack{
-            
-//            TabView(selection: $homeVM.selectTab) {
-//                HomeView().tag(0)
-//                ExploreView().tag(1)
-//                ExploreView().tag(2)
-//                ExploreView().tag(3)
-//                ExploreView().tag(4)
-//            }
-////
-//            .tabViewStyle(.page(indexDisplayMode: .never))
-//                    
-//            .onChange(of: homeVM.selectTab){ newValue in
-//                debugPrint("Sel Tab: \(newValue)")
             
             if (homeVM.selectTab == 0){
                 HomeView()

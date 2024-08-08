@@ -1,5 +1,5 @@
 {
-  "originHash" : "50d9aed9fc6e183d2e3eac8e90d57894845faa62a3926a1eb5dcd2084a471343",
+  "originHash" : "61acd5b35f6a536ba6b25d0d4f49f279f1a266fa15f2dad2673e730ca5a463a9",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -119,6 +119,15 @@
       }
     },
     {
+      "identity" : "shimmer-swiftui-modifier",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/0xYanis/Shimmer-SwiftUI-Modifier.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "61d5254fe54bac7acc318b80cde4c0bfc2a2b5c4"
+      }
+    },
+    {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
@@ -128,12 +137,12 @@
       }
     },
     {
-      "identity" : "uiview-shimmer",
+      "identity" : "swiftui-shimmer",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/omerfarukozturk/UIView-Shimmer.git",
+      "location" : "https://github.com/markiv/SwiftUI-Shimmer.git",
       "state" : {
-        "revision" : "6b25069ae46e10295dd9f06e821def70ae197698",
-        "version" : "1.0.4"
+        "revision" : "e3aa4226b0fafe345ca1c920f516b6a2f3e0aacc",
+        "version" : "1.5.0"
       }
     }
   ],

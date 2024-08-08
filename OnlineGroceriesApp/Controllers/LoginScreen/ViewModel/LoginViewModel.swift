@@ -9,8 +9,11 @@ import SwiftUI
 import FirebaseAuth
 
 class LoginViewModel: ObservableObject {
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("currentUserUID") var currentUserUID: String?
     @Published var txtEmail: String = ""
     @Published var txtPassword: String = ""
+    @Published var isShowPassword: Bool = false
     @Published var errorMessage: String = ""
     @Published var showingError: Bool = false
 
@@ -22,6 +25,10 @@ class LoginViewModel: ObservableObject {
 
     init() {
         loadUserInfo()
+        if let savedUID = currentUserUID {
+            self.uid = savedUID
+            self.checkAdminStatus(uid: savedUID)
+        }
     }
 
     func login(completion: @escaping (Bool) -> Void) {
@@ -38,6 +45,7 @@ class LoginViewModel: ObservableObject {
             }
             self.uid = user.uid
             self.email = user.email
+            self.saveLoginState(uid: user.uid)
             self.checkAdminStatus(uid: user.uid)
             completion(true)
         }
@@ -66,6 +74,23 @@ class LoginViewModel: ObservableObject {
         self.adminId = UserDefaultsManager.shared.getAdminId()
         self.isAdmin = (self.uid == self.adminId)
     }
-}
 
+    private func saveLoginState(uid: String) {
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        UserDefaults.standard.set(uid, forKey: "currentUserUID")
+    }
+
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            UserDefaults.standard.set(false, forKey: "isLoggedIn")
+            UserDefaults.standard.removeObject(forKey: "currentUserUID")
+            self.uid = nil
+            self.email = nil
+            self.isAdmin = false
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError)")
+        }
+    }
+}
 

@@ -10,10 +10,10 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
-    @State var title: String = "Banana"
-    @State var subTitle: String = "1kg, Price"
-    @State var price: String = "$12.45"
+    var product: Product
+//    @State var title: String = "Banana"
+//    @State var subTitle: String = "1kg, Price"
+//    @State var price: String = "$12.45"
     
     var body: some View {
         
@@ -33,10 +33,18 @@ struct ProductDetailsView: View {
 //                        .scaledToFit()
 //                        .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
                     
-                    Image("92f1ea7dcce3b5d06cd1b1418f9b9413 3")
-                        .resizable()
-                        .scaledToFit()
-                    .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
+//                    Image("92f1ea7dcce3b5d06cd1b1418f9b9413 3")
+//                        .resizable()
+//                        .scaledToFit()
+//                    .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
+                    
+                    AsyncImage(url: URL(string: product.img)) { image in
+                        image.resizable()
+                            .scaledToFit()
+                            .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
+                    } placeholder: {
+                        ProgressView()
+                    }
                     
                 }
                 .frame(width: .screenWidth, height: .screenWidth * 0.8)
@@ -47,7 +55,7 @@ struct ProductDetailsView: View {
                 VStack{
                     HStack{
                         
-                        Text(title)
+                        Text(product.name)
                             .font(.customfont(.semibold, fontSize: 24))
                             .foregroundColor(.primaryText)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -64,7 +72,7 @@ struct ProductDetailsView: View {
                         
                     }
                     
-                    Text(subTitle)
+                    Text("\(product.stock) pcs, price")
                         .font(.customfont(.semibold, fontSize: 16))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -107,7 +115,7 @@ struct ProductDetailsView: View {
                         .foregroundColor(Color.secondaryText)
                         
                         Spacer()
-                        Text(price)
+                        Text("$\(product.price, specifier: "%.2f")")
                             .font(.customfont(.bold, fontSize: 28))
                             .foregroundColor(.primaryText)
                            
@@ -150,7 +158,7 @@ struct ProductDetailsView: View {
                         
                     }
 //                    if {
-                        Text("subTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTi tlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitlesubTitle")
+                    Text(product.description)
                             .font(.customfont(.medium, fontSize: 13))
                             .foregroundColor(.secondaryText)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -180,7 +188,7 @@ struct ProductDetailsView: View {
                     
                     
                     Button{
-                    
+                        mode.wrappedValue.dismiss()
                     } label: {
                         Image("back arrow")
                             .resizable()
@@ -214,10 +222,10 @@ struct ProductDetailsView: View {
         .ignoresSafeArea()
     }
 }
-
-#Preview {
-    ProductDetailsView()
-}
+//
+//#Preview {
+//    ProductDetailsView()
+//}
 
 
 

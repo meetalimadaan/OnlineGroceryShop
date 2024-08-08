@@ -11,6 +11,7 @@ struct SignUpView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @StateObject var signVM = SignUpViewModel.shared
     @State private var showAlert: Bool = false
+    @State var isShowPassword: Bool = false
     @State private var alertMessage: String = ""
     @State private var navigateToHome: Bool = false
     

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ExploreItemsView: View {
-    @StateObject var exploreVM = ExploreVireModel.shared
+    @StateObject var exploreVM = ExploreVireModel()
+    @StateObject var homeVM = HomeViewModel()
     @Environment(\.presentationMode)  var mode: Binding<PresentationMode>
+    var category: Category
     
     var column = [
         GridItem(.flexible(), spacing: 15),
@@ -23,7 +25,7 @@ struct ExploreItemsView: View {
                     
                     
                     Button{
-                    
+                        mode.wrappedValue.dismiss()
                     } label: {
                         Image("back arrow")
                             .resizable()
@@ -31,9 +33,9 @@ struct ExploreItemsView: View {
                             .frame(width: 25, height: 25)
                     }
                     
-            
                     
-                    Text("Beverages")
+                    
+                    Text(category.name!)
                         .font(.customfont(.bold, fontSize: 20))
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     
@@ -51,10 +53,14 @@ struct ExploreItemsView: View {
                 ScrollView{
                     
                     LazyVGrid(columns: column, spacing: 15) {
-                        ProductCell(width: .infinity)
-                            
+                        ForEach(homeVM.products) { product in
+                            ProductCell(product: product) {
+                                
+                            }
+                        }
+                        
                     }
-//                    .padding(.horizontal, 10)
+                    //                    .padding(.horizontal, 10)
                     .padding(.vertical, 10)
                     .padding(.bottom, .bottomInsets + 60)
                 }
@@ -69,6 +75,6 @@ struct ExploreItemsView: View {
     }
 }
 
-#Preview {
-    ExploreItemsView()
-}
+//#Preview {
+//    ExploreItemsView()
+//}

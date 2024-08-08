@@ -33,4 +33,17 @@ class AccountViewModel: ObservableObject {
             }
         }
     }
-}
+    
+    func logout(completion : @escaping(_ success : Bool)->()) {
+            do {
+                try Auth.auth().signOut()
+//                completion(true)
+                completion(true)
+                print("LOGOUT SUCEEFFFULYYY")
+            } catch {
+                print("Error signing out: \(error.localizedDescription)")
+                completion(false)
+//                completion(false)
+            }
+        }
+    }

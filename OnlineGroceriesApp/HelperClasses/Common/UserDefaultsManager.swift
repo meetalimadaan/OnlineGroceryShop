@@ -32,10 +32,10 @@ class UserDefaultsManager {
         return adminId
     }
     
-    func removeAdminId() {
-        UserDefaults.standard.removeObject(forKey: adminIdKey)
-        print("Admin ID removed from UserDefaults.")
-    }
+//    func removeAdminId() {
+//        UserDefaults.standard.removeObject(forKey: adminIdKey)
+//        print("Admin ID removed from UserDefaults.")
+//    }
     
     func setUsername(_ username: String) {
         UserDefaults.standard.set(username, forKey: usernameKey)
@@ -86,6 +86,7 @@ class UserDefaultsManager {
         UserDefaults.standard.removeObject(forKey: usernameKey)
         UserDefaults.standard.removeObject(forKey: emailKey)
         UserDefaults.standard.removeObject(forKey: uidKey)
+        UserDefaults.standard.removeObject(forKey: adminIdKey)
         print("User info removed from UserDefaults.")
     }
 }

@@ -48,7 +48,9 @@
 		018CBE3D2C4A838800C1565E /* ExploreVireModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE3C2C4A838800C1565E /* ExploreVireModel.swift */; };
 		018CBE402C4A86D100C1565E /* ExploreCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE3F2C4A86D100C1565E /* ExploreCategoryCell.swift */; };
 		018CBE422C4A9E1100C1565E /* BeveragesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE412C4A9E1100C1565E /* BeveragesView.swift */; };
-		019E8AFC2C5CAD41004DB985 /* UIView-Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 019E8AFB2C5CAD41004DB985 /* UIView-Shimmer */; };
+		019E8AFF2C5CB65D004DB985 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 019E8AFE2C5CB65D004DB985 /* Shimmer */; };
+		019E8B022C5CBD91004DB985 /* ShimmerEffect in Frameworks */ = {isa = PBXBuildFile; productRef = 019E8B012C5CBD91004DB985 /* ShimmerEffect */; };
+		019E8B042C5CCFD8004DB985 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019E8B032C5CCFD8004DB985 /* ForgotPasswordView.swift */; };
 		019F83772C4E344500AE9372 /* ExploreItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F83762C4E344500AE9372 /* ExploreItemsView.swift */; };
 		019F837B2C4E4A4200AE9372 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F837A2C4E4A4200AE9372 /* AccountView.swift */; };
 		019F837D2C4E6C7C00AE9372 /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F837C2C4E6C7C00AE9372 /* AccountRow.swift */; };
@@ -133,6 +135,7 @@
 		018CBE3C2C4A838800C1565E /* ExploreVireModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreVireModel.swift; sourceTree = "<group>"; };
 		018CBE3F2C4A86D100C1565E /* ExploreCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCategoryCell.swift; sourceTree = "<group>"; };
 		018CBE412C4A9E1100C1565E /* BeveragesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeveragesView.swift; sourceTree = "<group>"; };
+		019E8B032C5CCFD8004DB985 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		019F83762C4E344500AE9372 /* ExploreItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemsView.swift; sourceTree = "<group>"; };
 		019F837A2C4E4A4200AE9372 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		019F837C2C4E6C7C00AE9372 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
@@ -168,11 +171,12 @@
 			files = (
 				018CBE342C4A43C400C1565E /* FirebaseDatabase in Frameworks */,
 				018CBE362C4A43C400C1565E /* FirebaseFirestore in Frameworks */,
-				019E8AFC2C5CAD41004DB985 /* UIView-Shimmer in Frameworks */,
 				016F04C02C468733009ACEA4 /* CountryPicker in Frameworks */,
 				018CBE382C4A43C400C1565E /* FirebaseStorage in Frameworks */,
 				018CBE322C4A43C400C1565E /* FirebaseAuth in Frameworks */,
+				019E8AFF2C5CB65D004DB985 /* Shimmer in Frameworks */,
 				569268ED1B4EB7A9FD703CCB /* Pods_OnlineGroceriesApp.framework in Frameworks */,
+				019E8B022C5CBD91004DB985 /* ShimmerEffect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				0180BBFB2C47A5E800577BDE /* LoginView.swift */,
+				019E8B032C5CCFD8004DB985 /* ForgotPasswordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -676,7 +681,8 @@
 				018CBE332C4A43C400C1565E /* FirebaseDatabase */,
 				018CBE352C4A43C400C1565E /* FirebaseFirestore */,
 				018CBE372C4A43C400C1565E /* FirebaseStorage */,
-				019E8AFB2C5CAD41004DB985 /* UIView-Shimmer */,
+				019E8AFE2C5CB65D004DB985 /* Shimmer */,
+				019E8B012C5CBD91004DB985 /* ShimmerEffect */,
 			);
 			productName = OnlineGroceriesApp;
 			productReference = 013540202C3E65F800F5AB4A /* OnlineGroceriesApp.app */;
@@ -755,7 +761,8 @@
 			packageReferences = (
 				016F04BE2C468733009ACEA4 /* XCRemoteSwiftPackageReference "CountryPicker" */,
 				018CBE302C4A43C300C1565E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				019E8AFA2C5CAD41004DB985 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */,
+				019E8AFD2C5CB65D004DB985 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				019E8B002C5CBD91004DB985 /* XCRemoteSwiftPackageReference "Shimmer-SwiftUI-Modifier" */,
 			);
 			productRefGroup = 013540212C3E65F800F5AB4A /* Products */;
 			projectDirPath = "";
@@ -917,6 +924,7 @@
 				A34AA8DD2C53B98E00048734 /* SelectLocationView.swift in Sources */,
 				A34AA8E82C53CA4A00048734 /* CommonAppBar.swift in Sources */,
 				01B6A63F2C5A3F400086D1FD /* SignUpViewModel.swift in Sources */,
+				019E8B042C5CCFD8004DB985 /* ForgotPasswordView.swift in Sources */,
 				019F83812C4E91C500AE9372 /* MyCartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1281,12 +1289,20 @@
 				minimumVersion = 10.29.0;
 			};
 		};
-		019E8AFA2C5CAD41004DB985 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */ = {
+		019E8AFD2C5CB65D004DB985 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/omerfarukozturk/UIView-Shimmer.git";
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
+				minimumVersion = 1.5.0;
+			};
+		};
+		019E8B002C5CBD91004DB985 /* XCRemoteSwiftPackageReference "Shimmer-SwiftUI-Modifier" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/0xYanis/Shimmer-SwiftUI-Modifier.git";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1317,10 +1333,15 @@
 			package = 018CBE302C4A43C300C1565E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		019E8AFB2C5CAD41004DB985 /* UIView-Shimmer */ = {
+		019E8AFE2C5CB65D004DB985 /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 019E8AFA2C5CAD41004DB985 /* XCRemoteSwiftPackageReference "UIView-Shimmer" */;
-			productName = "UIView-Shimmer";
+			package = 019E8AFD2C5CB65D004DB985 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
+		019E8B012C5CBD91004DB985 /* ShimmerEffect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 019E8B002C5CBD91004DB985 /* XCRemoteSwiftPackageReference "Shimmer-SwiftUI-Modifier" */;
+			productName = ShimmerEffect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

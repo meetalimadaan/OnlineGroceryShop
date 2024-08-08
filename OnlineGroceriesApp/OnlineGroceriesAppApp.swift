@@ -9,28 +9,20 @@ import SwiftUI
 import Firebase
 @main
 struct OnlineGroceriesAppApp: App {
+    @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
+
     init() {
           
             FirebaseApp.configure()
         }
     
     var body: some Scene {
-        WindowGroup {
-            
-            
-            NavigationView {
-//
-//                if mainVM{
-//                    MainTabView()
-//                }else{
-//                    WelcomeView()
-//                }
-                WelcomeView()
-//                SignUpView()
-//                MainTabView()
-//                LoginView()
+            WindowGroup {
+                if isLoggedIn {
+                    MainTabView()
+                } else {
+                    LoginView()
+                }
             }
-           
         }
     }
-}

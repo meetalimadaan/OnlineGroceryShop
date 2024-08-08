@@ -11,6 +11,7 @@ struct LoginView: View {
     @StateObject private var viewModel = LoginViewModel()
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State var isShowPassword: Bool = false
     @State private var navigateToHome: Bool = false
     @State private var navigateToAdminHome: Bool = false
     
@@ -44,8 +45,20 @@ struct LoginView: View {
                     LineTextField(title: "Email", placeholder: "Enter your email address", txt: $viewModel.txtEmail, keyboardType: .emailAddress)
                         .padding(.bottom, .screenWidth * 0.07)
                     
-                    LineSecureField(title: "Password", placeholder: "Enter your password", txt: $viewModel.txtPassword, isShowPassword: .constant(false))
+                    LineSecureField(title: "Password", placeholder: "Enter your password", txt: $viewModel.txtPassword, isShowPassword: $viewModel.isShowPassword)
                         .padding(.bottom, .screenWidth * 0.04)
+                    
+                    NavigationLink {
+                        ForgotPasswordView()
+                    } label: {
+                        Text("Forgot Password?")
+                            .font(.customfont(.semibold, fontSize: 14))
+                            .foregroundColor(.secondaryText)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                            .padding(.bottom, 20)
+                    }
+                    
+                    
                     
                     if viewModel.showingError {
                         Text(viewModel.errorMessage)
