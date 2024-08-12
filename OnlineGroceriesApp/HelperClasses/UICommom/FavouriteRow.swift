@@ -8,28 +8,33 @@
 import SwiftUI
 
 struct FavouriteRow: View {
+    var product: Product
+    
     var body: some View {
         VStack{
             HStack(spacing: 15){
                 
-                Image("92f1ea7dcce3b5d06cd1b1418f9b9413 3")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 60)
+                AsyncImage(url: URL(string: product.img)) { image in
+                    image.resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                } placeholder: {
+                    ProgressView()
+                }
                 
                 VStack(spacing:4){
-                    Text("Banana")
+                    Text(product.name)
                         .font(.customfont(.bold, fontSize: 16))
                         .foregroundColor(.primaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
-                    Text("7pcs, price")
+                    Text("\(product.stock)pcs, price")
                         .font(.customfont(.medium, fontSize: 14))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 }
                 
-                Text("$2.99 ")
+                Text("$\(product.price)")
                     .font(.customfont(.semibold, fontSize: 18))
                     .foregroundColor(.primaryText)
                 //                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
@@ -47,6 +52,6 @@ struct FavouriteRow: View {
     }
 }
 
-#Preview {
-    FavouriteRow()
-}
+//#Preview {
+//    FavouriteRow(product: Product)
+//}

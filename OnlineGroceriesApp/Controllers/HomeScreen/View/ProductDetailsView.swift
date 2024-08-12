@@ -10,8 +10,9 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    var product: Product
     @State private var isFavorite: Bool = false
+    var product: Product
+    
     
     var body: some View {
         
@@ -47,14 +48,14 @@ struct ProductDetailsView: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         
                         Button {
-                            isFavorite.toggle()
+                            toggleFavorite()
                         } label: {
                             Image(systemName: isFavorite ? "heart.fill" : "heart")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                         }
-                        .foregroundColor(isFavorite ? Color.red : Color.secondaryText)
+                        .foregroundColor(isFavorite ? .red : .secondaryText)
                         
                     }
                     
@@ -111,7 +112,7 @@ struct ProductDetailsView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
-             
+                
                 
                 VStack{
                     HStack{
@@ -135,13 +136,13 @@ struct ProductDetailsView: View {
                         .foregroundColor(Color.primaryText)
                         
                     }
-    
+                    
                     Text(product.description)
                         .font(.customfont(.medium, fontSize: 13))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 8)
-        
+                    
                     Divider()
                     
                 }
@@ -191,6 +192,10 @@ struct ProductDetailsView: View {
         
         .navigationBarHidden(true)
         .ignoresSafeArea()
+    }
+    private func toggleFavorite() {
+        isFavorite.toggle()
+        // Add logic to update favorite status in your data source
     }
 }
 
