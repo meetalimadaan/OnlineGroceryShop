@@ -28,7 +28,7 @@ struct CategoryCell: View {
                 .scaledToFit()
                 .frame(width: 70, height: 70)
             } else {
-                Image("placeholderImage") // A placeholder image if URL is invalid
+                Image("placeholderImage") 
                     .resizable()
                     .scaledToFit()
                     .frame(width: 70, height: 70)

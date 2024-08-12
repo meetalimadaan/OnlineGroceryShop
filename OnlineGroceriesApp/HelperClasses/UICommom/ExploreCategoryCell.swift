@@ -48,7 +48,7 @@ struct ExploreCategoryCell: View {
             )
         }
         .onTapGesture {
-            print("Tapped on category: \(category.name!)")
+            print("Tapped on category: \(category.name)")
         }
     }
 }

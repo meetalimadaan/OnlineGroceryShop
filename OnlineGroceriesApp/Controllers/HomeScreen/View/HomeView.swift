@@ -11,6 +11,10 @@ struct HomeView: View {
     @StateObject var homeVM = HomeViewModel()
     @StateObject var exploreVM = ExploreVireModel()
     
+    @State var isLoadingExclusiveOffers = false
+    @State var isLoadingBestSelling = false
+    @State var isLoadingGroceries = false
+    
     var body: some View {
         NavigationView{
             ZStack {
@@ -51,31 +55,45 @@ struct HomeView: View {
                     SectionTitleAll(title: "Exclusive offer", titleAll: "See All") {}
                         .padding(.horizontal, 20)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack(spacing: 15) {
-                            ForEach(homeVM.products) { product in
-                                ProductCell(product: product) {
-                                    // Handle add to cart action here
+                    
+                    
+                    if isLoadingExclusiveOffers {
+                        ShimmerView()
+                            .frame(height: 120)
+                            .padding(.horizontal, 20)
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 15) {
+                                ForEach(homeVM.products) { product in
+                                    ProductCell(product: product) {
+                                        // Handle add to cart action here
+                                    }
                                 }
                             }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 4)
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 4)
                     }
                     
                     SectionTitleAll(title: "Best Selling", titleAll: "See All") {}
                         .padding(.horizontal, 20)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack(spacing: 15) {
-                            ForEach(homeVM.products) { product in
-                                ProductCell(product: product) {
-                                    // Handle add to cart action here
+                    if isLoadingBestSelling {
+                        ShimmerView()
+                            .frame(height: 120)
+                            .padding(.horizontal, 20)
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 15) {
+                                ForEach(homeVM.products) { product in
+                                    ProductCell(product: product) {
+                                        // Handle add to cart action here
+                                    }
                                 }
                             }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 4)
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 4)
                     }
                     
                     SectionTitleAll(title: "Groceries", titleAll: "See All") {}
@@ -85,7 +103,7 @@ struct HomeView: View {
                         LazyHStack(spacing: 15) {
                             ForEach(exploreVM.categories) { category in
                                 CategoryCell(category: category){
-                                    // Handle category selection here
+                                    
                                 }
                             }
                             //
@@ -99,7 +117,7 @@ struct HomeView: View {
                         LazyHStack(spacing: 15) {
                             ForEach(homeVM.products) { product in
                                 ProductCell(product: product) {
-                                    // Handle add to cart action here
+                                    
                                 }
                             }
                         }
@@ -110,9 +128,21 @@ struct HomeView: View {
                 }
             }
             .ignoresSafeArea()
+            
             .onAppear {
-                homeVM.fetchProducts()
+                isLoadingExclusiveOffers = true
+                isLoadingBestSelling = true
+                isLoadingGroceries = true
+                homeVM.fetchProducts { isSuccess in
+                    isLoadingExclusiveOffers = false
+                    isLoadingBestSelling = false
+                    isLoadingGroceries = false
+                }
             }
         }
     }
+}
+
+#Preview {
+    HomeView(homeVM: HomeViewModel(), exploreVM: ExploreVireModel())
 }

@@ -1,5 +1,5 @@
 {
-  "originHash" : "61acd5b35f6a536ba6b25d0d4f49f279f1a266fa15f2dad2673e730ca5a463a9",
+  "originHash" : "6d9f6967b943dc3cd5938049a7c7bfa4bce44cefcfc70c75f0c6735d029f8f1f",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -119,12 +119,12 @@
       }
     },
     {
-      "identity" : "shimmer-swiftui-modifier",
+      "identity" : "shimmerview",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/0xYanis/Shimmer-SwiftUI-Modifier.git",
+      "location" : "https://github.com/mercari/ShimmerView.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "61d5254fe54bac7acc318b80cde4c0bfc2a2b5c4"
+        "revision" : "f34a268db28b49231ea236dafcd976507cef9dfd",
+        "version" : "0.5.1"
       }
     },
     {
@@ -134,15 +134,6 @@
       "state" : {
         "revision" : "e17d61f26df0f0e06f58f6977ba05a097a720106",
         "version" : "1.27.1"
-      }
-    },
-    {
-      "identity" : "swiftui-shimmer",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/markiv/SwiftUI-Shimmer.git",
-      "state" : {
-        "revision" : "e3aa4226b0fafe345ca1c920f516b6a2f3e0aacc",
-        "version" : "1.5.0"
       }
     }
   ],

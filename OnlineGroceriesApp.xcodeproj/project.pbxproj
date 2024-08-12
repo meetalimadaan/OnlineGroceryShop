@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0114D1D32C411927005579DD /* LineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114D1D22C411927005579DD /* LineTextField.swift */; };
+		0134E5A22C64FCCA000871FB /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 0134E5A12C64FCCA000871FB /* ShimmerView */; };
+		0134E5A42C64FEC8000871FB /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0134E5A32C64FEC8000871FB /* ShimmerView.swift */; };
 		013540242C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013540232C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift */; };
 		013540282C3E65FA00F5AB4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013540272C3E65FA00F5AB4A /* Assets.xcassets */; };
 		0135402B2C3E65FA00F5AB4A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0135402A2C3E65FA00F5AB4A /* Preview Assets.xcassets */; };
@@ -18,7 +20,6 @@
 		013751BC2C3E6BC000955CED /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 013751BB2C3E6BC000955CED /* Gilroy-Medium.ttf */; };
 		013751BE2C3E6BD600955CED /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 013751BD2C3E6BD600955CED /* Gilroy-Regular.ttf */; };
 		013751C02C3E6BE100955CED /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 013751BF2C3E6BE100955CED /* Gilroy-SemiBold.ttf */; };
-		0150614E2C3FAA7B0097DFE8 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0150614D2C3FAA7B0097DFE8 /* UIExtension.swift */; };
 		015061502C3FBCCC0097DFE8 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0150614F2C3FBCCC0097DFE8 /* RoundButton.swift */; };
 		0152F9752C5269AE00F46C0B /* CartItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F9742C5269AE00F46C0B /* CartItemRow.swift */; };
 		016137602C5A6FAB0046D48D /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0161375F2C5A6FAB0046D48D /* AccountViewModel.swift */; };
@@ -29,7 +30,6 @@
 		016F04C02C468733009ACEA4 /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 016F04BF2C468733009ACEA4 /* CountryPicker */; };
 		0170EAC62C4F9EC600284405 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170EAC52C4F9EC600284405 /* FavouriteView.swift */; };
 		0170EAC82C4FD8CF00284405 /* FavouriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */; };
-		0180BBEF2C478A5600577BDE /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBEE2C478A5600577BDE /* UIKitExtension.swift */; };
 		0180BBF42C47A54C00577BDE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBF32C47A54C00577BDE /* WelcomeView.swift */; };
 		0180BBF82C47A5A300577BDE /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBF72C47A5A300577BDE /* SignInView.swift */; };
 		0180BBFC2C47A5E800577BDE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBFB2C47A5E800577BDE /* LoginView.swift */; };
@@ -48,8 +48,6 @@
 		018CBE3D2C4A838800C1565E /* ExploreVireModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE3C2C4A838800C1565E /* ExploreVireModel.swift */; };
 		018CBE402C4A86D100C1565E /* ExploreCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE3F2C4A86D100C1565E /* ExploreCategoryCell.swift */; };
 		018CBE422C4A9E1100C1565E /* BeveragesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CBE412C4A9E1100C1565E /* BeveragesView.swift */; };
-		019E8AFF2C5CB65D004DB985 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 019E8AFE2C5CB65D004DB985 /* Shimmer */; };
-		019E8B022C5CBD91004DB985 /* ShimmerEffect in Frameworks */ = {isa = PBXBuildFile; productRef = 019E8B012C5CBD91004DB985 /* ShimmerEffect */; };
 		019E8B042C5CCFD8004DB985 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019E8B032C5CCFD8004DB985 /* ForgotPasswordView.swift */; };
 		019F83772C4E344500AE9372 /* ExploreItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F83762C4E344500AE9372 /* ExploreItemsView.swift */; };
 		019F837B2C4E4A4200AE9372 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019F837A2C4E4A4200AE9372 /* AccountView.swift */; };
@@ -63,6 +61,11 @@
 		01C3108E2C490A0B00BDA053 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3108D2C490A0B00BDA053 /* CategoryCell.swift */; };
 		01C310902C491F2C00BDA053 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */; };
 		01C310922C49207900BDA053 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C310912C49207900BDA053 /* ProductDetailViewModel.swift */; };
+		01F133F52C661784009E7AEC /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133F42C661784009E7AEC /* FontExtension.swift */; };
+		01F133F72C6617BC009E7AEC /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133F62C6617BC009E7AEC /* CGFloatExtension.swift */; };
+		01F133F92C66180D009E7AEC /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133F82C66180D009E7AEC /* ColorExtension.swift */; };
+		01F133FB2C66184A009E7AEC /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133FA2C66184A009E7AEC /* ViewExtension.swift */; };
+		01F133FE2C6620FC009E7AEC /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133FD2C6620FC009E7AEC /* FavouriteViewModel.swift */; };
 		569268ED1B4EB7A9FD703CCB /* Pods_OnlineGroceriesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017A64506F9C47B8F6C6CC70 /* Pods_OnlineGroceriesApp.framework */; };
 		584B8D05ABED00341A253893 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCA27B51DF86BF6ED77A657 /* Pods_OnlineGroceriesApp_OnlineGroceriesAppUITests.framework */; };
 		97FB50FFA7DE41DF2581F464 /* Pods_OnlineGroceriesAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 124325182B371235EB1DE0D3 /* Pods_OnlineGroceriesAppTests.framework */; };
@@ -95,6 +98,7 @@
 /* Begin PBXFileReference section */
 		00ADD554E3550C471FD50EDF /* Pods-OnlineGroceriesAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesAppTests.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		0114D1D22C411927005579DD /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
+		0134E5A32C64FEC8000871FB /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		013540202C3E65F800F5AB4A /* OnlineGroceriesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineGroceriesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013540232C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGroceriesAppApp.swift; sourceTree = "<group>"; };
 		013540272C3E65FA00F5AB4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,7 +113,6 @@
 		013751BD2C3E6BD600955CED /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
 		013751BF2C3E6BE100955CED /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		013751C12C3E7CC300955CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		0150614D2C3FAA7B0097DFE8 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		0150614F2C3FBCCC0097DFE8 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		0152F9742C5269AE00F46C0B /* CartItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemRow.swift; sourceTree = "<group>"; };
 		0161375F2C5A6FAB0046D48D /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -120,7 +123,6 @@
 		0170EAC52C4F9EC600284405 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRow.swift; sourceTree = "<group>"; };
 		017A64506F9C47B8F6C6CC70 /* Pods_OnlineGroceriesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0180BBEE2C478A5600577BDE /* UIKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		0180BBF32C47A54C00577BDE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		0180BBF72C47A5A300577BDE /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		0180BBFB2C47A5E800577BDE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,11 @@
 		01C3108D2C490A0B00BDA053 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		01C310912C49207900BDA053 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		01F133F42C661784009E7AEC /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		01F133F62C6617BC009E7AEC /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		01F133F82C66180D009E7AEC /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		01F133FA2C66184A009E7AEC /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		01F133FD2C6620FC009E7AEC /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
 		1080602B5C37F647CA3C42A7 /* Pods-OnlineGroceriesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp.debug.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		124325182B371235EB1DE0D3 /* Pods_OnlineGroceriesAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BDE0189C648F2EA2C00BA5 /* Pods-OnlineGroceriesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesApp.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesApp/Pods-OnlineGroceriesApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,13 +177,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				018CBE342C4A43C400C1565E /* FirebaseDatabase in Frameworks */,
+				0134E5A22C64FCCA000871FB /* ShimmerView in Frameworks */,
 				018CBE362C4A43C400C1565E /* FirebaseFirestore in Frameworks */,
 				016F04C02C468733009ACEA4 /* CountryPicker in Frameworks */,
 				018CBE382C4A43C400C1565E /* FirebaseStorage in Frameworks */,
 				018CBE322C4A43C400C1565E /* FirebaseAuth in Frameworks */,
-				019E8AFF2C5CB65D004DB985 /* Shimmer in Frameworks */,
 				569268ED1B4EB7A9FD703CCB /* Pods_OnlineGroceriesApp.framework in Frameworks */,
-				019E8B022C5CBD91004DB985 /* ShimmerEffect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +300,6 @@
 		01639D262C3EA9BD0092D9F1 /* UICommom */ = {
 			isa = PBXGroup;
 			children = (
-				0150614D2C3FAA7B0097DFE8 /* UIExtension.swift */,
 				0150614F2C3FBCCC0097DFE8 /* RoundButton.swift */,
 				A34AA8F22C57AC5E00048734 /* PopUpView.swift */,
 				01C148302C3FEF880000BC0E /* CountryPickerUI.swift */,
@@ -309,6 +314,7 @@
 				0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */,
 				0152F9742C5269AE00F46C0B /* CartItemRow.swift */,
 				A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */,
+				0134E5A32C64FEC8000871FB /* ShimmerView.swift */,
 			);
 			path = UICommom;
 			sourceTree = "<group>";
@@ -316,7 +322,7 @@
 		016F04BB2C468045009ACEA4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0180BBEE2C478A5600577BDE /* UIKitExtension.swift */,
+				01F133F12C65FC80009E7AEC /* UIExtension */,
 				0161C77A2C5BAD7100FE9C5F /* UserDefaultsManager.swift */,
 			);
 			path = Common;
@@ -325,6 +331,7 @@
 		0170EAC32C4F9E9200284405 /* FavouriteScreen */ = {
 			isa = PBXGroup;
 			children = (
+				01F133FC2C6620EB009E7AEC /* ViewModel */,
 				0170EAC42C4F9EB200284405 /* View */,
 			);
 			path = FavouriteScreen;
@@ -577,6 +584,25 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		01F133F12C65FC80009E7AEC /* UIExtension */ = {
+			isa = PBXGroup;
+			children = (
+				01F133F42C661784009E7AEC /* FontExtension.swift */,
+				01F133F62C6617BC009E7AEC /* CGFloatExtension.swift */,
+				01F133F82C66180D009E7AEC /* ColorExtension.swift */,
+				01F133FA2C66184A009E7AEC /* ViewExtension.swift */,
+			);
+			path = UIExtension;
+			sourceTree = "<group>";
+		};
+		01F133FC2C6620EB009E7AEC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01F133FD2C6620FC009E7AEC /* FavouriteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1900C78397486CD28B82331B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,8 +707,7 @@
 				018CBE332C4A43C400C1565E /* FirebaseDatabase */,
 				018CBE352C4A43C400C1565E /* FirebaseFirestore */,
 				018CBE372C4A43C400C1565E /* FirebaseStorage */,
-				019E8AFE2C5CB65D004DB985 /* Shimmer */,
-				019E8B012C5CBD91004DB985 /* ShimmerEffect */,
+				0134E5A12C64FCCA000871FB /* ShimmerView */,
 			);
 			productName = OnlineGroceriesApp;
 			productReference = 013540202C3E65F800F5AB4A /* OnlineGroceriesApp.app */;
@@ -761,8 +786,7 @@
 			packageReferences = (
 				016F04BE2C468733009ACEA4 /* XCRemoteSwiftPackageReference "CountryPicker" */,
 				018CBE302C4A43C300C1565E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				019E8AFD2C5CB65D004DB985 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				019E8B002C5CBD91004DB985 /* XCRemoteSwiftPackageReference "Shimmer-SwiftUI-Modifier" */,
+				0134E5A02C64FCCA000871FB /* XCRemoteSwiftPackageReference "ShimmerView" */,
 			);
 			productRefGroup = 013540212C3E65F800F5AB4A /* Products */;
 			projectDirPath = "";
@@ -882,14 +906,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A34AA8ED2C5789E400048734 /* OrderAcceptedView.swift in Sources */,
+				01F133FE2C6620FC009E7AEC /* FavouriteViewModel.swift in Sources */,
 				01C148312C3FEF880000BC0E /* CountryPickerUI.swift in Sources */,
 				A34AA8DF2C53BD8C00048734 /* AddLocationView.swift in Sources */,
 				A34AA8E42C53BE2A00048734 /* LocationViewModel.swift in Sources */,
 				0161C7792C5B94B200FE9C5F /* WelcomeViewModel.swift in Sources */,
+				01F133F72C6617BC009E7AEC /* CGFloatExtension.swift in Sources */,
 				01639D282C3EAB2B0092D9F1 /* ContentView.swift in Sources */,
-				0180BBEF2C478A5600577BDE /* UIKitExtension.swift in Sources */,
 				0180BC0E2C47D08B00577BDE /* HomeViewModel.swift in Sources */,
+				0134E5A42C64FEC8000871FB /* ShimmerView.swift in Sources */,
 				015061502C3FBCCC0097DFE8 /* RoundButton.swift in Sources */,
+				01F133FB2C66184A009E7AEC /* ViewExtension.swift in Sources */,
 				019F837B2C4E4A4200AE9372 /* AccountView.swift in Sources */,
 				0180BC102C47D2BC00577BDE /* HomeView.swift in Sources */,
 				013540242C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift in Sources */,
@@ -903,9 +930,10 @@
 				0180BC142C47D44000577BDE /* ExploreView.swift in Sources */,
 				0180BBFC2C47A5E800577BDE /* LoginView.swift in Sources */,
 				0180BC162C47E20D00577BDE /* TabButton.swift in Sources */,
-				0150614E2C3FAA7B0097DFE8 /* UIExtension.swift in Sources */,
+				01F133F52C661784009E7AEC /* FontExtension.swift in Sources */,
 				016137602C5A6FAB0046D48D /* AccountViewModel.swift in Sources */,
 				0180BC052C47A87F00577BDE /* SignUpView.swift in Sources */,
+				01F133F92C66180D009E7AEC /* ColorExtension.swift in Sources */,
 				0114D1D32C411927005579DD /* LineTextField.swift in Sources */,
 				0161C77B2C5BAD7100FE9C5F /* UserDefaultsManager.swift in Sources */,
 				018CBE402C4A86D100C1565E /* ExploreCategoryCell.swift in Sources */,
@@ -1273,6 +1301,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0134E5A02C64FCCA000871FB /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mercari/ShimmerView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
 		016F04BE2C468733009ACEA4 /* XCRemoteSwiftPackageReference "CountryPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mobven/CountryPicker.git";
@@ -1289,25 +1325,14 @@
 				minimumVersion = 10.29.0;
 			};
 		};
-		019E8AFD2C5CB65D004DB985 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.0;
-			};
-		};
-		019E8B002C5CBD91004DB985 /* XCRemoteSwiftPackageReference "Shimmer-SwiftUI-Modifier" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/0xYanis/Shimmer-SwiftUI-Modifier.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0134E5A12C64FCCA000871FB /* ShimmerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0134E5A02C64FCCA000871FB /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			productName = ShimmerView;
+		};
 		016F04BF2C468733009ACEA4 /* CountryPicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 016F04BE2C468733009ACEA4 /* XCRemoteSwiftPackageReference "CountryPicker" */;
@@ -1332,16 +1357,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 018CBE302C4A43C300C1565E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		019E8AFE2C5CB65D004DB985 /* Shimmer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 019E8AFD2C5CB65D004DB985 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
-			productName = Shimmer;
-		};
-		019E8B012C5CBD91004DB985 /* ShimmerEffect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 019E8B002C5CBD91004DB985 /* XCRemoteSwiftPackageReference "Shimmer-SwiftUI-Modifier" */;
-			productName = ShimmerEffect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

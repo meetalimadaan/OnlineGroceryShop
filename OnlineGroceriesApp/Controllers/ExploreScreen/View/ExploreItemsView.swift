@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ExploreItemsView: View {
     @StateObject var exploreVM = ExploreVireModel()
-    @StateObject var homeVM = HomeViewModel()
-    @Environment(\.presentationMode)  var mode: Binding<PresentationMode>
+    //    @StateObject var homeVM = HomeViewModel()
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var category: Category
     
     var column = [
@@ -19,12 +19,10 @@ struct ExploreItemsView: View {
     ]
     
     var body: some View {
-        ZStack{
-            VStack{
-                HStack{
-                    
-                    
-                    Button{
+        ZStack {
+            VStack {
+                HStack {
+                    Button {
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image("back arrow")
@@ -33,14 +31,11 @@ struct ExploreItemsView: View {
                             .frame(width: 25, height: 25)
                     }
                     
-                    
-                    
                     Text(category.name!)
                         .font(.customfont(.bold, fontSize: 20))
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     
-                    
-                    Button{
+                    Button {
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image("Group 6839")
@@ -50,28 +45,33 @@ struct ExploreItemsView: View {
                     }
                 }
                 
-                ScrollView{
-                    
+                ScrollView {
                     LazyVGrid(columns: column, spacing: 15) {
-                        ForEach(homeVM.products) { product in
-                            ProductCell(product: product) {
-                                
-                            }
+                        ForEach(exploreVM.products) { product in
+                            ProductCell(product: product)
                         }
-                        
                     }
-                    //                    .padding(.horizontal, 10)
                     .padding(.vertical, 10)
+                    //                    ./*padding(.horizontal, 20)*/
                     .padding(.bottom, .bottomInsets + 60)
                 }
             }
-            . padding(.top, .topInsets)
+            .padding(.top, .topInsets)
             .padding(.horizontal, 20)
         }
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         .ignoresSafeArea()
+        .onAppear {
+            exploreVM.fetchProducts(byCategoryID: category.id ?? "") { success, error in
+                if success {
+                    print("Products fetched successfully.")
+                } else {
+                    print("Failed to fetch products: \(error ?? "Unknown error")")
+                }
+            }
+        }
     }
 }
 

@@ -11,9 +11,7 @@ import SwiftUI
 struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var product: Product
-//    @State var title: String = "Banana"
-//    @State var subTitle: String = "1kg, Price"
-//    @State var price: String = "$12.45"
+    @State private var isFavorite: Bool = false
     
     var body: some View {
         
@@ -24,19 +22,7 @@ struct ProductDetailsView: View {
                     Rectangle()
                         .foregroundColor(Color(hex: "F2F2F2"))
                         .frame(width: .screenWidth, height: .screenWidth * 0.8)
-                        .cornerRadius(_radius: 20, corner: [.bottomLeft, .bottomRight])
-                    
-//                    WebImage(url: URL(string: "Group-2"))
-//                        .resizable()
-//                        .indicator(.activity)
-//                        .transition(.fade(duration: 0.5))
-//                        .scaledToFit()
-//                        .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
-                    
-//                    Image("92f1ea7dcce3b5d06cd1b1418f9b9413 3")
-//                        .resizable()
-//                        .scaledToFit()
-//                    .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
+                        .cornerRadius(20, corner: [.bottomLeft, .bottomRight])
                     
                     AsyncImage(url: URL(string: product.img)) { image in
                         image.resizable()
@@ -59,16 +45,16 @@ struct ProductDetailsView: View {
                             .font(.customfont(.semibold, fontSize: 24))
                             .foregroundColor(.primaryText)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
-                        Button{
-                            
+                        
+                        Button {
+                            isFavorite.toggle()
                         } label: {
-                            Image("bookmark 1-2")
+                            Image(systemName: isFavorite ? "heart.fill" : "heart")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                         }
-                        .foregroundColor(Color.secondaryText)
+                        .foregroundColor(isFavorite ? Color.red : Color.secondaryText)
                         
                     }
                     
@@ -99,9 +85,9 @@ struct ProductDetailsView: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
                             )
-                                
-                            
-                                
+                        
+                        
+                        
                         
                         Button{
                             
@@ -118,22 +104,14 @@ struct ProductDetailsView: View {
                         Text("$\(product.price, specifier: "%.2f")")
                             .font(.customfont(.bold, fontSize: 28))
                             .foregroundColor(.primaryText)
-                           
-
+                        
                     }
-//                    .padding(.vertical, 8)
-                    
                     Divider()
                     
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
-                
-                
-                
-                
-                
-                
+             
                 
                 VStack{
                     HStack{
@@ -142,7 +120,7 @@ struct ProductDetailsView: View {
                             .font(.customfont(.semibold, fontSize: 16))
                             .foregroundColor(.primaryText)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
+                        
                         Button{
                             withAnimation {
                                 
@@ -157,25 +135,18 @@ struct ProductDetailsView: View {
                         .foregroundColor(Color.primaryText)
                         
                     }
-//                    if {
+    
                     Text(product.description)
-                            .font(.customfont(.medium, fontSize: 13))
-                            .foregroundColor(.secondaryText)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.bottom, 8)
-//                    }
-//
-                    
+                        .font(.customfont(.medium, fontSize: 13))
+                        .foregroundColor(.secondaryText)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, 8)
+        
                     Divider()
-                 
+                    
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 20)
-                
-//               RoundButton(title: "Add to Basket")
-//                {
-//                    
-//                }
                 .padding(20)
             }
             
@@ -222,9 +193,9 @@ struct ProductDetailsView: View {
         .ignoresSafeArea()
     }
 }
-//
+
 //#Preview {
-//    ProductDetailsView()
+//    ProductDetailsView(product: Product(name: "", categoryID: "", price: 0, description: "", img: "", stock: ""))
 //}
 
 

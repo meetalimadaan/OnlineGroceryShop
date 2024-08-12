@@ -10,45 +10,86 @@ import FirebaseFirestore
 
 class ExploreVireModel: ObservableObject {
     @Published var categories: [Category] = []
+    @Published var products: [Product] = []
     
     private var db = Firestore.firestore()
     
     init() {
-        fetchCategories()
-    }
+            fetchCategories { success, error in
+                if success {
+                    print("Categories fetched successfully.")
+                } else {
+                    print("Failed to fetch categories: \(error ?? "Unknown error")")
+                }
+            }
+        }
     
-    func fetchCategories() {
+    func fetchCategories(completion: @escaping (Bool, String?) -> Void) {
         db.collection("categories").getDocuments { snapshot, error in
             if let error = error {
-                print("Error fetching categories: \(error.localizedDescription)")
+                completion(false, "Error fetching categories: \(error.localizedDescription)")
                 return
             }
             
             if let documents = snapshot?.documents {
                 self.categories = documents.compactMap { doc in
                     do {
-                        // Try to decode with optional fields
-                        let category = try doc.data(as: Category.self)
-                        // Ensure that all required fields are present
-                        if let name = category.name, let imgURL = category.imgURL {
-                            return Category(id: doc.documentID, name: name, imgURL: imgURL)
-                        } else {
-                            print("Category data is incomplete: \(doc.data())")
-                            return nil
-                        }
+                        var category = try doc.data(as: Category.self)
+                        category.id = doc.documentID
+                        return category
                     } catch {
                         print("Error decoding category: \(error.localizedDescription)")
                         return nil
                     }
                 }
+                completion(true, nil)
+            } else {
+                completion(false, "No categories found.")
             }
         }
     }
 
-
+    
+    func fetchProducts(byCategoryID categoryID: String, completion: @escaping (Bool, String?) -> Void) {
+            db.collection("products")
+                .whereField("categoryID", isEqualTo: categoryID)
+                .getDocuments { snapshot, error in
+                    if let error = error {
+                        completion(false, "Error fetching products: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    if let documents = snapshot?.documents {
+                        self.products = documents.compactMap { doc in
+                            do {
+                                return try doc.data(as: Product.self)
+                            } catch {
+                                print("Error decoding product: \(error.localizedDescription)")
+                                return nil
+                            }
+                        }
+                        completion(true, nil)
+                    } else {
+                        completion(false, "No products found.")
+                    }
+                }
+        }
+    
+    
 }
 struct Category: Identifiable, Codable {
     @DocumentID var id: String?
     var name: String?
     var imgURL: String?
 }
+
+
+//struct Product: Identifiable, Codable {
+//    @DocumentID var id: String?
+//    var name: String
+//    var categoryID: String
+//    var price: Double
+//    var description: String?
+//    var img: String?
+//    var stock: Int
+//}
