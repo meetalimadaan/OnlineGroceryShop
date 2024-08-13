@@ -20,7 +20,7 @@ struct FavouriteView: View {
                     ForEach(viewModel.favouriteProducts) { product in
                         FavouriteRow(product: product)
                     }
-                    //
+                    
                 }
                 .padding(20)
                 .padding(.top, .topInsets + 46)
@@ -28,8 +28,7 @@ struct FavouriteView: View {
                 
                 
             }
-            //            .padding(.top, .topInsets + 60)
-            
+          
             VStack{
                 HStack{
                     Spacer()

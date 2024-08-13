@@ -1,73 +1,58 @@
-//
-//  ProductDetailsView.swift
-//  OnlineGroceriesApp
-//
-//  Created by meetali on 18/07/24.
-//
-
 import SwiftUI
-
 
 struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State private var isFavorite: Bool = false
-    var product: Product
+    @ObservedObject var viewModel: ProductDetailViewModel
     
+    init(product: Product) {
+        self.viewModel = ProductDetailViewModel(product: product)
+    }
     
     var body: some View {
-        
-        ZStack{
-            
-            ScrollView{
-                ZStack{
+        ZStack {
+            ScrollView {
+                ZStack {
                     Rectangle()
                         .foregroundColor(Color(hex: "F2F2F2"))
                         .frame(width: .screenWidth, height: .screenWidth * 0.8)
                         .cornerRadius(20, corner: [.bottomLeft, .bottomRight])
                     
-                    AsyncImage(url: URL(string: product.img)) { image in
+                    AsyncImage(url: URL(string: viewModel.product.img)) { image in
                         image.resizable()
                             .scaledToFit()
                             .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
                     } placeholder: {
                         ProgressView()
                     }
-                    
                 }
                 .frame(width: .screenWidth, height: .screenWidth * 0.8)
                 
-                
-                
-                
-                VStack{
-                    HStack{
-                        
-                        Text(product.name)
+                VStack {
+                    HStack {
+                        Text(viewModel.product.name)
                             .font(.customfont(.semibold, fontSize: 24))
                             .foregroundColor(.primaryText)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         
                         Button {
-                            toggleFavorite()
+                            viewModel.toggleFavorite()
                         } label: {
-                            Image(systemName: isFavorite ? "heart.fill" : "heart")
+                            Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                         }
-                        .foregroundColor(isFavorite ? .red : .secondaryText)
-                        
+                        .foregroundColor(viewModel.isFavorite ? .red : .secondaryText)
                     }
                     
-                    Text("\(product.stock) pcs, price")
+                    Text("\(viewModel.product.stock) pcs, price")
                         .font(.customfont(.semibold, fontSize: 16))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
-                    HStack{
-                        
-                        Button{
-                            
+                    HStack {
+                        Button {
+                            // Add logic for decrementing quantity
                         } label: {
                             Image("Vector-5")
                                 .resizable()
@@ -87,11 +72,8 @@ struct ProductDetailsView: View {
                                     .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
                             )
                         
-                        
-                        
-                        
-                        Button{
-                            
+                        Button {
+                            // Add logic for incrementing quantity
                         } label: {
                             Image("Vector-6")
                                 .resizable()
@@ -102,29 +84,25 @@ struct ProductDetailsView: View {
                         .foregroundColor(Color.secondaryText)
                         
                         Spacer()
-                        Text("$\(product.price, specifier: "%.2f")")
+                        Text("$\(viewModel.product.price, specifier: "%.2f")")
                             .font(.customfont(.bold, fontSize: 28))
                             .foregroundColor(.primaryText)
-                        
                     }
                     Divider()
-                    
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
                 
-                
-                VStack{
-                    HStack{
-                        
+                VStack {
+                    HStack {
                         Text("Product detail")
                             .font(.customfont(.semibold, fontSize: 16))
                             .foregroundColor(.primaryText)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         
-                        Button{
+                        Button {
                             withAnimation {
-                                
+                                // Add logic for expanding/collapsing details
                             }
                         } label: {
                             Image("Vector-7")
@@ -134,32 +112,24 @@ struct ProductDetailsView: View {
                                 .padding(15)
                         }
                         .foregroundColor(Color.primaryText)
-                        
                     }
                     
-                    Text(product.description)
+                    Text(viewModel.product.description)
                         .font(.customfont(.medium, fontSize: 13))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 8)
                     
                     Divider()
-                    
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 20)
                 .padding(20)
             }
             
-            
-            
-            
-            VStack{
-                
-                HStack{
-                    
-                    
-                    Button{
+            VStack {
+                HStack {
+                    Button {
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image("back arrow")
@@ -170,8 +140,7 @@ struct ProductDetailsView: View {
                     
                     Spacer()
                     
-                    
-                    Button{
+                    Button {
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image("Vector-4")
@@ -183,25 +152,12 @@ struct ProductDetailsView: View {
                 
                 Spacer()
             }
-            . padding(.top, .topInsets)
+            .padding(.top, .topInsets)
             .padding(.horizontal, 20)
         }
-        
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
-        
         .navigationBarHidden(true)
         .ignoresSafeArea()
     }
-    private func toggleFavorite() {
-        isFavorite.toggle()
-        // Add logic to update favorite status in your data source
-    }
 }
-
-//#Preview {
-//    ProductDetailsView(product: Product(name: "", categoryID: "", price: 0, description: "", img: "", stock: ""))
-//}
-
-
-

@@ -86,7 +86,7 @@ class UserDefaultsManager {
         UserDefaults.standard.removeObject(forKey: usernameKey)
         UserDefaults.standard.removeObject(forKey: emailKey)
         UserDefaults.standard.removeObject(forKey: uidKey)
-        UserDefaults.standard.removeObject(forKey: adminIdKey)
+//        UserDefaults.standard.removeObject(forKey: adminIdKey)
         print("User info removed from UserDefaults.")
     }
 }

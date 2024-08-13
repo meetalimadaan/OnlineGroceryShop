@@ -21,7 +21,7 @@ struct OnlineGroceriesAppApp: App {
                 if isLoggedIn {
                     MainTabView()
                 } else {
-                    LoginView()
+                    WelcomeView()
                 }
             }
         }
