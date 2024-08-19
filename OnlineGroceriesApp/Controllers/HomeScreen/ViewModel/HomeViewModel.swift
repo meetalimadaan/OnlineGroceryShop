@@ -53,6 +53,9 @@ class HomeViewModel: ObservableObject {
 //                print("Fetched products: \(self.products)")
             }
         }
+    
+    
+    
 
 
 }

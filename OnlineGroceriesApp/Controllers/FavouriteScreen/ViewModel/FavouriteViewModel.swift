@@ -28,8 +28,10 @@ class FavouriteViewModel: ObservableObject {
             }
             
             if let document = document, document.exists {
-                if let ids = document.data()?["IDs"] as? [String] {
+                if let ids = document.data()?["IDs"] as? [String], !ids.isEmpty {
                     self.fetchProductsByIds(ids)
+                } else {
+                    self.favouriteProducts = []
                 }
             }
         }

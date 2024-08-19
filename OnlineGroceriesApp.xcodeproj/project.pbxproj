@@ -61,6 +61,8 @@
 		01C3108E2C490A0B00BDA053 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3108D2C490A0B00BDA053 /* CategoryCell.swift */; };
 		01C310902C491F2C00BDA053 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */; };
 		01C310922C49207900BDA053 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C310912C49207900BDA053 /* ProductDetailViewModel.swift */; };
+		01DBAB942C6C903A00BEEE5D /* IncrementDecrementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DBAB932C6C903A00BEEE5D /* IncrementDecrementButton.swift */; };
+		01DC10B62C6B98060050B1AC /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DC10B52C6B98060050B1AC /* CartViewModel.swift */; };
 		01F133F52C661784009E7AEC /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133F42C661784009E7AEC /* FontExtension.swift */; };
 		01F133F72C6617BC009E7AEC /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133F62C6617BC009E7AEC /* CGFloatExtension.swift */; };
 		01F133F92C66180D009E7AEC /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F133F82C66180D009E7AEC /* ColorExtension.swift */; };
@@ -150,6 +152,8 @@
 		01C3108D2C490A0B00BDA053 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		01C310912C49207900BDA053 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		01DBAB932C6C903A00BEEE5D /* IncrementDecrementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementDecrementButton.swift; sourceTree = "<group>"; };
+		01DC10B52C6B98060050B1AC /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		01F133F42C661784009E7AEC /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		01F133F62C6617BC009E7AEC /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		01F133F82C66180D009E7AEC /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				0114D1D22C411927005579DD /* LineTextField.swift */,
 				0180BC152C47E20D00577BDE /* TabButton.swift */,
 				01C310872C48EDCC00BDA053 /* SearchTextField.swift */,
+				01F133FA2C66184A009E7AEC /* ViewExtension.swift */,
 				01C310892C48F48800BDA053 /* SectionTitleAll.swift */,
 				01C3108B2C48FD4000BDA053 /* ProductCell.swift */,
 				01C3108D2C490A0B00BDA053 /* CategoryCell.swift */,
@@ -315,6 +320,7 @@
 				0152F9742C5269AE00F46C0B /* CartItemRow.swift */,
 				A34AA8E72C53CA4A00048734 /* CommonAppBar.swift */,
 				0134E5A32C64FEC8000871FB /* ShimmerView.swift */,
+				01DBAB932C6C903A00BEEE5D /* IncrementDecrementButton.swift */,
 			);
 			path = UICommom;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				019F83802C4E91C500AE9372 /* MyCartView.swift */,
+				01DC10B52C6B98060050B1AC /* CartViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,7 +597,6 @@
 				01F133F42C661784009E7AEC /* FontExtension.swift */,
 				01F133F62C6617BC009E7AEC /* CGFloatExtension.swift */,
 				01F133F82C66180D009E7AEC /* ColorExtension.swift */,
-				01F133FA2C66184A009E7AEC /* ViewExtension.swift */,
 			);
 			path = UIExtension;
 			sourceTree = "<group>";
@@ -921,6 +927,7 @@
 				0180BC102C47D2BC00577BDE /* HomeView.swift in Sources */,
 				013540242C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift in Sources */,
 				01C3108A2C48F48800BDA053 /* SectionTitleAll.swift in Sources */,
+				01DC10B62C6B98060050B1AC /* CartViewModel.swift in Sources */,
 				019F83772C4E344500AE9372 /* ExploreItemsView.swift in Sources */,
 				0180BC002C47A6DB00577BDE /* LoginViewModel.swift in Sources */,
 				019F837D2C4E6C7C00AE9372 /* AccountRow.swift in Sources */,
@@ -940,6 +947,7 @@
 				A34AA8F32C57AC5E00048734 /* PopUpView.swift in Sources */,
 				0180BBF42C47A54C00577BDE /* WelcomeView.swift in Sources */,
 				01C310922C49207900BDA053 /* ProductDetailViewModel.swift in Sources */,
+				01DBAB942C6C903A00BEEE5D /* IncrementDecrementButton.swift in Sources */,
 				01C310902C491F2C00BDA053 /* ProductDetailsView.swift in Sources */,
 				01C3108E2C490A0B00BDA053 /* CategoryCell.swift in Sources */,
 				01C3108C2C48FD4000BDA053 /* ProductCell.swift in Sources */,
