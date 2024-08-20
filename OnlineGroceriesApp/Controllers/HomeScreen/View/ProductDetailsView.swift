@@ -2,10 +2,12 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @ObservedObject var viewModel: ProductDetailViewModel
+//    @ObservedObject var viewModel: ProductDetailViewModel
+    @ObservedObject var viewModel: ProductCellViewModel
+    @State private var isDetailExpanded: Bool = false
     
     init(product: Product) {
-        self.viewModel = ProductDetailViewModel(product: product)
+        self.viewModel = ProductCellViewModel(product: product)
     }
     
     var body: some View {
@@ -51,8 +53,10 @@ struct ProductDetailsView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
                     HStack {
+                        if viewModel.showQuantity {
+//                        IncrementDecrementButton(viewModel: viewModel)
                         Button {
-                            // Add logic for decrementing quantity
+                            viewModel.decrementQuantity()
                         } label: {
                             Image("Vector-5")
                                 .resizable()
@@ -62,7 +66,7 @@ struct ProductDetailsView: View {
                         }
                         .foregroundColor(Color.secondaryText)
                         
-                        Text("1")
+                        Text("\(viewModel.cartQuantity)")
                             .font(.customfont(.semibold, fontSize: 24))
                             .foregroundColor(.primaryText)
                             .multilineTextAlignment(.center)
@@ -73,7 +77,7 @@ struct ProductDetailsView: View {
                             )
                         
                         Button {
-                            // Add logic for incrementing quantity
+                            viewModel.incrementQuantity()
                         } label: {
                             Image("Vector-6")
                                 .resizable()
@@ -82,7 +86,28 @@ struct ProductDetailsView: View {
                                 .padding(10)
                         }
                         .foregroundColor(Color.secondaryText)
-                        
+                            
+                        } else {
+                            Button {
+                                viewModel.addProductToCart()
+                            } label: {
+                                HStack {
+                                    Image("Vector-3")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15, height: 15)
+                                    
+                                    Text("Add to Basket")
+                                        .font(.customfont(.semibold, fontSize: 14))
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                            }
+                            .frame(width: 150, height: 45)
+                            .background(Color.primaryApp)
+                            .cornerRadius(15)
+                        }
                         Spacer()
                         Text("$\(viewModel.product.price, specifier: "%.2f")")
                             .font(.customfont(.bold, fontSize: 28))
@@ -102,7 +127,7 @@ struct ProductDetailsView: View {
                         
                         Button {
                             withAnimation {
-                                // Add logic for expanding/collapsing details
+                                isDetailExpanded.toggle()
                             }
                         } label: {
                             Image("Vector-7")
@@ -114,11 +139,13 @@ struct ProductDetailsView: View {
                         .foregroundColor(Color.primaryText)
                     }
                     
-                    Text(viewModel.product.description)
-                        .font(.customfont(.medium, fontSize: 13))
-                        .foregroundColor(.secondaryText)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom, 8)
+                    if isDetailExpanded {
+                                               Text(viewModel.product.description ?? "No description available.")
+                                                   .font(.customfont(.medium, fontSize: 13))
+                                                   .foregroundColor(.secondaryText)
+                                                   .padding(.bottom, 8)
+                                           }
+                                           
                     
                     Divider()
                 }

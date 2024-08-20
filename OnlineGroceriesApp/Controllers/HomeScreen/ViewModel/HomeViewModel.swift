@@ -65,9 +65,9 @@ struct Product: Identifiable, Codable {
     var name: String
     var categoryID: String?
     var price: Double
-    var description: String
+    var description: String? = nil
     var img: String
-    var stock: String
+    var stock: String? = nil
 }
 
 

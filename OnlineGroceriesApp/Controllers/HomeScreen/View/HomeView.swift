@@ -65,11 +65,11 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 15) {
                                 ForEach(homeVM.products) { product in
-                                    ProductCell(product: product) {
+                                    ProductCell(viewModel: ProductCellViewModel(product: product))
                                         // Handle add to cart action here
                                     }
                                 }
-                            }
+                            
                             .padding(.horizontal, 20)
                             .padding(.vertical, 4)
                         }
@@ -86,11 +86,11 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 15) {
                                 ForEach(homeVM.products) { product in
-                                    ProductCell(product: product) {
+                                    ProductCell(viewModel: ProductCellViewModel(product: product))
                                         // Handle add to cart action here
                                     }
                                 }
-                            }
+                            
                             .padding(.horizontal, 20)
                             .padding(.vertical, 4)
                         }
@@ -116,10 +116,10 @@ struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 15) {
                             ForEach(homeVM.products) { product in
-                                ProductCell(product: product) {
+                                ProductCell(viewModel: ProductCellViewModel(product: product))
                                     
                                 }
-                            }
+                            
                         }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 4)

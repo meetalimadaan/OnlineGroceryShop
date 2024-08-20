@@ -48,7 +48,7 @@ struct ExploreItemsView: View {
                 ScrollView {
                     LazyVGrid(columns: column, spacing: 15) {
                         ForEach(exploreVM.products) { product in
-                            ProductCell(product: product)
+                            ProductCell(viewModel: ProductCellViewModel(product: product))
                         }
                     }
                     .padding(.vertical, 10)
