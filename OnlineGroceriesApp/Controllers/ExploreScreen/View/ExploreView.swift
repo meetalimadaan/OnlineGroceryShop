@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ExploreView: View {
     @StateObject var exploreVM = ExploreVireModel()
-    @State var txtSearch: String = ""
     
     var column = [
         GridItem(.flexible(), spacing: 15),
@@ -17,15 +16,13 @@ struct ExploreView: View {
     ]
     
     var body: some View {
-        NavigationView{
-            ZStack{
-                
-                VStack{
-                    HStack{
-                        
+        NavigationView {
+            ZStack {
+                VStack {
+                    HStack {
                         Spacer()
                         
-                        Text("Find Products")
+                        Text("Find Category")
                             .font(.customfont(.bold, fontSize: 20))
                             .frame(height: 46)
                         
@@ -33,22 +30,27 @@ struct ExploreView: View {
                     }
                     .padding(.top, .topInsets)
                     
-                    
-                    SearchTextField(placeholder: "Search Store", txt: $txtSearch)
+                    SearchTextField(placeholder: "Search Categories", txt: $exploreVM.searchText)
                         .padding(.horizontal, 20)
                         .padding(.bottom, 4)
                     
-                    
-                    ScrollView{
-                        LazyVGrid(columns: column, spacing: 20) {
-                            ForEach(exploreVM.categories) { category in
-                                ExploreCategoryCell(category: category)
-                                    .aspectRatio(0.95, contentMode: .fill)
+                    ScrollView {
+                        if exploreVM.filteredCategories.isEmpty {
+                            Text("No matches")
+                                .font(.customfont(.bold, fontSize: 18))
+                                .foregroundColor(.gray)
+                                .padding(.top, 50)
+                        } else {
+                            LazyVGrid(columns: column, spacing: 20) {
+                                ForEach(exploreVM.filteredCategories) { category in
+                                    ExploreCategoryCell(category: category)
+                                        .aspectRatio(0.95, contentMode: .fill)
+                                }
                             }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .padding(.bottom, .bottomInsets + 60)
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .padding(.bottom, .bottomInsets + 60)
                     }
                     
                     Spacer()
@@ -57,6 +59,8 @@ struct ExploreView: View {
             .ignoresSafeArea()
         }
     }
+}
+
     
 //    #Preview {
 //        NavigationView{
@@ -64,4 +68,4 @@ struct ExploreView: View {
 //        }
 //        
 //    }
-}
+

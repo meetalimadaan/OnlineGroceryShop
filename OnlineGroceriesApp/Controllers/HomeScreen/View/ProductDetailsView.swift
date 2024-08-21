@@ -2,13 +2,12 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-//    @ObservedObject var viewModel: ProductDetailViewModel
     @ObservedObject var viewModel: ProductCellViewModel
     @State private var isDetailExpanded: Bool = false
     
-    init(product: Product) {
-        self.viewModel = ProductCellViewModel(product: product)
-    }
+    init(viewModel: ProductCellViewModel) {
+           self.viewModel = viewModel
+       }
     
     var body: some View {
         ZStack {
@@ -54,38 +53,38 @@ struct ProductDetailsView: View {
                     
                     HStack {
                         if viewModel.showQuantity {
-//                        IncrementDecrementButton(viewModel: viewModel)
-                        Button {
-                            viewModel.decrementQuantity()
-                        } label: {
-                            Image("Vector-5")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20, height: 20)
-                                .padding(10)
-                        }
-                        .foregroundColor(Color.secondaryText)
-                        
-                        Text("\(viewModel.cartQuantity)")
-                            .font(.customfont(.semibold, fontSize: 24))
-                            .foregroundColor(.primaryText)
-                            .multilineTextAlignment(.center)
-                            .frame(width: 45, height: 45, alignment: .center)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
-                            )
-                        
-                        Button {
-                            viewModel.incrementQuantity()
-                        } label: {
-                            Image("Vector-6")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20, height: 20)
-                                .padding(10)
-                        }
-                        .foregroundColor(Color.secondaryText)
+                            //                        IncrementDecrementButton(viewModel: viewModel)
+                            Button {
+                                viewModel.decrementQuantity()
+                            } label: {
+                                Image("Vector-5")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
+                                    .padding(10)
+                            }
+                            .foregroundColor(Color.secondaryText)
+                            
+                            Text("\(viewModel.cartQuantity)")
+                                .font(.customfont(.semibold, fontSize: 24))
+                                .foregroundColor(.primaryText)
+                                .multilineTextAlignment(.center)
+                                .frame(width: 45, height: 45, alignment: .center)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
+                                )
+                            
+                            Button {
+                                viewModel.incrementQuantity()
+                            } label: {
+                                Image("Vector-6")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
+                                    .padding(10)
+                            }
+                            .foregroundColor(Color.secondaryText)
                             
                         } else {
                             Button {
@@ -140,12 +139,12 @@ struct ProductDetailsView: View {
                     }
                     
                     if isDetailExpanded {
-                                               Text(viewModel.product.description ?? "No description available.")
-                                                   .font(.customfont(.medium, fontSize: 13))
-                                                   .foregroundColor(.secondaryText)
-                                                   .padding(.bottom, 8)
-                                           }
-                                           
+                        Text(viewModel.product.description ?? "No description available.")
+                            .font(.customfont(.medium, fontSize: 13))
+                            .foregroundColor(.secondaryText)
+                            .padding(.bottom, 8)
+                    }
+                    
                     
                     Divider()
                 }
@@ -178,6 +177,9 @@ struct ProductDetailsView: View {
                 }
                 
                 Spacer()
+                RoundButton(title: "Add to Basket")
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, .bottomInsets + 80)
             }
             .padding(.top, .topInsets)
             .padding(.horizontal, 20)

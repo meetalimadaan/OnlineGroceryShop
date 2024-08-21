@@ -11,8 +11,18 @@ import FirebaseFirestore
 class ExploreVireModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var products: [Product] = []
-    
+    @Published var searchText: String = ""
     private var db = Firestore.firestore()
+    
+    var filteredCategories: [Category] {
+            if searchText.isEmpty {
+                return categories
+            } else {
+                return categories.filter { category in
+                    category.name?.lowercased().contains(searchText.lowercased()) ?? false
+                }
+            }
+        }
     
     init() {
             fetchCategories { success, error in

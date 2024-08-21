@@ -11,12 +11,13 @@ struct ProductCell: View {
     @ObservedObject var viewModel: ProductCellViewModel
     
     var body: some View {
-        NavigationLink(destination: ProductDetailsView(product: viewModel.product)) {
+        NavigationLink(destination: ProductDetailsView(viewModel: viewModel)) {
             VStack {
                 AsyncImage(url: URL(string: viewModel.product.img)) { image in
                     image.resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 80)
+//                        .transition(.opacity)
                 } placeholder: {
                     ShimmerView()
                 }

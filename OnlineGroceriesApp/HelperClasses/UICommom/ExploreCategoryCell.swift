@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ExploreCategoryCell: View {
     var category: Category
-    @State var color: Color = Color.yellow
-    var didAddCart: (() -> ())?
     
     var body: some View {
         NavigationLink(destination: ExploreItemsView(category: category)) {
@@ -24,7 +22,7 @@ struct ExploreCategoryCell: View {
                     .scaledToFit()
                     .frame(width: 120, height: 90)
                 } else {
-                    Image("placeholderImage") 
+                    Image("placeholderImage")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 120, height: 90)

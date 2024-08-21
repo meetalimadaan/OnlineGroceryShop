@@ -10,8 +10,16 @@ import FirebaseFirestore
 
 class HomeViewModel: ObservableObject {
     @Published var products: [Product] = []
-    @Published var txtSearch = ""
     @Published var selectTab: Int = 0
+    @Published var searchText: String = ""
+    
+    var filteredProducts: [Product] {
+            if searchText.isEmpty {
+                return products
+            } else {
+                return products.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            }
+        }
     
     init() {
             fetchProducts { isSuccess in

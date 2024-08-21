@@ -15,6 +15,7 @@ struct HomeView: View {
     @State var isLoadingBestSelling = false
     @State var isLoadingGroceries = false
     
+    @State private var searchText1: String = ""
     var body: some View {
         NavigationView{
             ZStack {
@@ -40,7 +41,7 @@ struct HomeView: View {
                             }
                         }
                         
-                        SearchTextField(placeholder: "Search Store", txt: $homeVM.txtSearch)
+                        SearchTextField(placeholder: "Search Store", txt: $homeVM.searchText)
                             .padding(.horizontal, 20)
                             .padding(.vertical, 10)
                     }
@@ -64,7 +65,7 @@ struct HomeView: View {
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 15) {
-                                ForEach(homeVM.products) { product in
+                                ForEach(homeVM.filteredProducts) { product in
                                     ProductCell(viewModel: ProductCellViewModel(product: product))
                                         // Handle add to cart action here
                                     }
@@ -85,7 +86,7 @@ struct HomeView: View {
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 15) {
-                                ForEach(homeVM.products) { product in
+                                ForEach(homeVM.filteredProducts) { product in
                                     ProductCell(viewModel: ProductCellViewModel(product: product))
                                         // Handle add to cart action here
                                     }
@@ -115,7 +116,7 @@ struct HomeView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 15) {
-                            ForEach(homeVM.products) { product in
+                            ForEach(homeVM.filteredProducts) { product in
                                 ProductCell(viewModel: ProductCellViewModel(product: product))
                                     
                                 }

@@ -10,10 +10,11 @@ import FirebaseFirestore
 import Firebase
 
 class MyCartViewModel: ObservableObject {
+    static let shared = MyCartViewModel()
+
     @Published var cartItems: [CartItem] = []
-    private var userCartRef: DocumentReference?
-    
-    init() {
+
+    private init() {
         fetchCartItems()
     }
 
@@ -38,12 +39,8 @@ class MyCartViewModel: ObservableObject {
             }
         }
     }
-    
 
     private func getCurrentUserID() -> String? {
         return Auth.auth().currentUser?.uid
     }
-    
-    
-    
 }

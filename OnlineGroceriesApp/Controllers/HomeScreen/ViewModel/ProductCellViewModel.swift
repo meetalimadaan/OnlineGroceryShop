@@ -12,7 +12,7 @@ class ProductCellViewModel: ObservableObject {
     @Published var cartQuantity: Int = 0
     @Published var showQuantity: Bool = false
     @Published var isFavorite: Bool = false
-     var product: Product
+    @Published var product: Product
     let db = Firestore.firestore()
     var userId: String? {
        Auth.auth().currentUser?.uid
@@ -52,12 +52,15 @@ class ProductCellViewModel: ObservableObject {
     }
     
     func addProductToCart() {
-        let db = Firestore.firestore()
         guard let userID = getCurrentUserID() else {
             print("Error: User not logged in")
             return
         }
 
+        // Immediately update UI state
+        cartQuantity += 1
+        showQuantity = true
+        
         let userCartRef = db.collection("userCart").document(userID)
         
         userCartRef.getDocument { [weak self] (document, error) in
@@ -85,7 +88,7 @@ class ProductCellViewModel: ObservableObject {
                         print("Error updating cart: \(error.localizedDescription)")
                     } else {
                         print("Product quantity updated/added successfully.")
-                        self.fetchCartQuantity()
+                        // The UI is already updated above
                     }
                 }
 
@@ -105,12 +108,13 @@ class ProductCellViewModel: ObservableObject {
                         print("Error creating user cart: \(error.localizedDescription)")
                     } else {
                         print("User cart created and product added successfully.")
-                        self.fetchCartQuantity()
+                        // The UI is already updated above
                     }
                 }
             }
         }
     }
+
     
     
     func incrementQuantity() {
@@ -118,14 +122,17 @@ class ProductCellViewModel: ObservableObject {
             updateQuantityInCart()
         }
 
-        func decrementQuantity() {
-            if cartQuantity > 1 {
-                cartQuantity -= 1
-                updateQuantityInCart()
-            } else if cartQuantity == 1 {
-                removeProductFromCart()
-            }
+    func decrementQuantity() {
+        if cartQuantity > 1 {
+            cartQuantity -= 1
+            updateQuantityInCart()
+        } else if cartQuantity == 1 {
+            cartQuantity = 0
+            showQuantity = false
+            removeProductFromCart()
         }
+    }
+
     
      func updateQuantityInCart() {
             guard let userID = getCurrentUserID() else { return }
@@ -149,46 +156,53 @@ class ProductCellViewModel: ObservableObject {
 
     
     func removeProductFromCart() {
-        guard let userID = getCurrentUserID() else {
-            print("Error: User not logged in")
-            return
-        }
+           guard let userID = getCurrentUserID() else {
+               print("Error: User not logged in")
+               return
+           }
 
-        let db = Firestore.firestore()
-        let userCartRef = db.collection("userCart").document(userID)
-        
-        userCartRef.getDocument { [weak self] (document, error) in
-            guard let self = self else { return }
-            if let document = document, document.exists {
-                var cartItems = document.data()?["cartItems"] as? [[String: Any]] ?? []
+           // Immediately update UI state
+           showQuantity = false
+           
+           let userCartRef = db.collection("userCart").document(userID)
+           
+           userCartRef.getDocument { [weak self] (document, error) in
+               guard let self = self else { return }
+               if let document = document, document.exists {
+                   var cartItems = document.data()?["cartItems"] as? [[String: Any]] ?? []
 
-                if let index = cartItems.firstIndex(where: { $0["productID"] as? String == self.product.id }) {
-                    cartItems.remove(at: index)
-                    if cartItems.isEmpty {
-                        userCartRef.delete { error in
-                            if let error = error {
-                                print("Error deleting cart: \(error.localizedDescription)")
-                            } else {
-                                print("Cart deleted successfully.")
-                                self.showQuantity = false
-                            }
-                        }
-                    } else {
-                        userCartRef.updateData([
-                            "cartItems": cartItems
-                        ]) { error in
-                            if let error = error {
-                                print("Error updating cart: \(error.localizedDescription)")
-                            } else {
-                                print("Product removed successfully.")
-                                self.showQuantity = false
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+                   if let index = cartItems.firstIndex(where: { $0["productID"] as? String == self.product.id }) {
+                       cartItems.remove(at: index)
+                       
+                       // Update the cartItems array in MyCartViewModel
+                       if let cartItemIndex = MyCartViewModel.shared.cartItems.firstIndex(where: { $0.id == self.product.id }) {
+                           MyCartViewModel.shared.cartItems.remove(at: cartItemIndex)
+                       }
+                       
+                       if cartItems.isEmpty {
+                           userCartRef.delete { error in
+                               if let error = error {
+                                   print("Error deleting cart: \(error.localizedDescription)")
+                               } else {
+                                   print("Cart deleted successfully.")
+                               }
+                           }
+                       } else {
+                           userCartRef.updateData([
+                               "cartItems": cartItems
+                           ]) { error in
+                               if let error = error {
+                                   print("Error updating cart: \(error.localizedDescription)")
+                               } else {
+                                   print("Product removed successfully.")
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       }
+
     
     private func getCurrentUserID() -> String? {
         return Auth.auth().currentUser?.uid
