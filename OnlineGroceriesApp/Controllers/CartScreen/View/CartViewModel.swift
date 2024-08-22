@@ -12,8 +12,12 @@ import Firebase
 class MyCartViewModel: ObservableObject {
     static let shared = MyCartViewModel()
 
-    @Published var cartItems: [CartItem] = []
-
+    @Published var cartItems: [CartItem] = [] {
+            didSet {
+                calculateTotalAmount()
+            }
+        }
+    @Published var totalAmount: Double = 0.0
     private init() {
         fetchCartItems()
     }
@@ -39,7 +43,21 @@ class MyCartViewModel: ObservableObject {
             }
         }
     }
-
+    func calculateTotalAmount() {
+           totalAmount = cartItems.reduce(0) { $0 + ($1.price * Double($1.quantity)) }
+       }
+    func didUpdateCartQuantity(for product: Product, newQuantity: Int) {
+            if let index = cartItems.firstIndex(where: { $0.id == product.id }) {
+                cartItems[index].quantity = newQuantity
+                calculateTotalAmount()
+            }
+        }
+//    var totalAmount: Double {
+//            cartItems.reduce(0) { total, item in
+//                total + (Double(item.quantity) * item.price)
+//            }
+//        }
+    
     private func getCurrentUserID() -> String? {
         return Auth.auth().currentUser?.uid
     }

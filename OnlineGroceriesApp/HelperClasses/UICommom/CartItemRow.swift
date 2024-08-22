@@ -93,9 +93,9 @@ struct CartItemRow: View {
                         
                         Spacer()
                         
-                        Text("Rs\(cartItem.price * Double(cartItem.quantity), specifier: "%.2f")")
-                            .font(.customfont(.semibold, fontSize: 18))
-                            .foregroundColor(.primaryText)
+                        Text("Rs\(Double(viewModel.cartQuantity) * cartItem.price, specifier: "%.1f")")
+                               .font(.customfont(.semibold, fontSize: 18))
+                               .foregroundColor(.primaryText)
                     }
                 }
                 
