@@ -35,15 +35,24 @@ struct HomeView: View {
                                     .scaledToFit()
                                     .frame(width: 16, height: 16)
                                 
-                                Text("dhaka, Banassre")
-                                    .font(.customfont(.semibold, fontSize: 18))
-                                    .foregroundColor(.darkGray)
+//                                Text("Select Address")
+//                                    .font(.customfont(.semibold, fontSize: 18))
+//                                    .foregroundColor(.darkGray)
+                                if let savedAddress = homeVM.savedAddress {
+                                                        Text("\(savedAddress.city)")
+                                                            .font(.customfont(.semibold, fontSize: 18))
+                                                            .foregroundColor(.darkGray)
+                                                    } else {
+                                                        Text("Select Country")
+                                                            .font(.customfont(.semibold, fontSize: 18))
+                                                            .foregroundColor(.darkGray)
+                                                    }
                             }
                         }
                         
-                        SearchTextField(placeholder: "Search Store", txt: $homeVM.searchText)
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
+//                        SearchTextField(placeholder: "Search Store", txt: $homeVM.searchText)
+//                            .padding(.horizontal, 20)
+//                            .padding(.vertical, 10)
                     }
                     .padding(.top, .topInsets)
                     
@@ -140,6 +149,9 @@ struct HomeView: View {
                     isLoadingGroceries = false
                 }
             }
+            .onAppear {
+                           homeVM.fetchSavedAddress() // Load saved address when the view appears
+                       }
         }
     }
 }

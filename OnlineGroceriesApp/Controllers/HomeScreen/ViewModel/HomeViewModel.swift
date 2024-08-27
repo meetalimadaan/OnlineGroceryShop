@@ -7,11 +7,14 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Firebase
 
 class HomeViewModel: ObservableObject {
     @Published var products: [Product] = []
     @Published var selectTab: Int = 0
     @Published var searchText: String = ""
+    @Published var savedAddress: Address?
+    private var db = Firestore.firestore()
     
     var filteredProducts: [Product] {
             if searchText.isEmpty {
@@ -62,7 +65,35 @@ class HomeViewModel: ObservableObject {
             }
         }
     
-    
+    func fetchSavedAddress() {
+           guard let userID = Auth.auth().currentUser?.uid else {
+               print("User not logged in")
+               return
+           }
+           
+           db.collection("userAddress").document(userID).getDocument { [weak self] (document, error) in
+               if let error = error {
+                   print("Error fetching address: \(error)")
+                   return
+               }
+               
+               if let document = document, document.exists {
+                   let data = document.data()
+                   if let addresses = data?["addresses"] as? [[String: Any]],
+                      let firstAddress = addresses.first {
+                       self?.savedAddress = Address(
+                           city: firstAddress["city"] as? String ?? "Unknown",
+                           state: firstAddress["state"] as? String ?? "Unknown",
+                           country: firstAddress["country"] as? String ?? "Unknown",
+                           zipCode: firstAddress["zipCode"] as? String ?? "Unknown", 
+                           isDefault: true
+                       )
+                   }
+               } else {
+                   print("No saved address found")
+               }
+           }
+       }
     
 
 

@@ -20,6 +20,9 @@
 		013751BC2C3E6BC000955CED /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 013751BB2C3E6BC000955CED /* Gilroy-Medium.ttf */; };
 		013751BE2C3E6BD600955CED /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 013751BD2C3E6BD600955CED /* Gilroy-Regular.ttf */; };
 		013751C02C3E6BE100955CED /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 013751BF2C3E6BE100955CED /* Gilroy-SemiBold.ttf */; };
+		0147E8CC2C785C3900F7C1CB /* SelectLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0147E8CB2C785C3900F7C1CB /* SelectLocationViewModel.swift */; };
+		014B49EF2C78B82E0029B529 /* CheckOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B49EE2C78B82E0029B529 /* CheckOut.swift */; };
+		014B49F12C78BAD40029B529 /* CheckOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014B49F02C78BAD40029B529 /* CheckOutViewModel.swift */; };
 		015061502C3FBCCC0097DFE8 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0150614F2C3FBCCC0097DFE8 /* RoundButton.swift */; };
 		0152F9752C5269AE00F46C0B /* CartItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0152F9742C5269AE00F46C0B /* CartItemRow.swift */; };
 		016137602C5A6FAB0046D48D /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0161375F2C5A6FAB0046D48D /* AccountViewModel.swift */; };
@@ -115,6 +118,9 @@
 		013751BD2C3E6BD600955CED /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
 		013751BF2C3E6BE100955CED /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		013751C12C3E7CC300955CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0147E8CB2C785C3900F7C1CB /* SelectLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewModel.swift; sourceTree = "<group>"; };
+		014B49EE2C78B82E0029B529 /* CheckOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOut.swift; sourceTree = "<group>"; };
+		014B49F02C78BAD40029B529 /* CheckOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutViewModel.swift; sourceTree = "<group>"; };
 		0150614F2C3FBCCC0097DFE8 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		0152F9742C5269AE00F46C0B /* CartItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemRow.swift; sourceTree = "<group>"; };
 		0161375F2C5A6FAB0046D48D /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -535,6 +541,8 @@
 			children = (
 				019F83802C4E91C500AE9372 /* MyCartView.swift */,
 				01DC10B52C6B98060050B1AC /* CartViewModel.swift */,
+				014B49EE2C78B82E0029B529 /* CheckOut.swift */,
+				014B49F02C78BAD40029B529 /* CheckOutViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -654,6 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				A34AA8E32C53BE2A00048734 /* LocationViewModel.swift */,
+				0147E8CB2C785C3900F7C1CB /* SelectLocationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -922,6 +931,7 @@
 				0180BC0E2C47D08B00577BDE /* HomeViewModel.swift in Sources */,
 				0134E5A42C64FEC8000871FB /* ShimmerView.swift in Sources */,
 				015061502C3FBCCC0097DFE8 /* RoundButton.swift in Sources */,
+				014B49EF2C78B82E0029B529 /* CheckOut.swift in Sources */,
 				01F133FB2C66184A009E7AEC /* ViewExtension.swift in Sources */,
 				019F837B2C4E4A4200AE9372 /* AccountView.swift in Sources */,
 				0180BC102C47D2BC00577BDE /* HomeView.swift in Sources */,
@@ -934,6 +944,7 @@
 				0152F9752C5269AE00F46C0B /* CartItemRow.swift in Sources */,
 				018CBE422C4A9E1100C1565E /* BeveragesView.swift in Sources */,
 				0180BBF82C47A5A300577BDE /* SignInView.swift in Sources */,
+				014B49F12C78BAD40029B529 /* CheckOutViewModel.swift in Sources */,
 				0180BC142C47D44000577BDE /* ExploreView.swift in Sources */,
 				0180BBFC2C47A5E800577BDE /* LoginView.swift in Sources */,
 				0180BC162C47E20D00577BDE /* TabButton.swift in Sources */,
@@ -960,6 +971,7 @@
 				A34AA8DD2C53B98E00048734 /* SelectLocationView.swift in Sources */,
 				A34AA8E82C53CA4A00048734 /* CommonAppBar.swift in Sources */,
 				01B6A63F2C5A3F400086D1FD /* SignUpViewModel.swift in Sources */,
+				0147E8CC2C785C3900F7C1CB /* SelectLocationViewModel.swift in Sources */,
 				019E8B042C5CCFD8004DB985 /* ForgotPasswordView.swift in Sources */,
 				019F83812C4E91C500AE9372 /* MyCartView.swift in Sources */,
 			);

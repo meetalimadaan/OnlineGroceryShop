@@ -4,6 +4,7 @@ struct ProductDetailsView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel: ProductCellViewModel
     @State private var isDetailExpanded: Bool = false
+    @State private var navigateToCart = false
     
     init(viewModel: ProductCellViewModel) {
            self.viewModel = viewModel
@@ -143,9 +144,10 @@ struct ProductDetailsView: View {
                             .font(.customfont(.medium, fontSize: 13))
                             .foregroundColor(.secondaryText)
                             .padding(.bottom, 8)
+                        
                     }
                     
-                    
+                   
                     Divider()
                 }
                 .padding(.horizontal, 20)
@@ -177,9 +179,21 @@ struct ProductDetailsView: View {
                 }
                 
                 Spacer()
-                RoundButton(title: "Add to Basket")
+                
+                NavigationLink(
+                    destination: MyCartView()
+                    .environmentObject(viewModel),
+                    isActive: $navigateToCart
+                ) {
+                    RoundButton(title: "Go To Cart", didTap: {
+                      
+                        navigateToCart = true
+                    })
                     .padding(.horizontal, 20)
                     .padding(.bottom, .bottomInsets + 80)
+                }
+                
+//                
             }
             .padding(.top, .topInsets)
             .padding(.horizontal, 20)
