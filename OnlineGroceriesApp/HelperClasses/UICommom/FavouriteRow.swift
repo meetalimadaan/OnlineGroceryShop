@@ -11,6 +11,7 @@ struct FavouriteRow: View {
     var product: Product
     
     var body: some View {
+        
         VStack{
             HStack(spacing: 15){
                 
@@ -28,13 +29,13 @@ struct FavouriteRow: View {
                         .foregroundColor(.primaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
-                    Text("\(product.stock)pcs, price")
+                    Text("\(product.stock ?? "") pcs")
                         .font(.customfont(.medium, fontSize: 14))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 }
                 
-                Text("$\(product.price)")
+                Text("Rs\(product.price, specifier: "%.2f")")
                     .font(.customfont(.semibold, fontSize: 18))
                     .foregroundColor(.primaryText)
                 //                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)

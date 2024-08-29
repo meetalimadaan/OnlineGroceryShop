@@ -47,7 +47,7 @@ struct ProductDetailsView: View {
                         .foregroundColor(viewModel.isFavorite ? .red : .secondaryText)
                     }
                     
-                    Text("\(viewModel.product.stock) pcs, price")
+                    Text("\(viewModel.product.stock ?? "") pcs, price")
                         .font(.customfont(.semibold, fontSize: 16))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

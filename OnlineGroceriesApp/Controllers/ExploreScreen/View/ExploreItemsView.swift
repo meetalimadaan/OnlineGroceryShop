@@ -34,10 +34,16 @@ struct ExploreItemsView: View {
                     Text(category.name!)
                         .font(.customfont(.bold, fontSize: 20))
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                    
-                    Button {
-                        mode.wrappedValue.dismiss()
-                    } label: {
+                    //
+                    //                    Button {
+                    //                        mode.wrappedValue.dismiss()
+                    //                    } label: {
+                    //                        Image("Group 6839")
+                    //                            .resizable()
+                    //                            .scaledToFit()
+                    //                            .frame(width: 20, height: 20)
+                    //                    }
+                    NavigationLink(destination: AllProducts()) {
                         Image("Group 6839")
                             .resizable()
                             .scaledToFit()
@@ -66,7 +72,7 @@ struct ExploreItemsView: View {
         .onAppear {
             exploreVM.fetchProducts(byCategoryID: category.id ?? "") { success, error in
                 if success {
-                    print("Products fetched successfully.")
+                    print("Products fetched successfully.......")
                 } else {
                     print("Failed to fetch products: \(error ?? "Unknown error")")
                 }

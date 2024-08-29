@@ -13,7 +13,7 @@ class AccountViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var email: String = ""
     @Published var isLoading: Bool = false
-    
+    @Published var currentUser: User?
     static let shared = AccountViewModel()
     
     private let db = Firestore.firestore()
@@ -35,15 +35,38 @@ class AccountViewModel: ObservableObject {
     }
     
     func logout(completion : @escaping(_ success : Bool)->()) {
-            do {
-                try Auth.auth().signOut()
-//                completion(true)
-                completion(true)
-                print("LOGOUT SUCEEFFFULYYY")
-            } catch {
-                print("Error signing out: \(error.localizedDescription)")
+        do {
+            try Auth.auth().signOut()
+            //                completion(true)
+            completion(true)
+            print("LOGOUT SUCEEFFFULYYY")
+        } catch {
+            print("Error signing out: \(error.localizedDescription)")
+            completion(false)
+            //                completion(false)
+        }
+    }
+    
+    func updateUserProfile(completion: @escaping (Bool) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            completion(false)
+            return
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        userRef.updateData([
+            "username": self.username,
+//            "email": self.email
+        ]) { error in
+            if let error = error {
+                print("Error updating profile: \(error.localizedDescription)")
                 completion(false)
-//                completion(false)
+            } else {
+                print("Profile updated successfully")
+                completion(true)
             }
         }
     }
+    
+}

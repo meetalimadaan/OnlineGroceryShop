@@ -22,9 +22,16 @@ struct SectionTitleAll: View {
             
             Spacer()
             
-            Text(titleAll)
-                .font(.customfont(.semibold, fontSize: 16))
-                .foregroundColor(.primaryApp)
+            //            Text(titleAll)
+            //                .font(.customfont(.semibold, fontSize: 16))
+            //                .foregroundColor(.primaryApp)
+            
+            NavigationLink(destination: AllProducts()) {
+                Text(titleAll)
+                    .font(.customfont(.semibold, fontSize: 16))
+                    .foregroundColor(.primaryApp)
+            }
+            .buttonStyle(PlainButtonStyle())
         }
         .frame(height: 40)
     }

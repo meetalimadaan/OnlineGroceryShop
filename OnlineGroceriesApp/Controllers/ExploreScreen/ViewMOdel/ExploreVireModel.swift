@@ -84,7 +84,21 @@ class ExploreVireModel: ObservableObject {
                     }
                 }
         }
-    
+    func fetchAllProducts(completion: @escaping (Bool, String?) -> Void) {
+        // Fetch all products from Firestore
+        let productsRef = Firestore.firestore().collection("products")
+        productsRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(false, error.localizedDescription)
+            } else {
+                self.products = snapshot?.documents.compactMap { document in
+                    try? document.data(as: Product.self)
+                } ?? []
+                completion(true, nil)
+            }
+        }
+    }
+
     
 }
 struct Category: Identifiable, Codable {

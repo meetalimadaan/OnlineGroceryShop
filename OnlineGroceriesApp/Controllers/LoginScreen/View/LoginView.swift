@@ -16,14 +16,14 @@ struct LoginView: View {
     @State private var navigateToAdminHome: Bool = false
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             ZStack {
                 Image("Rectangle 17")
                     .resizable()
                     .scaledToFill()
                     .frame(width: .screenWidth, height: .screenHeight)
                 
-                ScrollView {
+//                ScrollView {
                     VStack {
                         Image("Group-2")
                             .resizable()
@@ -122,7 +122,7 @@ struct LoginView: View {
                     .padding(.top, .topInsets + 64)
                     .padding(.horizontal, 20)
                     .padding(.bottom, .bottomInsets)
-                }
+//                }
                 
                 VStack {
                     HStack {
@@ -165,7 +165,7 @@ struct LoginView: View {
             }
         }
     }
-}
+//}
 #Preview {
     LoginView()
 }

@@ -19,7 +19,8 @@ struct ProductCell: View {
                         .frame(width: 100, height: 80)
 //                        .transition(.opacity)
                 } placeholder: {
-                    ShimmerView()
+                    ShimmerView(width: 100, height: 80)
+                      
                 }
                 
                 Spacer()
@@ -29,7 +30,7 @@ struct ProductCell: View {
                     .foregroundColor(.primaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 
-                Text("\(viewModel.product.stock) pcs")
+                Text("\(viewModel.product.stock ?? "") pcs")
                     .font(.customfont(.medium, fontSize: 14))
                     .foregroundColor(.secondaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

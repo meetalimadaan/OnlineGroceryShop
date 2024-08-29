@@ -18,7 +18,7 @@ struct WelcomeView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: .screenWidth, height: .screenHeight)
-                
+//                
                 VStack {
                     Spacer()
                     

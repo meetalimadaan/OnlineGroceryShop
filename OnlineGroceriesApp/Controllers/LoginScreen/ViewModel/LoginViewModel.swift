@@ -82,15 +82,38 @@ class LoginViewModel: ObservableObject {
 
     func logout() {
         do {
+            // Attempt to sign out the user
             try Auth.auth().signOut()
+            print("Successfully signed out.")
+            
+            // Update UserDefaults to reflect the logout state
             UserDefaults.standard.set(false, forKey: "isLoggedIn")
-            UserDefaults.standard.removeObject(forKey: "currentUserUID")
+                   UserDefaults.standard.removeObject(forKey: "currentUserUID")
+                   UserDefaults.standard.removeObject(forKey: "adminId") // Ensure this key is removed
+                   UserDefaults.standard.removeObject(forKey: "username") // Remove other keys if needed
+                   UserDefaults.standard.removeObject(forKey: "email") // Remove other keys if needed
+                   UserDefaults.standard.removeObject(forKey: "uid") // Remove other keys if needed
+            
+            // Print the isLoggedIn status
+            print("isLoggedIn status after logout: \(UserDefaults.standard.bool(forKey: "isLoggedIn"))")
+            
+            // Clear the local state
             self.uid = nil
             self.email = nil
             self.isAdmin = false
+            print("Local state cleared: uid, email set to nil, and isAdmin set to false.")
+            
+            // Optionally, update the root view controller to ensure UI reflects logout
+            DispatchQueue.main.async {
+                UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: WelcomeView())
+            }
+            
         } catch let signOutError as NSError {
+            // Print an error message if signing out fails
             print("Error signing out: \(signOutError)")
         }
     }
+
+
 }
 

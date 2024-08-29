@@ -21,20 +21,22 @@ struct CheckOut: View {
                
                 Spacer()
                
-                NavigationLink(destination: SelectLocationView()) {
-                    Text("Add New Address")
-                        .font(.customfont(.semibold, fontSize: 18))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                        .contentShape(Rectangle())
-                        .background(Color.primary)
-                        .cornerRadius(20)
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(.horizontal, 20)
-                    
-                }
-                .padding(.bottom, 10)
+//                NavigationLink(destination: SelectLocationView().navigationBarBackButtonHidden(true)) {
+//                    Text("Add New Address")
+//                        .font(.customfont(.semibold, fontSize: 18))
+//                        .foregroundColor(.white)
+//                        .multilineTextAlignment(.center)
+//                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+//                        .contentShape(Rectangle())
+//                        .background(Color.primary)
+//                        .cornerRadius(20)
+//                        .buttonStyle(PlainButtonStyle())
+//                        .padding(.horizontal, 20)
+//                       
+//                    
+//                }
+//                .navigationBarBackButtonHidden(true)
+//                .padding(.bottom, 10)
                 
                 // List of saved addresses
                 if !viewModel.savedAddresses.isEmpty {
@@ -73,6 +75,22 @@ struct CheckOut: View {
                 }
 
                 Spacer()
+                NavigationLink(destination: SelectLocationView().navigationBarBackButtonHidden(true)) {
+                                 Text("Add New Address")
+                                     .font(.customfont(.semibold, fontSize: 18))
+                                     .foregroundColor(.white)
+                                     .multilineTextAlignment(.center)
+                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                                     .contentShape(Rectangle())
+                                     .background(Color.primaryApp)
+                                     .cornerRadius(20)
+                                     .buttonStyle(PlainButtonStyle())
+                                     .padding(.horizontal, 20)
+             
+             
+                             }
+                             .navigationBarBackButtonHidden(true)
+                             .padding(.bottom, 10)
                 
                 // "Confirm & Placed Order" button
                 NavigationLink(destination: OrderAcceptedView()) {
@@ -88,6 +106,8 @@ struct CheckOut: View {
                 }
                 .padding(.bottom, .bottomInsets + 80)
                 .padding(.horizontal, 20)
+                
+                
             }
             .onAppear {
                 viewModel.fetchSavedAddresses()

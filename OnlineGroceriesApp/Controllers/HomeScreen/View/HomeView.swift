@@ -16,6 +16,11 @@ struct HomeView: View {
     @State var isLoadingGroceries = false
     
     @State private var searchText1: String = ""
+    @State private var selectedImageIndex: Int = 0
+    
+    let images = ["18d60b107187879.5fa16aecd880f", "istockphoto-1198965879-612x612", "organic-vegetables-shopping-bags-white-background-generative-ai_332679-1593"]
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         NavigationView{
             ZStack {
@@ -26,41 +31,61 @@ struct HomeView: View {
                             .scaledToFit()
                             .frame(width: 25)
                         
-                        NavigationLink {
-                            SelectLocationView()
-                        } label: {
-                            HStack {
-                                Image("Exclude")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 16, height: 16)
-                                
-//                                Text("Select Address")
-//                                    .font(.customfont(.semibold, fontSize: 18))
-//                                    .foregroundColor(.darkGray)
-                                if let savedAddress = homeVM.savedAddress {
-                                                        Text("\(savedAddress.city)")
-                                                            .font(.customfont(.semibold, fontSize: 18))
-                                                            .foregroundColor(.darkGray)
-                                                    } else {
-                                                        Text("Select Country")
-                                                            .font(.customfont(.semibold, fontSize: 18))
-                                                            .foregroundColor(.darkGray)
-                                                    }
+                        
+                        NavigationLink(destination: SelectLocationView()) {
+                            //
+                            
+                            Image("Exclude")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+                            
+                            if let savedAddress = homeVM.savedAddress {
+                                Text("\(savedAddress.city)")
+                                    .font(.customfont(.semibold, fontSize: 18))
+                                    .foregroundColor(.darkGray)
+                            } else {
+                                Text("Select Country")
+                                    .font(.customfont(.semibold, fontSize: 18))
+                                    .foregroundColor(.darkGray)
                             }
                         }
-                        
-//                        SearchTextField(placeholder: "Search Store", txt: $homeVM.searchText)
-//                            .padding(.horizontal, 20)
-//                            .padding(.vertical, 10)
+                        //                        SearchTextField(placeholder: "Search Store", txt: $homeVM.searchText)
+                        //                            .padding(.horizontal, 20)
+                        //                            .padding(.vertical, 10)
                     }
                     .padding(.top, .topInsets)
                     
-                    Image("banner")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 115)
-                        .padding(.horizontal, 20)
+                    //                    Image("banner")
+                    //                        .resizable()
+                    //                        .scaledToFit()
+                    //                        .frame(height: 115)
+                    //                        .padding(.horizontal, 20)
+                    
+                    TabView(selection: $selectedImageIndex) {
+                        ForEach(0..<images.count, id: \.self) { index in
+                            Image(images[index])
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 120)
+                                .padding(.horizontal, 20)
+                                .tag(index)
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                    .frame(width: 360, height: 150)
+                    .padding(.horizontal, 20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1) 
+                    )
+                    .onReceive(timer) { _ in
+                        
+                        withAnimation {
+                            selectedImageIndex = (selectedImageIndex + 1) % images.count
+                        }
+                    }
+                    
                     
                     SectionTitleAll(title: "Exclusive offer", titleAll: "See All") {}
                         .padding(.horizontal, 20)
@@ -68,17 +93,17 @@ struct HomeView: View {
                     
                     
                     if isLoadingExclusiveOffers {
-                        ShimmerView()
-                            .frame(height: 120)
+                        ShimmerView(width: 100, height: 120)
+                        //                            .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 15) {
                                 ForEach(homeVM.filteredProducts) { product in
                                     ProductCell(viewModel: ProductCellViewModel(product: product))
-                                        // Handle add to cart action here
-                                    }
+                                    // Handle add to cart action here
                                 }
+                            }
                             
                             .padding(.horizontal, 20)
                             .padding(.vertical, 4)
@@ -89,17 +114,17 @@ struct HomeView: View {
                         .padding(.horizontal, 20)
                     
                     if isLoadingBestSelling {
-                        ShimmerView()
-                            .frame(height: 120)
+                        ShimmerView(width: 100, height: 120)
+                        //                            .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {
                             LazyHStack(spacing: 15) {
                                 ForEach(homeVM.filteredProducts) { product in
                                     ProductCell(viewModel: ProductCellViewModel(product: product))
-                                        // Handle add to cart action here
-                                    }
+                                    // Handle add to cart action here
                                 }
+                            }
                             
                             .padding(.horizontal, 20)
                             .padding(.vertical, 4)
@@ -127,8 +152,8 @@ struct HomeView: View {
                         LazyHStack(spacing: 15) {
                             ForEach(homeVM.filteredProducts) { product in
                                 ProductCell(viewModel: ProductCellViewModel(product: product))
-                                    
-                                }
+                                
+                            }
                             
                         }
                         .padding(.horizontal, 20)
@@ -150,10 +175,11 @@ struct HomeView: View {
                 }
             }
             .onAppear {
-                           homeVM.fetchSavedAddress() // Load saved address when the view appears
-                       }
+                homeVM.fetchSavedAddress()
+            }
         }
     }
+    
 }
 
 #Preview {

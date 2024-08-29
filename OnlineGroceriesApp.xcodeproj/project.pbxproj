@@ -33,6 +33,10 @@
 		016F04C02C468733009ACEA4 /* CountryPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 016F04BF2C468733009ACEA4 /* CountryPicker */; };
 		0170EAC62C4F9EC600284405 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170EAC52C4F9EC600284405 /* FavouriteView.swift */; };
 		0170EAC82C4FD8CF00284405 /* FavouriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */; };
+		0173FCB12C7F2D0000FBE76E /* AllProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173FCB02C7F2D0000FBE76E /* AllProducts.swift */; };
+		0173FCB32C7F3FE300FBE76E /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173FCB22C7F3FE300FBE76E /* OrderView.swift */; };
+		0173FCB52C7F415900FBE76E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173FCB42C7F415900FBE76E /* EditProfileView.swift */; };
+		0173FCB72C7F6A6000FBE76E /* MyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173FCB62C7F6A6000FBE76E /* MyDetailsView.swift */; };
 		0180BBF42C47A54C00577BDE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBF32C47A54C00577BDE /* WelcomeView.swift */; };
 		0180BBF82C47A5A300577BDE /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBF72C47A5A300577BDE /* SignInView.swift */; };
 		0180BBFC2C47A5E800577BDE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180BBFB2C47A5E800577BDE /* LoginView.swift */; };
@@ -130,6 +134,10 @@
 		01639D2E2C3EACBB0092D9F1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0170EAC52C4F9EC600284405 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		0170EAC72C4FD8CF00284405 /* FavouriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRow.swift; sourceTree = "<group>"; };
+		0173FCB02C7F2D0000FBE76E /* AllProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProducts.swift; sourceTree = "<group>"; };
+		0173FCB22C7F3FE300FBE76E /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		0173FCB42C7F415900FBE76E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		0173FCB62C7F6A6000FBE76E /* MyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDetailsView.swift; sourceTree = "<group>"; };
 		017A64506F9C47B8F6C6CC70 /* Pods_OnlineGroceriesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineGroceriesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0180BBF32C47A54C00577BDE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		0180BBF72C47A5A300577BDE /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -471,6 +479,7 @@
 			children = (
 				0180BC0F2C47D2BC00577BDE /* HomeView.swift */,
 				01C3108F2C491F2C00BDA053 /* ProductDetailsView.swift */,
+				0173FCB02C7F2D0000FBE76E /* AllProducts.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -503,6 +512,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		018411802C8044730077AA38 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01DC10B52C6B98060050B1AC /* CartViewModel.swift */,
+				014B49F02C78BAD40029B529 /* CheckOutViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		018CBE3E2C4A83A400C1565E /* ViewMOdel */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +542,9 @@
 			isa = PBXGroup;
 			children = (
 				019F837A2C4E4A4200AE9372 /* AccountView.swift */,
+				0173FCB22C7F3FE300FBE76E /* OrderView.swift */,
+				0173FCB42C7F415900FBE76E /* EditProfileView.swift */,
+				0173FCB62C7F6A6000FBE76E /* MyDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -531,6 +552,7 @@
 		019F837E2C4E84D400AE9372 /* CartScreen */ = {
 			isa = PBXGroup;
 			children = (
+				018411802C8044730077AA38 /* ViewModel */,
 				019F837F2C4E91AD00AE9372 /* View */,
 			);
 			path = CartScreen;
@@ -540,9 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				019F83802C4E91C500AE9372 /* MyCartView.swift */,
-				01DC10B52C6B98060050B1AC /* CartViewModel.swift */,
 				014B49EE2C78B82E0029B529 /* CheckOut.swift */,
-				014B49F02C78BAD40029B529 /* CheckOutViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -945,8 +965,11 @@
 				018CBE422C4A9E1100C1565E /* BeveragesView.swift in Sources */,
 				0180BBF82C47A5A300577BDE /* SignInView.swift in Sources */,
 				014B49F12C78BAD40029B529 /* CheckOutViewModel.swift in Sources */,
+				0173FCB32C7F3FE300FBE76E /* OrderView.swift in Sources */,
 				0180BC142C47D44000577BDE /* ExploreView.swift in Sources */,
+				0173FCB12C7F2D0000FBE76E /* AllProducts.swift in Sources */,
 				0180BBFC2C47A5E800577BDE /* LoginView.swift in Sources */,
+				0173FCB72C7F6A6000FBE76E /* MyDetailsView.swift in Sources */,
 				0180BC162C47E20D00577BDE /* TabButton.swift in Sources */,
 				01F133F52C661784009E7AEC /* FontExtension.swift in Sources */,
 				016137602C5A6FAB0046D48D /* AccountViewModel.swift in Sources */,
@@ -969,6 +992,7 @@
 				01C310882C48EDCC00BDA053 /* SearchTextField.swift in Sources */,
 				0170EAC62C4F9EC600284405 /* FavouriteView.swift in Sources */,
 				A34AA8DD2C53B98E00048734 /* SelectLocationView.swift in Sources */,
+				0173FCB52C7F415900FBE76E /* EditProfileView.swift in Sources */,
 				A34AA8E82C53CA4A00048734 /* CommonAppBar.swift in Sources */,
 				01B6A63F2C5A3F400086D1FD /* SignUpViewModel.swift in Sources */,
 				0147E8CC2C785C3900F7C1CB /* SelectLocationViewModel.swift in Sources */,
