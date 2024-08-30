@@ -18,7 +18,7 @@ struct HomeView: View {
     @State private var searchText1: String = ""
     @State private var selectedImageIndex: Int = 0
     
-    let images = ["18d60b107187879.5fa16aecd880f", "istockphoto-1198965879-612x612", "organic-vegetables-shopping-bags-white-background-generative-ai_332679-1593"]
+    let images = ["grocery-ordering-and-delivery-word-vector", "istockphoto-1198965879-612x612", "1000_F_147219646_hVUhKxNhgX6A1nR5l7UUwYamVKGJULJ1"]
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -67,17 +67,17 @@ struct HomeView: View {
                             Image(images[index])
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: 120)
+                                .frame(width: 370, height: 150)
                                 .padding(.horizontal, 20)
                                 .tag(index)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-                    .frame(width: 360, height: 150)
-                    .padding(.horizontal, 20)
+                    .frame(width: 370, height: 150)
+                    .padding(2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray.opacity(0.5), lineWidth: 1) 
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                     )
                     .onReceive(timer) { _ in
                         
@@ -101,7 +101,7 @@ struct HomeView: View {
                             LazyHStack(spacing: 15) {
                                 ForEach(homeVM.filteredProducts) { product in
                                     ProductCell(viewModel: ProductCellViewModel(product: product))
-                                    // Handle add to cart action here
+                                    
                                 }
                             }
                             
@@ -122,7 +122,7 @@ struct HomeView: View {
                             LazyHStack(spacing: 15) {
                                 ForEach(homeVM.filteredProducts) { product in
                                     ProductCell(viewModel: ProductCellViewModel(product: product))
-                                    // Handle add to cart action here
+                                    
                                 }
                             }
                             

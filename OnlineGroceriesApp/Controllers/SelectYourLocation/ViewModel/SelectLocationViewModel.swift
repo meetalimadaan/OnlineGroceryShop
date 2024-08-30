@@ -13,7 +13,7 @@ import FirebaseFirestore
 class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var username: String = ""
     @Published var address: Address?
-    @Published var isDefaultLocationChecked = false // Track if the location should be default
+    @Published var isDefaultLocationChecked = false
 
     private let locationManager = CLLocationManager()
     private var db = Firestore.firestore()
@@ -21,7 +21,6 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
     }
 
     func fetchUsername() {
@@ -46,7 +45,8 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     }
 
     func requestLocation() {
-        locationManager.requestLocation()
+        locationManager.requestWhenInUseAuthorization() // Request location access permission here
+        locationManager.requestLocation() // Then request the user's location
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -62,16 +62,18 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard let self = self, let placemark = placemarks?.first else { return }
-            // Here is where we set the default status based on isDefaultLocationChecked
+            let timestamp = Date() // Get current timestamp
             self.address = Address(
                 city: placemark.locality ?? "N/A",
                 state: placemark.administrativeArea ?? "N/A",
                 country: placemark.country ?? "N/A",
                 zipCode: placemark.postalCode ?? "N/A",
-                isDefault: self.isDefaultLocationChecked // This should reflect the checked status
+                isDefault: self.isDefaultLocationChecked,
+                timestamp: timestamp
             )
         }
     }
+
 
     func saveAddress() {
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -84,18 +86,16 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
             return
         }
 
-        // Log the current state of isDefaultLocationChecked
-        print("Saving address with default status: \(isDefaultLocationChecked)")
-
-        // Update the address with the current default status
         address.isDefault = isDefaultLocationChecked
+        address.timestamp = Date() // Update timestamp
 
         let addressData: [String: Any] = [
             "city": address.city,
             "state": address.state,
             "country": address.country,
             "zipCode": address.zipCode,
-            "isDefault": address.isDefault
+            "isDefault": address.isDefault,
+            "timestamp": address.timestamp // Include timestamp
         ]
 
         let userDocRef = db.collection("userAddress").document(userID)
@@ -109,20 +109,32 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
             var addresses = [addressData]
 
             if let document = document, document.exists, let data = document.data(), let existingAddresses = data["addresses"] as? [[String: Any]] {
-                addresses.append(contentsOf: existingAddresses)
+                if address.isDefault {
+                    // If new address is default, set all existing addresses to non-default
+                    for var existingAddress in existingAddresses {
+                        var mutableAddress = existingAddress
+                        mutableAddress["isDefault"] = false
+                        addresses.append(mutableAddress)
+                    }
+                } else {
+                    // If new address is not default, just append it
+                    addresses.append(contentsOf: existingAddresses)
+                }
             }
 
             userDocRef.setData(["addresses": addresses], merge: true) { error in
                 if let error = error {
                     print("Error saving address: \(error)")
                 } else {
-                    print("But Address successfully saved with default status: \(address.isDefault)")
-                  
+                    print("Address successfully saved with default status: \(address.isDefault)")
                 }
             }
         }
     }
+
+
 }
+
 
 //    jdffgfidfg
   
@@ -136,5 +148,6 @@ struct Address: Identifiable {
     var country: String
     var zipCode: String
     var isDefault: Bool
+    var timestamp: Date?
     var isChecked: Bool = false // New property to track checkbox state
 }

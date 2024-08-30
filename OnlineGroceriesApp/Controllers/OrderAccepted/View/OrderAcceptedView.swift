@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OrderAcceptedView: View {
+    
     var body: some View {
         ScrollView{
             Spacer()

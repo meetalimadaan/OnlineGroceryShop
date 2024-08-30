@@ -78,7 +78,7 @@ struct MyCartView: View {
             
             .navigationTitle("")
             .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
+//            .navigationBarHidden(true)
             .ignoresSafeArea()
             .onAppear {
                 viewModel.fetchCartItems()
