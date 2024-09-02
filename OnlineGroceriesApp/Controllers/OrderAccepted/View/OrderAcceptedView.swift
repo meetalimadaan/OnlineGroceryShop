@@ -44,7 +44,7 @@ struct OrderAcceptedView: View {
             //            .padding(.bottom, .screenWidth * 0.05).padding(.horizontal, 25)
             
             NavigationLink {
-                MainTabView()
+               MainTabView()
             } label: {
                 Text("Back to home")
                     .font(.customfont(.semibold, fontSize: 14))

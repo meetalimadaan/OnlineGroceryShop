@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 @main
 struct OnlineGroceriesAppApp: App {
+  
     @AppStorage("isLoggedIn") private var isLoggedIn: Bool = false
 
     init() {
@@ -23,6 +24,7 @@ struct OnlineGroceriesAppApp: App {
                 if isLoggedIn {
                     
                     MainTabView()
+                        
                 } else {
                     WelcomeView()
                 }

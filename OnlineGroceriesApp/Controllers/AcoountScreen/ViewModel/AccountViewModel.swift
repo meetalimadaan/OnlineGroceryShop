@@ -47,26 +47,47 @@ class AccountViewModel: ObservableObject {
         }
     }
     
-    func updateUserProfile(completion: @escaping (Bool) -> Void) {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            completion(false)
-            return
-        }
-        
-        let userRef = db.collection("users").document(userID)
-        
-        userRef.updateData([
-            "username": self.username,
-//            "email": self.email
-        ]) { error in
-            if let error = error {
-                print("Error updating profile: \(error.localizedDescription)")
-                completion(false)
-            } else {
-                print("Profile updated successfully")
-                completion(true)
-            }
-        }
-    }
+    func updateUserProfile(currentPassword: String, newPassword: String, completion: @escaping (Bool) -> Void) {
+           let user = Auth.auth().currentUser
+           
+           if !currentPassword.isEmpty && !newPassword.isEmpty {
+               let credential = EmailAuthProvider.credential(withEmail: user?.email ?? "", password: currentPassword)
+               
+               user?.reauthenticate(with: credential) { result, error in
+                   if let error = error {
+                       print("Reauthentication failed: \(error.localizedDescription)")
+                       completion(false)
+                       return
+                   }
+                   
+                   user?.updatePassword(to: newPassword) { error in
+                       if let error = error {
+                           print("Password update failed: \(error.localizedDescription)")
+                           completion(false)
+                           return
+                       }
+                       
+                       self.updateUserProfileDetails(completion: completion)
+                   }
+               }
+           } else {
+               updateUserProfileDetails(completion: completion)
+           }
+       }
+       
+       private func updateUserProfileDetails(completion: @escaping (Bool) -> Void) {
+           let user = Auth.auth().currentUser
+           let changeRequest = user?.createProfileChangeRequest()
+           changeRequest?.displayName = username
+           changeRequest?.commitChanges { error in
+               if let error = error {
+                   print("Profile update failed: \(error.localizedDescription)")
+                   completion(false)
+                   return
+               }
+               
+               completion(true)
+           }
+       }
     
 }

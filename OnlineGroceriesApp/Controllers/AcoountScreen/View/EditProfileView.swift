@@ -10,12 +10,14 @@ import SwiftUI
 struct EditProfileView: View {
     @StateObject private var accountVM = AccountViewModel.shared
     @State private var username: String = ""
-    @State private var email: String = ""
+    @State private var currentPassword: String = ""
+    @State private var newPassword: String = ""
+    @State private var confirmNewPassword: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
 
     var body: some View {
-        VStack{
+        VStack {
             // Header
             HStack {
                 Spacer()
@@ -30,46 +32,56 @@ struct EditProfileView: View {
             
             Spacer()
             
-                    VStack(spacing: 20) {
-            
-                        TextField("Username", text: $username)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .onAppear {
-                                username = accountVM.username
-//                                email = accountVM.email
-                            }
-            
-//                        TextField("Email", text: $email)
-//                            .textFieldStyle(RoundedBorderTextFieldStyle())
-//                            .padding()
-            
-                        Button(action: saveProfile) {
-                            Text("Save Changes")
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(8)
-                        }
-            
-                        Spacer()
+            VStack(spacing: 20) {
+                TextField("Username", text: $username)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .onAppear {
+                        username = accountVM.username
                     }
-            
                 
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Success"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                SecureField("Current Password", text: $currentPassword)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                SecureField("New Password", text: $newPassword)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                SecureField("Confirm New Password", text: $confirmNewPassword)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                Button(action: saveProfile) {
+                    Text("Save Changes")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
                 }
+                
+                Spacer()
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Success"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
         }
         .background(Color(.systemGray6))
         .edgesIgnoringSafeArea(.top)
     }
+    
     private func saveProfile() {
-       
+        // Check if new passwords match
+        if !newPassword.isEmpty && newPassword != confirmNewPassword {
+            alertMessage = "New passwords do not match."
+            showAlert = true
+            return
+        }
+        
         accountVM.username = username
-//        accountVM.email = email
         
         // Save changes to Firebase
-        accountVM.updateUserProfile { success in
+        accountVM.updateUserProfile(currentPassword: currentPassword, newPassword: newPassword) { success in
             if success {
                 alertMessage = "Profile updated successfully!"
             } else {
@@ -79,4 +91,3 @@ struct EditProfileView: View {
         }
     }
 }
-

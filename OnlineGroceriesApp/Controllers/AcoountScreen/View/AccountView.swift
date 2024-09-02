@@ -11,6 +11,7 @@ struct AccountView: View {
     @StateObject private var accountVM = AccountViewModel.shared
     @StateObject private var viewModel = LoginViewModel()
     @State private var needToShowLoginView = false
+  
     
     var body: some View {
         NavigationView {
@@ -20,15 +21,15 @@ struct AccountView: View {
                         ProgressView()
                     } else {
                         VStack {
-                            HStack(spacing: 15) {
-                                Image("Rectangle 82")
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .cornerRadius(30)
+//                            HStack(spacing: 15) {
+//                                Image("Rectangle 82")
+//                                    .resizable()
+//                                    .frame(width: 60, height: 60)
+//                                    .cornerRadius(30)
                                 
-                                VStack(alignment: .leading) {
+//                                VStack(alignment: .leading) {
                                     HStack {
-                                        Text(accountVM.username)
+                                        Text("My Profile")
                                             .font(.customfont(.bold, fontSize: 20))
                                             .foregroundColor(.primaryText)
                                         
@@ -39,14 +40,16 @@ struct AccountView: View {
                                         
                                         Spacer()
                                     }
-                                    
-                                    Text(accountVM.email)
-                                        .font(.customfont(.regular, fontSize: 16))
-                                        .accentColor(.secondaryText)
-                                }
-                            }
+//                                    Spacer()
+//                                    Text(accountVM.email)
+//                                        .font(.customfont(.regular, fontSize: 16))
+//                                        .accentColor(.secondaryText)
+//                                }
+                            
                             .padding(.horizontal, 20)
                             .padding(.top, .topInsets)
+                            
+                            Spacer()
                             
                             Divider()
                             
@@ -56,13 +59,13 @@ struct AccountView: View {
                                         AccountRow(title: "Orders", icon: "Orders icon", destination: AnyView(OrderView()))
                                         AccountRow(title: "My Details", icon: "My Details icon", destination: AnyView(MyDetailsView()))
                                         AccountRow(title: "Delivery Address", icon: "Delicery address", destination: AnyView(CheckOut()))
-                                        AccountRow(title: "About", icon: "about icon", destination: AnyView(OrderView()))
+//                                        AccountRow(title: "About", icon: "about icon", destination: AnyView(OrderView()))
                                     }
                                     
-                                    VStack {
-                                        AccountRow(title: "Notifications", icon: "Bell icon", destination: AnyView(OrderView()))
-                                        AccountRow(title: "Help", icon: "help icon", destination: AnyView(OrderView()))
-                                    }
+//                                    VStack {
+//                                        AccountRow(title: "Notifications", icon: "Bell icon", destination: AnyView(OrderView()))
+//                                        AccountRow(title: "Help", icon: "help icon", destination: AnyView(OrderView()))
+//                                    }
                                     
                                     NavigationLink(destination: WelcomeView(), isActive: $needToShowLoginView) {
                                         EmptyView()
@@ -86,6 +89,7 @@ struct AccountView: View {
                                                     .frame(width: 20, height: 20)
                                                     .padding(.trailing, 20)
                                             }
+                                            
                                         }
                                     }
                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)

@@ -140,14 +140,22 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
   
 
 
-
 struct Address: Identifiable {
-    var id = UUID() // Assuming you need a unique identifier
+    var id: String // Unique ID for each address
     var city: String
     var state: String
     var country: String
     var zipCode: String
     var isDefault: Bool
     var timestamp: Date?
-    var isChecked: Bool = false // New property to track checkbox state
+
+    init(id: String = UUID().uuidString, city: String, state: String, country: String, zipCode: String, isDefault: Bool, timestamp: Date? = nil) {
+        self.id = id
+        self.city = city
+        self.state = state
+        self.country = country
+        self.zipCode = zipCode
+        self.isDefault = isDefault
+        self.timestamp = timestamp
+    }
 }

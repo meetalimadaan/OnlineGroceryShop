@@ -6,9 +6,11 @@ class CheckOutViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var addresses: [Address] = []
     @Published var selectedAddress: Address?
-
+    @Published var orderStatus: String = "Pending"
+    @Published var orderDate: Date = Date() 
     private var db = Firestore.firestore()
-    
+    private var cartViewModel = MyCartViewModel.shared
+
     init() {
         fetchUsername()
         fetchSavedAddresses()
@@ -42,23 +44,106 @@ class CheckOutViewModel: ObservableObject {
                 if let addressesData = data?["addresses"] as? [[String: Any]] {
                     let addresses = addressesData.map { addressData in
                         Address(
+                            id: addressData["id"] as? String ?? UUID().uuidString,
                             city: addressData["city"] as? String ?? "Unknown",
                             state: addressData["state"] as? String ?? "Unknown",
                             country: addressData["country"] as? String ?? "Unknown",
                             zipCode: addressData["zipCode"] as? String ?? "Unknown",
                             isDefault: addressData["isDefault"] as? Bool ?? false,
-                            timestamp: addressData["timestamp"] as? Date ?? Date()
+                            timestamp: addressData["timestamp"] as? Date
                         )
                     }
                     self?.addresses = addresses
-//                    print("Addresses fetched: \(self?.addresses ?? [])")
+                    // Find the default address
+                    if let defaultAddress = addresses.first(where: { $0.isDefault }) {
+                        self?.selectedAddress = defaultAddress
+                        print("Selected address: \(self?.selectedAddress ?? Address(id: "", city: "", state: "", country: "", zipCode: "", isDefault: false))")
+                    } else {
+                        self?.selectedAddress = nil
+                        print("No default address found")
+                    }
                 } else {
                     print("No addresses field found")
                     self?.addresses = []
+                    self?.selectedAddress = nil
                 }
             } else {
                 print("No document found for the user")
                 self?.addresses = []
+                self?.selectedAddress = nil
+            }
+        }
+    }
+    
+   
+    func addOrder()  {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            return
+        }
+
+     
+        let userOrdersRef = db.collection("userOrders").document(userID).collection("orders")
+
+      
+        let newOrderRef = userOrdersRef.document()
+        let orderID = newOrderRef.documentID
+
+       
+        var orderData: [String: Any] = [
+            "orderID": orderID,
+            "status": orderStatus,
+            "orderDate": Timestamp(date: orderDate),
+            "totalPrice": cartViewModel.totalAmount
+            ]
+       
+        if let address = selectedAddress {
+            orderData["selectedAddress"] = [
+                "id": address.id,
+                "city": address.city,
+                "state": address.state,
+                "country": address.country,
+                "zipCode": address.zipCode
+            ]
+        }
+        
+     
+        orderData["cartItems"] = cartViewModel.cartItems.map { cartItem in
+            return [
+                "productID": cartItem.id,
+                "name": cartItem.name,
+                "price": cartItem.price,
+                "quantity": cartItem.quantity,
+                "img": cartItem.img
+            ]
+        }
+
+        
+        print("Order Data to be saved:", orderData)
+
+      
+        newOrderRef.setData(orderData) { error in
+            if let error = error {
+                print("Error adding order: \(error.localizedDescription)")
+            } else {
+                print("Order added successfully with orderID: \(orderID)")
+                print("Order Data successfully saved to Firestore!")
+                
+                self.clearCart(for: userID)
+              
+            }
+        }
+    }
+
+
+    private func clearCart(for userID: String) {
+        let userCartRef = Firestore.firestore().collection("userCart").document(userID)
+
+        userCartRef.updateData(["cartItems": []]) { error in
+            if let error = error {
+                print("Error clearing cart: \(error.localizedDescription)")
+            } else {
+                print("Cart cleared successfully!")
             }
         }
     }
@@ -66,7 +151,7 @@ class CheckOutViewModel: ObservableObject {
     func toggleDefaultStatus(for address: Address) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         print("Toggling default status for address: \(address)")
-        // Create the updated list of addresses
+        
         var updatedAddresses = addresses.map { addr in
             var updatedAddress = addr
             if addr.id == address.id {
@@ -78,15 +163,16 @@ class CheckOutViewModel: ObservableObject {
             return updatedAddress
         }
 
-        // Update Firestore
+  
         let addressData: [[String: Any]] = updatedAddresses.map { addr in
             [
+                "id": addr.id,
                 "city": addr.city,
                 "state": addr.state,
                 "country": addr.country,
                 "zipCode": addr.zipCode,
                 "isDefault": addr.isDefault,
-                "timestamp": addr.timestamp
+                "timestamp": addr.timestamp ?? Date()
             ]
         }
         
@@ -95,7 +181,7 @@ class CheckOutViewModel: ObservableObject {
                 print("Error updating address status: \(error)")
             } else {
                 print("Address default status updated successfully")
-                self.fetchSavedAddresses() // Refresh the address list
+                self.fetchSavedAddresses()
             }
         }
     }

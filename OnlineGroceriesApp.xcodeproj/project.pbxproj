@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0114D1D32C411927005579DD /* LineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114D1D22C411927005579DD /* LineTextField.swift */; };
+		01275E112C81BC7800224AF0 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01275E102C81BC7800224AF0 /* OrderViewModel.swift */; };
 		0134E5A22C64FCCA000871FB /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = 0134E5A12C64FCCA000871FB /* ShimmerView */; };
 		0134E5A42C64FEC8000871FB /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0134E5A32C64FEC8000871FB /* ShimmerView.swift */; };
 		013540242C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013540232C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift */; };
@@ -108,6 +109,7 @@
 /* Begin PBXFileReference section */
 		00ADD554E3550C471FD50EDF /* Pods-OnlineGroceriesAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineGroceriesAppTests.release.xcconfig"; path = "Target Support Files/Pods-OnlineGroceriesAppTests/Pods-OnlineGroceriesAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		0114D1D22C411927005579DD /* LineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextField.swift; sourceTree = "<group>"; };
+		01275E102C81BC7800224AF0 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		0134E5A32C64FEC8000871FB /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		013540202C3E65F800F5AB4A /* OnlineGroceriesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineGroceriesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		013540232C3E65F800F5AB4A /* OnlineGroceriesAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGroceriesAppApp.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				A34AA8EC2C5789E400048734 /* OrderAcceptedView.swift */,
+				01275E102C81BC7800224AF0 /* OrderViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -970,6 +973,7 @@
 				014B49F12C78BAD40029B529 /* CheckOutViewModel.swift in Sources */,
 				0173FCB32C7F3FE300FBE76E /* OrderView.swift in Sources */,
 				0180BC142C47D44000577BDE /* ExploreView.swift in Sources */,
+				01275E112C81BC7800224AF0 /* OrderViewModel.swift in Sources */,
 				0173FCB12C7F2D0000FBE76E /* AllProducts.swift in Sources */,
 				0180BBFC2C47A5E800577BDE /* LoginView.swift in Sources */,
 				0173FCB72C7F6A6000FBE76E /* MyDetailsView.swift in Sources */,

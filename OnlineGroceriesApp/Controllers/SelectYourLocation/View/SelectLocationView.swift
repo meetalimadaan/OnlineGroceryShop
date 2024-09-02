@@ -29,7 +29,7 @@ struct SelectLocationView: View {
                         .padding(.bottom, 40)
                     
                     Button(action: {
-                        viewModel.requestLocation() // Request location permission and location here
+                        viewModel.requestLocation()
                     }) {
                         Text("Use My Current Location")
                             .font(.customfont(.semibold, fontSize: 16))

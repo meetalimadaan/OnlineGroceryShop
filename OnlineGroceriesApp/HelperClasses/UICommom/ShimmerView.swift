@@ -18,14 +18,14 @@ struct ShimmerView: View {
             HStack(alignment: .top) {
                 ShimmerElement(width: width, height: height)
                     .cornerRadius(4)
-                VStack(alignment: .leading, spacing: 8) {
-                    ShimmerElement(height: 12)
-                        .cornerRadius(4)
-                    ShimmerElement(height: 12)
-                        .cornerRadius(4)
-                    ShimmerElement(width: width, height: 12)
-                        .cornerRadius(4)
-                }
+//                VStack(alignment: .leading, spacing: 8) {
+//                    ShimmerElement(height: 12)
+//                        .cornerRadius(4)
+//                    ShimmerElement(height: 12)
+//                        .cornerRadius(4)
+//                    ShimmerElement(width: width, height: 12)
+//                        .cornerRadius(4)
+//                }
             }
             .padding(.horizontal, 16)
         }
