@@ -4,6 +4,7 @@ struct CheckOut: View {
     @ObservedObject var viewModel = CheckOutViewModel()
     @Environment(\.presentationMode) var presentationMode
     @State private var navigateToOrderAccepted = false
+    
     var body: some View {
         //        NavigationView {
         VStack {
@@ -82,7 +83,7 @@ struct CheckOut: View {
             .padding(.bottom, .bottomInsets + 80)
             .padding(.horizontal, 20)
             .background(
-                NavigationLink(destination: OrderView(), isActive: $navigateToOrderAccepted) {
+                NavigationLink(destination: OrderAcceptedView(), isActive: $navigateToOrderAccepted) {
                     EmptyView()
                 }
             )
@@ -93,7 +94,6 @@ struct CheckOut: View {
         
         
         .navigationBarTitleDisplayMode(.inline)
-        //            .navigationBarBackButtonHidden(true)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

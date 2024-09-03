@@ -10,6 +10,7 @@ import CoreLocation
 
 struct SelectLocationView: View {
     @StateObject private var viewModel = SelectLocationViewModel()
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {

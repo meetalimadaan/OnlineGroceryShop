@@ -10,6 +10,7 @@ import FirebaseFirestore
 import Firebase
 
 struct MyCartView: View {
+    
     @ObservedObject private var viewModel = MyCartViewModel.shared
     
     var body: some View {
@@ -57,9 +58,9 @@ struct MyCartView: View {
                                 .foregroundColor(.primaryText)
                                 .padding()
                             
-                    
+                            
                             NavigationLink(destination: CheckOut()) {
-                                                           Text("Proceed to Checkout")
+                                Text("Proceed to Checkout")
                                     .font(.customfont(.semibold, fontSize: 18))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
@@ -68,9 +69,9 @@ struct MyCartView: View {
                                     .background(Color.primaryApp)
                                     .cornerRadius(20)
                                     .buttonStyle(PlainButtonStyle())
-                                                       }
-                                                       .padding(.bottom, .bottomInsets + 80)
-                                                       .padding(.horizontal, 20)
+                            }
+                            .padding(.bottom, .bottomInsets + 80)
+                            .padding(.horizontal, 20)
                         }
                     }
                 }
@@ -78,7 +79,7 @@ struct MyCartView: View {
             
             .navigationTitle("")
             .navigationBarBackButtonHidden(true)
-//            .navigationBarHidden(true)
+            //            .navigationBarHidden(true)
             .ignoresSafeArea()
             .onAppear {
                 viewModel.fetchCartItems()

@@ -18,6 +18,7 @@ class MyCartViewModel: ObservableObject {
             }
         }
     @Published var totalAmount: Double = 0.0
+    
     private init() {
         fetchCartItems()
     }

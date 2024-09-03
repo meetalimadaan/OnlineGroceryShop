@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExploreItemsView: View {
     @StateObject var exploreVM = ExploreVireModel()
+    @State private var showModal = false
     //    @StateObject var homeVM = HomeViewModel()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var category: Category
@@ -43,7 +44,7 @@ struct ExploreItemsView: View {
                     //                            .scaledToFit()
                     //                            .frame(width: 20, height: 20)
                     //                    }
-                    NavigationLink(destination: AllProducts()) {
+                    NavigationLink(destination: FilterProductsView()) {
                         Image("Group 6839")
                             .resizable()
                             .scaledToFit()

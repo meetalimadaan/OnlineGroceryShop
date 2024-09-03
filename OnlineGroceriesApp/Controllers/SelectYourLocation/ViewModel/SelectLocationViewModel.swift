@@ -45,8 +45,8 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     }
 
     func requestLocation() {
-        locationManager.requestWhenInUseAuthorization() // Request location access permission here
-        locationManager.requestLocation() // Then request the user's location
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -87,7 +87,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         }
 
         address.isDefault = isDefaultLocationChecked
-        address.timestamp = Date() // Update timestamp
+        address.timestamp = Date()
 
         let addressData: [String: Any] = [
             "city": address.city,
@@ -95,7 +95,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
             "country": address.country,
             "zipCode": address.zipCode,
             "isDefault": address.isDefault,
-            "timestamp": address.timestamp // Include timestamp
+            "timestamp": address.timestamp
         ]
 
         let userDocRef = db.collection("userAddress").document(userID)
@@ -110,14 +110,14 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 
             if let document = document, document.exists, let data = document.data(), let existingAddresses = data["addresses"] as? [[String: Any]] {
                 if address.isDefault {
-                    // If new address is default, set all existing addresses to non-default
+                    
                     for var existingAddress in existingAddresses {
                         var mutableAddress = existingAddress
                         mutableAddress["isDefault"] = false
                         addresses.append(mutableAddress)
                     }
                 } else {
-                    // If new address is not default, just append it
+                   
                     addresses.append(contentsOf: existingAddresses)
                 }
             }
@@ -141,7 +141,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 
 
 struct Address: Identifiable {
-    var id: String // Unique ID for each address
+    var id: String 
     var city: String
     var state: String
     var country: String

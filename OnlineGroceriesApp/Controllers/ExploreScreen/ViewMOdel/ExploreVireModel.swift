@@ -7,11 +7,16 @@
 
 import SwiftUI
 import FirebaseFirestore
+enum SortOption {
+    case lowToHigh
+    case highToLow
+}
 
 class ExploreVireModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var products: [Product] = []
     @Published var searchText: String = ""
+    @Published var sortOption: SortOption = .lowToHigh
     private var db = Firestore.firestore()
     
     var filteredCategories: [Category] {
@@ -85,19 +90,30 @@ class ExploreVireModel: ObservableObject {
                 }
         }
     func fetchAllProducts(completion: @escaping (Bool, String?) -> Void) {
-        // Fetch all products from Firestore
-        let productsRef = Firestore.firestore().collection("products")
-        productsRef.getDocuments { (snapshot, error) in
-            if let error = error {
-                completion(false, error.localizedDescription)
-            } else {
-                self.products = snapshot?.documents.compactMap { document in
+            let productsRef = db.collection("products")
+            
+            productsRef.getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(false, error.localizedDescription)
+                    return
+                }
+                
+                var fetchedProducts: [Product] = snapshot?.documents.compactMap { document in
                     try? document.data(as: Product.self)
                 } ?? []
+                
+                // Apply sorting based on the selected sortOption
+                switch self.sortOption {
+                case .lowToHigh:
+                    fetchedProducts.sort { $0.price < $1.price }
+                case .highToLow:
+                    fetchedProducts.sort { $0.price > $1.price }
+                }
+                
+                self.products = fetchedProducts
                 completion(true, nil)
             }
         }
-    }
 
     
 }

@@ -23,15 +23,27 @@ struct OrderView: View {
             .background(Color.white)
             .shadow(color: Color.black.opacity(0.2), radius: 2)
             
-            Spacer()
+//            Spacer()
          
-                      if viewModel.orders.isEmpty {
+            // Order Status Filter Picker
+                      Picker("Order Status", selection: $viewModel.selectedStatus) {
+                          Text("All").tag("All")
+                          Text("Pending").tag("Pending")
+                          Text("Shipped").tag("Shipped")
+                          Text("Delivered").tag("Delivered")
+                      }
+                      .pickerStyle(SegmentedPickerStyle())
+                      .padding()
+
+                      Spacer()
+
+                      if viewModel.filteredOrders.isEmpty {
                           Text("No orders found")
                               .font(.headline)
                               .foregroundColor(.gray)
                               .padding()
                       } else {
-                          List(viewModel.orders) { order in
+                          List(viewModel.filteredOrders) { order in
                               VStack(alignment: .leading) {
                                   Text("Order ID: \(order.id)")
                                   Text("Status: \(order.status)")
@@ -50,6 +62,9 @@ struct OrderView: View {
                   .onAppear {
                       viewModel.fetchUserOrders()
                   }
+                  .onChange(of: viewModel.selectedStatus, perform: { _ in
+                      viewModel.applyFilter()
+                  })
               }
           }
 // DateFormatter extension for formatting dates

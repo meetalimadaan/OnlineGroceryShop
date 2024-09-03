@@ -69,16 +69,18 @@ struct HomeView: View {
                                 .scaledToFit()
                                 .frame(width: 370, height: 150)
                                 .padding(.horizontal, 20)
+                                
                                 .tag(index)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                     .frame(width: 370, height: 150)
                     .padding(2)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                    )
+                    
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+//                    )
                     .onReceive(timer) { _ in
                         
                         withAnimation {
@@ -93,8 +95,8 @@ struct HomeView: View {
                     
                     
                     if isLoadingExclusiveOffers {
-                        ShimmerView(width: 100, height: 120)
-                        //                            .frame(height: 120)
+                        ShimmerView()
+                            .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -114,8 +116,8 @@ struct HomeView: View {
                         .padding(.horizontal, 20)
                     
                     if isLoadingBestSelling {
-                        ShimmerView(width: 100, height: 120)
-                        //                            .frame(height: 120)
+                        ShimmerView()
+                            .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {

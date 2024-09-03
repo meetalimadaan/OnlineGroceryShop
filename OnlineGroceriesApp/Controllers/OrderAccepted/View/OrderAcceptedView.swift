@@ -25,28 +25,11 @@ struct OrderAcceptedView: View {
             }.padding(.top,10)
             Spacer()
             Spacer()
-            //        NavigationLink(destination: MainTabView()) {
-            //            RoundButton(title: "Submit") {
-            ////                   navigateToMainTabView = true
-            //            }
-            //        }
-            //            NavigationLink(destination: MainTabView()) {
-            //                Text("Back to Home")
-            //                    .font(.customfont(.semibold, fontSize: 18))
-            //                    .foregroundColor(.white)
-            //                    .multilineTextAlignment(.center)
-            //                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-            //                    .contentShape(Rectangle())
-            //                    .background(Color.primaryApp)
-            //                    .cornerRadius(20)
-            //                    .buttonStyle(PlainButtonStyle())
-            //            }
-            //            .padding(.bottom, .screenWidth * 0.05).padding(.horizontal, 25)
-            
+           
             NavigationLink {
-               MainTabView()
+               HomeView()
             } label: {
-                Text("Back to home")
+                Text("BAck to Home")
                     .font(.customfont(.semibold, fontSize: 14))
                     .foregroundColor(.black)
                 

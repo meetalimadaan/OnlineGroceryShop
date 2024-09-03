@@ -12,6 +12,7 @@ struct ProductCell: View {
     
     var body: some View {
         NavigationLink(destination: ProductDetailsView(viewModel: viewModel)) {
+            
             VStack {
                 AsyncImage(url: URL(string: viewModel.product.img)) { image in
                     image.resizable()
@@ -19,8 +20,8 @@ struct ProductCell: View {
                         .frame(width: 100, height: 80)
 //                        .transition(.opacity)
                 } placeholder: {
-                    ShimmerView(width: 100, height: 80)
-                      
+                    ShimmerView()
+                    .cornerRadius(8)
                 }
                 
                 Spacer()

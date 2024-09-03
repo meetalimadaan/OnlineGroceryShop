@@ -20,7 +20,7 @@ struct CartItemRow: View {
                         .scaledToFit()
                         .frame(width: 60, height: 60)
                 } placeholder: {
-                    ShimmerView(width: 60, height: 60)   
+                  ProgressView()
                 }
                 
                 
