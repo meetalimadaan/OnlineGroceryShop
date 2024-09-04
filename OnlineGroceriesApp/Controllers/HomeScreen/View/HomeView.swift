@@ -177,13 +177,16 @@ struct HomeView: View {
                 }
             }
             .onAppear {
-                homeVM.fetchSavedAddress()
+//                homeVM.fetchSavedAddress()
+                NotificationCenter.default.addObserver(forName: Notification.Name("AddressUpdated"), object: nil, queue: .main) { _ in
+                                   homeVM.fetchSavedAddress()
+                               }
             }
         }
     }
     
 }
 
-#Preview {
-    HomeView(homeVM: HomeViewModel(), exploreVM: ExploreVireModel())
-}
+//#Preview {
+//    HomeView(homeVM: HomeViewModel(), exploreVM: ExploreVireModel())
+//}

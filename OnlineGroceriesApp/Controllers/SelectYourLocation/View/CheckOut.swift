@@ -2,16 +2,16 @@ import SwiftUI
 
 struct CheckOut: View {
     @ObservedObject var viewModel = CheckOutViewModel()
+    
     @Environment(\.presentationMode) var presentationMode
     @State private var navigateToOrderAccepted = false
     
     var body: some View {
-        //        NavigationView {
         VStack {
             // Header
             HStack {
                 Spacer()
-                Text("Delivery Addresess")
+                Text("Delivery Addresses")
                     .font(.customfont(.bold, fontSize: 20))
                     .frame(height: 46)
                 Spacer()
@@ -22,35 +22,40 @@ struct CheckOut: View {
             
             Spacer()
             
-            
-            // List of addresses
-            List {
-                ForEach(viewModel.addresses) { address in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("\(address.city), \(address.state)")
-                            Text("\(address.country) - \(address.zipCode)")
-                        }
-                        Spacer()
-                        if address.isDefault {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.green)
-                        }
-                        Button(action: {
-                            viewModel.toggleDefaultStatus(for: address)
-                        }) {
-                            Text(address.isDefault ? "" : "")
-                                .foregroundColor(.blue)
+            // List of addresses or "No Address" message
+            if viewModel.addresses.isEmpty {
+                Text("No Address")
+                    .font(.customfont(.regular, fontSize: 18))
+                    .foregroundColor(.gray)
+                    .padding(.top, 20)
+            } else {
+                List {
+                    ForEach(viewModel.addresses) { address in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("\(address.city), \(address.state)")
+                                Text("\(address.country) - \(address.zipCode)")
+                            }
+                            Spacer()
+                            if address.isDefault {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.green)
+                            }
+                            Button(action: {
+                                viewModel.toggleDefaultStatus(for: address)
+                            }) {
+                                Text(address.isDefault ? "" : "")
+                                    .foregroundColor(.blue)
+                            }
                         }
                     }
                 }
+//                .listStyle(InsetGroupedListStyle())
             }
-            .listStyle(InsetGroupedListStyle())
             Spacer()
             
             // "Add New Address" button
-            NavigationLink(destination: SelectLocationView().navigationBarBackButtonHidden(true)) {
-                
+            NavigationLink(destination: SelectLocationView(viewModal1: viewModel).navigationBarBackButtonHidden(true)) {
                 Text("Add New Address")
                     .font(.customfont(.semibold, fontSize: 22))
                     .foregroundColor(.white)
@@ -89,10 +94,10 @@ struct CheckOut: View {
             )
         }
         .onAppear {
-            viewModel.fetchSavedAddresses()
+            NotificationCenter.default.addObserver(forName: Notification.Name("AddressUpdated"), object: nil, queue: .main) { _ in
+                viewModel.fetchSavedAddresses()
+            }
         }
-        
-        
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {

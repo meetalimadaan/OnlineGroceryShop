@@ -132,6 +132,7 @@ class CheckOutViewModel: ObservableObject {
                 print("Order Data successfully saved to Firestore!")
                 
                 self.clearCart(for: userID)
+//                NotificationCenter.default.post(name: Notification.Name("AddressUpdated"), object: nil)
               
             }
         }

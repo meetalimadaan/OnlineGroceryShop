@@ -10,7 +10,8 @@ import CoreLocation
 
 struct SelectLocationView: View {
     @StateObject private var viewModel = SelectLocationViewModel()
-    
+    @ObservedObject var viewModal1 = CheckOutViewModel()
+    @EnvironmentObject var homeVM: HomeViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -61,7 +62,7 @@ struct SelectLocationView: View {
                     
                     Button(action: {
                         viewModel.saveAddress()
-                        
+                    
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Save")

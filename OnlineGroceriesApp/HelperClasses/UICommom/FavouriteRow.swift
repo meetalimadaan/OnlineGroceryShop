@@ -40,10 +40,10 @@ struct FavouriteRow: View {
                     .foregroundColor(.primaryText)
                 //                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                 
-                Image("back arrow 1")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 15, height: 15)
+//                Image("back arrow 1")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 15, height: 15)
                 
                 //                            Text("Favourites")
                 //                                 .font(.customfont(.bold, fontSize: 20))

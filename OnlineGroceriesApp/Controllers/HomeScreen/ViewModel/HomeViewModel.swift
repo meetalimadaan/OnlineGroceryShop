@@ -12,7 +12,7 @@ import Firebase
 class HomeViewModel: ObservableObject {
     
     @Published var products: [Product] = []
-    @Published var selectTab: Int = 0
+    @Published var selectedTab: Int = 0
     @Published var searchText: String = ""
     @Published var savedAddress: Address?
     private var db = Firestore.firestore()

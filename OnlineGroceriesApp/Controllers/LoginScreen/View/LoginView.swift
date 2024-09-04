@@ -14,7 +14,7 @@ struct LoginView: View {
     @State var isShowPassword: Bool = false
     @State private var navigateToHome: Bool = false
     @State private var navigateToAdminHome: Bool = false
-    
+    @StateObject private var homeVM = HomeViewModel()
     var body: some View {
 //        NavigationView{
             ZStack {
@@ -87,7 +87,7 @@ struct LoginView: View {
                         })
                         .padding(.bottom, .screenWidth * 0.05)
                         
-                        NavigationLink(destination: MainTabView(), isActive: $navigateToHome) {
+                        NavigationLink(destination: MainTabView().environmentObject(homeVM), isActive: $navigateToHome) {
                             EmptyView()
                         }
                         

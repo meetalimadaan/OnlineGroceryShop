@@ -12,6 +12,10 @@ import FirebaseFirestore
 
 class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var username: String = ""
+    @Published var city: String = ""
+       @Published var state: String = ""
+       @Published var country: String = ""
+       @Published var zipCode: String = ""
     @Published var address: Address?
     @Published var isDefaultLocationChecked = false
 
@@ -127,6 +131,9 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
                     print("Error saving address: \(error)")
                 } else {
                     print("Address successfully saved with default status: \(address.isDefault)")
+                    
+                    
+                    NotificationCenter.default.post(name: Notification.Name("AddressUpdated"), object: nil) // Notify that address has been saved
                 }
             }
         }

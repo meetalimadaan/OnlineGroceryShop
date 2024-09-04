@@ -48,7 +48,7 @@ struct OrderView: View {
                                   Text("Order ID: \(order.id)")
                                   Text("Status: \(order.status)")
                                   Text("Date: \(order.orderDate, formatter: DateFormatter.shortDate)")
-                                  Text("Total Price: $\(order.totalPrice, specifier: "%.2f")")
+                                  Text("Total Price: Rs\(order.totalPrice, specifier: "%.2f")")
                               }
                               .padding()
                           }

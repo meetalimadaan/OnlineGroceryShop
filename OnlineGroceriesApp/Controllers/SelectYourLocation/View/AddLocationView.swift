@@ -12,88 +12,79 @@ struct AddLocationView: View {
     @StateObject var locationVM = LocationViewModel.shared
     
     var body: some View {
-        VStack(alignment: .leading){
-            Text("City").frame(alignment: .leading).font(.system(size: 16, weight: .semibold, design: .default)).foregroundColor(.gray)
-            VStack{
-                //                NavigationLink(destination: EmptyView()) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.white).frame(height: 40)
-                    HStack{
-                        Text(address?.city ?? "Enter City").font(.system(size: 16, design: .default)).foregroundColor(.gray)
-                        Spacer()
-                        //                        Image(systemName: "chevron.down").frame(alignment: .trailing).padding(.horizontal,10).foregroundColor(.gray)
-                    }
-                    
-                }
-                //            }
+        VStack(alignment: .leading) {
+            Text("City")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.gray)
+            
+            VStack {
+                TextField("Enter City", text: Binding(
+                    get: { address?.city ?? "" },
+                    set: { newValue in address?.city = newValue }
+                ))
+                .padding(.vertical, 8)
+                .foregroundColor(.primary)
                 
                 Divider()
-            }.padding(.bottom, .screenWidth * 0.07)
+                    .background(Color.gray)
+            }
+            .padding(.bottom, .screenWidth * 0.07)
             
-            Text("State").frame(alignment: .leading)   .font(.system(size: 16, weight: .semibold, design: .default)).foregroundColor(.gray)
-            VStack{
-                //                NavigationLink(destination: EmptyView()) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.white).frame(height: 40)
-                    HStack{
-                        Text(address?.state ?? "Enter State").font(.system(size: 16, design: .default)).foregroundColor(.gray)
-                        Spacer()
-                        //                            Image(systemName: "chevron.down").frame(alignment: .trailing).padding(.horizontal,10).foregroundColor(.gray)
-                    }
-                    
-                }
-                //                }
+            Text("State")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.gray)
+            
+            VStack {
+                TextField("Enter State", text: Binding(
+                    get: { address?.state ?? "" },
+                    set: { newValue in address?.state = newValue }
+                ))
+                .padding(.vertical, 8)
+                .foregroundColor(.primary)
+                
                 Divider()
-            }.padding(.bottom, .screenWidth * 0.07)
+                    .background(Color.gray)
+            }
+            .padding(.bottom, .screenWidth * 0.07)
             
-            Text("Country").frame(alignment: .leading)   .font(.system(size: 16, weight: .semibold, design: .default)).foregroundColor(.gray)
-            VStack{
-                //                NavigationLink(destination: EmptyView()) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.white).frame(height: 40)
-                    HStack{
-                        Text(address?.country ?? "Enter Country").font(.system(size: 16, design: .default)).foregroundColor(.gray)
-                        Spacer()
-                        //                            Image(systemName: "chevron.down").frame(alignment: .trailing).padding(.horizontal,10).foregroundColor(.gray)
-                    }
-                    
-                }
-                //                }
+            Text("Country")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.gray)
+            
+            VStack {
+                TextField("Enter Country", text: Binding(
+                    get: { address?.country ?? "" },
+                    set: { newValue in address?.country = newValue }
+                ))
+                .padding(.vertical, 8)
+                .foregroundColor(.primary)
+                
                 Divider()
-            }.padding(.bottom, .screenWidth * 0.07)
+                    .background(Color.gray)
+            }
+            .padding(.bottom, .screenWidth * 0.07)
             
-            Text("Zipcode").frame(alignment: .leading)   .font(.system(size: 16, weight: .semibold, design: .default)).foregroundColor(.gray)
-            VStack{
-                //                NavigationLink(destination: EmptyView()) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(Color.white).frame(height: 40)
-                    HStack{
-                        Text(address?.zipCode ?? "Enter Zipcode").font(.system(size: 16, design: .default)).foregroundColor(.gray)
-                        Spacer()
-                        //                            Image(systemName: "chevron.down").frame(alignment: .trailing).padding(.horizontal,10).foregroundColor(.gray)
-                    }
-                    
-                }
-                //                }
+            Text("Zipcode")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.gray)
+            
+            VStack {
+                TextField("Enter Zipcode", text: Binding(
+                    get: { address?.zipCode ?? "" },
+                    set: { newValue in address?.zipCode = newValue }
+                ))
+                .padding(.vertical, 8)
+                .foregroundColor(.primary)
+                
                 Divider()
-            }.padding(.bottom, .screenWidth * 0.07)
-            
-            //            NavigationLink(destination: MainTabView()) {
-            //                RoundButton(title: "Submit") {
-            ////                   navigateToMainTabView = true
-            //                }
-            //            }
-                .padding(.bottom, .screenWidth * 0.05)
-            
-            
-            
-        }.padding(.horizontal,25)
+                    .background(Color.gray)
+            }
+            .padding(.bottom, .screenWidth * 0.07)
+        }
+        .padding(.horizontal, 25)
     }
 }
+
 
 //#Preview {
 //    AddLocationView()
