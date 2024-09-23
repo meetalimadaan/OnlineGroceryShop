@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+
 @main
 struct OnlineGroceriesAppApp: App {
     @StateObject private var homeVM = HomeViewModel()
@@ -20,11 +21,12 @@ struct OnlineGroceriesAppApp: App {
         WindowGroup {
             if isLoggedIn {
                 MainTabView()
-                    .environmentObject(homeVM)
+                    .environmentObject(homeVM) 
             } else {
                 WelcomeView()
             }
         }
     }
 }
+
 

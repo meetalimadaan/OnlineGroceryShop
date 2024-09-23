@@ -16,6 +16,7 @@ class HomeViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var savedAddress: Address?
     private var db = Firestore.firestore()
+    private var listener: ListenerRegistration?
     
     var filteredProducts: [Product] {
             if searchText.isEmpty {
@@ -33,6 +34,7 @@ class HomeViewModel: ObservableObject {
                     print("Failed to fetch products")
                 }
             }
+        fetchSavedAddress()
         }
 
     func fetchProducts(completion: @escaping (_ isSuccess: Bool) -> Void) {
@@ -62,44 +64,49 @@ class HomeViewModel: ObservableObject {
                 }
                 
                 completion(true)
-//                print("Fetched products: \(self.products)")
             }
         }
     
     func fetchSavedAddress() {
-           guard let userID = Auth.auth().currentUser?.uid else {
-               print("User not logged in")
-               return
-           }
-           
-           db.collection("userAddress").document(userID).getDocument { [weak self] (document, error) in
-               if let error = error {
-                   print("Error fetching address: \(error)")
-                   return
-               }
-               
-               if let document = document, document.exists {
-                   let data = document.data()
-                   if let addresses = data?["addresses"] as? [[String: Any]],
-                      let firstAddress = addresses.first {
-                       self?.savedAddress = Address(
-                           city: firstAddress["city"] as? String ?? "Unknown",
-                           state: firstAddress["state"] as? String ?? "Unknown",
-                           country: firstAddress["country"] as? String ?? "Unknown",
-                           zipCode: firstAddress["zipCode"] as? String ?? "Unknown", 
-                           isDefault: true
-                       )
-                   }
-               } else {
-                   print("No saved address found")
-               }
-           }
-       }
-    
+            guard let userID = Auth.auth().currentUser?.uid else {
+                print("User not logged in")
+                return
+            }
 
+            
+            listener?.remove()
 
-}
+            
+            listener = db.collection("userAddress").document(userID)
+                .addSnapshotListener { [weak self] documentSnapshot, error in
+                    if let error = error {
+                        print("Error fetching address: \(error)")
+                        return
+                    }
+                    
+                    if let document = documentSnapshot, document.exists {
+                        let data = document.data()
+                        if let addresses = data?["addresses"] as? [[String: Any]],
+                           let firstAddress = addresses.first {
+                            self?.savedAddress = Address(
+                                city: firstAddress["city"] as? String ?? "Unknown",
+                                state: firstAddress["state"] as? String ?? "Unknown",
+                                country: firstAddress["country"] as? String ?? "Unknown",
+                                zipCode: firstAddress["zipCode"] as? String ?? "Unknown",
+                                isDefault: true
+                            )
+                        }
+                    } else {
+                        print("No saved address found")
+                    }
+                }
+        }
 
+        deinit {
+            
+            listener?.remove()
+        }
+    }
 struct Product: Identifiable, Codable {
     @DocumentID var id: String?
     var name: String
@@ -108,6 +115,7 @@ struct Product: Identifiable, Codable {
     var description: String? = nil
     var img: String
     var stock: String? = nil
+    
 }
 
 

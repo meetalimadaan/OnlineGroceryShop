@@ -9,27 +9,30 @@ import SwiftUI
 
 struct AddressRow: View {
     let address: Address
-        @State var isChecked: Bool
-        let isSelectable: Bool
-        
-        var body: some View {
-            HStack {
-                Image(systemName: isChecked ? "checkmark.square.fill" : "square")
-                    .foregroundColor(isChecked ? .green : .gray)
-                    .onTapGesture {
-                        if isSelectable {
-                            isChecked.toggle()
-                            print("Address \(address.city) isChecked: \(isChecked)")
-                        }
-                    }
-                
-                VStack(alignment: .leading) {
-                    Text("City: \(address.city)")
-                    Text("State: \(address.state)")
-                    Text("Country: \(address.country)")
-                    Text("Zip Code: \(address.zipCode)")
-                    Divider()
-                }
+    let onToggleDefault: () -> Void
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("\(address.city), \(address.state)")
+                Text("\(address.country) - \(address.zipCode)")
+            }
+            Spacer()
+            if address.isDefault {
+                Image(systemName: "checkmark")
+                    .foregroundColor(.green)
+            }
+            Button(action: {
+                onToggleDefault()
+            }) {
+                Text(address.isDefault ? "" : "")
+                    .foregroundColor(.green)
             }
         }
+        .padding() // Add padding for spacing inside the row
+         
+                .cornerRadius(8) // Optional: rounded corners for a more polished look
+                .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
     }
+}
+

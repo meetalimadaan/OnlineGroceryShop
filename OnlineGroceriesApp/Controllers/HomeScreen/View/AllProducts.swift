@@ -9,24 +9,57 @@ import SwiftUI
 
 struct AllProducts: View {
     @StateObject var exploreVM = ExploreVireModel()
+    @State private var showModal = false
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State private var selectedCategory: String = "All"
+    
     var column = [
         GridItem(.flexible(), spacing: 15),
         GridItem(.flexible(), spacing: 15)
     ]
+    
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack {
                 VStack {
                     HStack {
-                        Spacer()
+                        Button {
+                            mode.wrappedValue.dismiss()
+                        } label: {
+                            Image("back arrow")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                        }
                         
                         Text("All Products")
                             .font(.customfont(.bold, fontSize: 20))
-                            .frame(height: 46)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         
-                        Spacer()
+                        Button {
+                            showModal.toggle()
+                        } label: {
+                            Image("Group 6839")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                        }
+                        .sheet(isPresented: $showModal) {
+                            FilterProductsWithCategory(selectedCategory: $selectedCategory)
+                                .environmentObject(exploreVM)
+                                .presentationDetents([.height(300)])
+                        }
                     }
-                    .padding(.top, .topInsets)
+//                    HStack {
+//                        Spacer()
+//                        
+//                        Text("All Products")
+//                            .font(.customfont(.bold, fontSize: 20))
+//                            .frame(height: 46)
+//                        
+//                        Spacer()
+//                    }
+//                    .padding(.top, .topInsets)
                     
                     SearchTextField(placeholder: "Search Products", txt: $exploreVM.searchText)
                         .padding(.horizontal, 20)
@@ -38,13 +71,14 @@ struct AllProducts: View {
                                 ProductCell(viewModel: ProductCellViewModel(product: product))
                             }
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 10)
                         .padding(.bottom, .bottomInsets)
                     }
                     Spacer()
                 }
             }
-            .ignoresSafeArea()
+//            .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
             .onAppear {
                 exploreVM.fetchAllProducts { success, error in
                     if success {
@@ -59,4 +93,4 @@ struct AllProducts: View {
     //#Preview {
     //    AllProducts()
     //}
-}
+

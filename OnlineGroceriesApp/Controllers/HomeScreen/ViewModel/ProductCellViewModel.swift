@@ -57,7 +57,7 @@
                 return
             }
 
-            // Immediately update UI state
+           
             cartQuantity += 1
             showQuantity = true
             

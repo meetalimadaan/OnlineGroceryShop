@@ -7,16 +7,12 @@
 
 import SwiftUI
 import FirebaseFirestore
-enum SortOption {
-    case lowToHigh
-    case highToLow
-}
 
 class ExploreVireModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var products: [Product] = []
     @Published var searchText: String = ""
-    @Published var sortOption: SortOption = .lowToHigh
+   
     private var db = Firestore.firestore()
     
     var filteredCategories: [Category] {
@@ -66,29 +62,33 @@ class ExploreVireModel: ObservableObject {
 
     
     func fetchProducts(byCategoryID categoryID: String, completion: @escaping (Bool, String?) -> Void) {
-            db.collection("products")
-                .whereField("categoryID", isEqualTo: categoryID)
-                .getDocuments { snapshot, error in
-                    if let error = error {
-                        completion(false, "Error fetching products: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    if let documents = snapshot?.documents {
-                        self.products = documents.compactMap { doc in
-                            do {
-                                return try doc.data(as: Product.self)
-                            } catch {
-                                print("Error decoding product: \(error.localizedDescription)")
-                                return nil
-                            }
-                        }
-                        completion(true, nil)
-                    } else {
-                        completion(false, "No products found.")
-                    }
+        db.collection("products")
+            .whereField("categoryID", isEqualTo: categoryID)
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    completion(false, "Error fetching products: \(error.localizedDescription)")
+                    return
                 }
-        }
+                
+                if let documents = snapshot?.documents {
+                    self.products = documents.compactMap { doc in
+                        do {
+                            let product = try doc.data(as: Product.self)
+                            print("Fetched product: \(product)")
+                            return product
+                        } catch {
+                            print("Error decoding product: \(error.localizedDescription)")
+                            return nil
+                        }
+                    }
+                    completion(true, nil)
+                } else {
+                    completion(false, "No products found.")
+                }
+            }
+    }
+
+    
     func fetchAllProducts(completion: @escaping (Bool, String?) -> Void) {
             let productsRef = db.collection("products")
             
@@ -102,13 +102,6 @@ class ExploreVireModel: ObservableObject {
                     try? document.data(as: Product.self)
                 } ?? []
                 
-                // Apply sorting based on the selected sortOption
-                switch self.sortOption {
-                case .lowToHigh:
-                    fetchedProducts.sort { $0.price < $1.price }
-                case .highToLow:
-                    fetchedProducts.sort { $0.price > $1.price }
-                }
                 
                 self.products = fetchedProducts
                 completion(true, nil)

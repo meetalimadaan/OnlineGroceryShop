@@ -8,66 +8,81 @@ import SwiftUI
 
 struct OrderView: View {
     @ObservedObject var viewModel = OrderViewModel()
-
+    @State private var showModal = false
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     var body: some View {
-        VStack {
-            // Header
-            HStack {
+      
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        mode.wrappedValue.dismiss()
+                    } label: {
+                        Image("back arrow")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25, height: 25)
+                    }
+                    
+                    Text("Your Orders")
+                        .font(.customfont(.bold, fontSize: 20))
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                    
+                    Button(action: {
+                        print("Button tapped")
+                        showModal.toggle()
+                        
+                    }) {
+                        Image("Group 6839")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .padding()
+                    }
+                    .sheet(isPresented: $showModal) {
+                        
+                        FilterView(selectedStatus: $viewModel.selectedStatus)
+                            .presentationDetents([.height(300)])
+                    }
+                }
+                
+                
                 Spacer()
-                Text("Your Orders")
-                    .font(.customfont(.bold, fontSize: 20))
-                    .frame(height: 46)
-                Spacer()
+             
+                if viewModel.filteredOrders.isEmpty {
+                               Text("No orders found")
+                                   .font(.headline)
+                                   .foregroundColor(.gray)
+                                   .padding()
+                           } else {
+                               ScrollView {
+                                   LazyVStack {
+                                       ForEach(viewModel.filteredOrders) { order in
+                                           NavigationLink(destination: OrderSummaryView(order: order)) {
+                                               OrderRow(order: order)
+                                           }
+                                       }
+                                   }
+                                   .padding()
+                               }
+                           }
+                           
+                 Spacer()
             }
-            .padding(.top, .topInsets)
-            .background(Color.white)
-            .shadow(color: Color.black.opacity(0.2), radius: 2)
             
-//            Spacer()
-         
-            // Order Status Filter Picker
-                      Picker("Order Status", selection: $viewModel.selectedStatus) {
-                          Text("All").tag("All")
-                          Text("Pending").tag("Pending")
-                          Text("Shipped").tag("Shipped")
-                          Text("Delivered").tag("Delivered")
-                      }
-                      .pickerStyle(SegmentedPickerStyle())
-                      .padding()
+            .navigationBarHidden(true)
+       
+        .onAppear {
+            viewModel.fetchUserOrders()
+        }
+        .onChange(of: viewModel.selectedStatus, perform: { _ in
+            viewModel.applyFilter()
+        })
+    }
+}
 
-                      Spacer()
 
-                      if viewModel.filteredOrders.isEmpty {
-                          Text("No orders found")
-                              .font(.headline)
-                              .foregroundColor(.gray)
-                              .padding()
-                      } else {
-                          List(viewModel.filteredOrders) { order in
-                              VStack(alignment: .leading) {
-                                  Text("Order ID: \(order.id)")
-                                  Text("Status: \(order.status)")
-                                  Text("Date: \(order.orderDate, formatter: DateFormatter.shortDate)")
-                                  Text("Total Price: Rs\(order.totalPrice, specifier: "%.2f")")
-                              }
-                              .padding()
-                          }
-                          .listStyle(InsetGroupedListStyle())
-                      }
-
-                      Spacer()
-                  }
-                  .background(Color(.systemGray6))
-                  .edgesIgnoringSafeArea(.top)
-                  .onAppear {
-                      viewModel.fetchUserOrders()
-                  }
-                  .onChange(of: viewModel.selectedStatus, perform: { _ in
-                      viewModel.applyFilter()
-                  })
-              }
-          }
-// DateFormatter extension for formatting dates
 extension DateFormatter {
     static let shortDate: DateFormatter = {
         let formatter = DateFormatter()
@@ -82,3 +97,4 @@ struct OrderView_Previews: PreviewProvider {
         OrderView()
     }
 }
+

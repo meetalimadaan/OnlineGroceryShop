@@ -10,13 +10,13 @@ import SwiftUI
 struct ExploreItemsView: View {
     @StateObject var exploreVM = ExploreVireModel()
     @State private var showModal = false
-    //    @StateObject var homeVM = HomeViewModel()
+    @State private var selectedStatus: String = "Price: Low to High"
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     var category: Category
     
     var column = [
-        GridItem(.flexible(), spacing: 15),
-        GridItem(.flexible(), spacing: 15)
+        GridItem(.flexible(), spacing: 20),
+        GridItem(.flexible(), spacing: 20)
     ]
     
     var body: some View {
@@ -32,39 +32,38 @@ struct ExploreItemsView: View {
                             .frame(width: 25, height: 25)
                     }
                     
-                    Text(category.name!)
+                    Text(category.name ?? "")
                         .font(.customfont(.bold, fontSize: 20))
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                    //
-                    //                    Button {
-                    //                        mode.wrappedValue.dismiss()
-                    //                    } label: {
-                    //                        Image("Group 6839")
-                    //                            .resizable()
-                    //                            .scaledToFit()
-                    //                            .frame(width: 20, height: 20)
-                    //                    }
-                    NavigationLink(destination: FilterProductsView()) {
+                    
+                    Button {
+                        showModal.toggle()
+                    } label: {
                         Image("Group 6839")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 20, height: 20)
                     }
+                    .sheet(isPresented: $showModal) {
+                        FilterProductsView(selectedStatus: $selectedStatus)
+                            .presentationDetents([.height(300)])
+                    }
                 }
                 
                 ScrollView {
-                    LazyVGrid(columns: column, spacing: 15) {
-                        ForEach(exploreVM.products) { product in
+                    LazyVGrid(columns: column, spacing: 20) {
+                        ForEach(filteredProducts) { product in
                             ProductCell(viewModel: ProductCellViewModel(product: product))
+                                .padding()
                         }
                     }
-                    .padding(.vertical, 10)
-                    //                    ./*padding(.horizontal, 20)*/
+//                    .padding(.vertical, 10)
+                    .padding(.horizontal, 10)
                     .padding(.bottom, .bottomInsets + 60)
                 }
             }
             .padding(.top, .topInsets)
-            .padding(.horizontal, 20)
+//            .padding(.horizontal, 5)
         }
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
@@ -80,7 +79,20 @@ struct ExploreItemsView: View {
             }
         }
     }
+    
+    // Filtered and sorted products based on selected status
+    var filteredProducts: [Product] {
+        switch selectedStatus {
+        case "Price: Low to High":
+            return exploreVM.products.sorted { $0.price < $1.price }
+        case "Price: High to Low":
+            return exploreVM.products.sorted { $0.price > $1.price }
+        default:
+            return exploreVM.products
+        }
+    }
 }
+
 
 //#Preview {
 //    ExploreItemsView()

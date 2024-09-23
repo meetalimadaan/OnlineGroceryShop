@@ -8,68 +8,54 @@
 import SwiftUI
 
 struct FilterProductsView: View {
-    @StateObject var exploreVM = ExploreVireModel()
-    @State private var selectedSortOption: SortOption = .lowToHigh
+   
+    @Binding var selectedStatus: String
+    @Environment(\.dismiss) var dismiss
+    let statuses = ["Price: Low to High", "Price: High to Low"] 
+    @State private var temporaryStatus: String
+    
+    init(selectedStatus: Binding<String>) {
+        self._selectedStatus = selectedStatus
+        self._temporaryStatus = State(initialValue: selectedStatus.wrappedValue)
+    }
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                ZStack {
+      
                     VStack {
-                        HStack {
-                            Spacer()
-                            
-                            Text("Filtered Products")
-                                .font(.customfont(.bold, fontSize: 20))
-                                .frame(height: 46)
-                            
-                            Spacer()
-                        }
-                        .padding(.top, .topInsets)
                         
-                        Picker("Sort by", selection: $selectedSortOption) {
-                            Text("Price: Low to High").tag(SortOption.lowToHigh)
-                            Text("Price: High to Low").tag(SortOption.highToLow)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .padding()
-                        .onChange(of: selectedSortOption) { newOption in
-                            exploreVM.sortOption = newOption
-                            exploreVM.fetchAllProducts { success, error in
-                                if success {
-                                    print("All products fetched and sorted successfully")
-                                } else {
-                                    print("Failed to fetch products: \(error ?? "Unknown error")")
-                                }
-                            }
-                        }
+                            
+                        Text("Select Filter")
+                                        .font(.headline)
+                                        .padding(.top, 20)
+                                        .padding(.bottom, 10)
                         
+                          
                         ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)], spacing: 15) {
-                                ForEach(exploreVM.products) { product in
-                                    ProductCell(viewModel: ProductCellViewModel(product: product))
+                            LazyVStack {
+                                ForEach(statuses, id: \.self) { status in
+                                    FilterRow(status: status, isSelected: status == temporaryStatus) {
+                                        temporaryStatus = status
+                                    }
+                                    Divider()
                                 }
                             }
-                            .padding(.horizontal, 20)
-                            .padding(.bottom, .bottomInsets + 60)
+                        }
+                        .frame(maxHeight: 200)
+                        
+                        Button(action: {
+                            selectedStatus = temporaryStatus
+                            dismiss()
+                        }) {
+                            Text("Apply Filter")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .padding(.horizontal)
                         }
                         Spacer()
                     }
                 }
-                .ignoresSafeArea()
-                .onAppear {
-                    exploreVM.fetchAllProducts { success, error in
-                        if success {
-                            print("All products fetched successfully")
-                        } else {
-                            print("Failed to fetch products: \(error ?? "Unknown error")")
-                        }
-                    }
-                }
             }
-        }
-    }
-}
-#Preview {
-    FilterProductsView()
-}

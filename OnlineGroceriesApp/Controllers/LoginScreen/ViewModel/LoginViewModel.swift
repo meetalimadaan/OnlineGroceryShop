@@ -32,6 +32,13 @@ class LoginViewModel: ObservableObject {
     }
 
     func login(completion: @escaping (Bool) -> Void) {
+        // Step 1: Validate inputs
+        if !validateInputs() {
+            completion(false)
+            return
+        }
+        
+        // Step 2: Proceed with Firebase Authentication if validation passes
         Auth.auth().signIn(withEmail: txtEmail, password: txtPassword) { authResult, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
@@ -51,6 +58,30 @@ class LoginViewModel: ObservableObject {
         }
     }
 
+    private func validateInputs() -> Bool {
+            if txtEmail.isEmpty {
+                errorMessage = "Email cannot be empty."
+                showingError = true
+                return false
+            }
+            if !isValidEmail(txtEmail) {
+                errorMessage = "Please enter a valid email address."
+                showingError = true
+                return false
+            }
+            if txtPassword.isEmpty {
+                errorMessage = "Password cannot be empty."
+                showingError = true
+                return false
+            }
+            return true
+        }
+
+        private func isValidEmail(_ email: String) -> Bool {
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+            let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+            return emailTest.evaluate(with: email)
+        }
     private func checkAdminStatus(uid: String) {
         if let savedAdminId = UserDefaultsManager.shared.getAdminId() {
             self.isAdmin = (uid == savedAdminId)
@@ -82,34 +113,34 @@ class LoginViewModel: ObservableObject {
 
     func logout() {
         do {
-            // Attempt to sign out the user
+         
             try Auth.auth().signOut()
             print("Successfully signed out.")
             
-            // Update UserDefaults to reflect the logout state
+           
             UserDefaults.standard.set(false, forKey: "isLoggedIn")
                    UserDefaults.standard.removeObject(forKey: "currentUserUID")
-                   UserDefaults.standard.removeObject(forKey: "adminId") // Ensure this key is removed
-                   UserDefaults.standard.removeObject(forKey: "username") // Remove other keys if needed
-                   UserDefaults.standard.removeObject(forKey: "email") // Remove other keys if needed
-                   UserDefaults.standard.removeObject(forKey: "uid") // Remove other keys if needed
+                   UserDefaults.standard.removeObject(forKey: "adminId")
+                   UserDefaults.standard.removeObject(forKey: "username")
+                   UserDefaults.standard.removeObject(forKey: "email")
+                   UserDefaults.standard.removeObject(forKey: "uid")
             
-            // Print the isLoggedIn status
+           
             print("isLoggedIn status after logout: \(UserDefaults.standard.bool(forKey: "isLoggedIn"))")
             
-            // Clear the local state
+            
             self.uid = nil
             self.email = nil
             self.isAdmin = false
             print("Local state cleared: uid, email set to nil, and isAdmin set to false.")
             
-            // Optionally, update the root view controller to ensure UI reflects logout
+            
             DispatchQueue.main.async {
                 UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: WelcomeView())
             }
             
         } catch let signOutError as NSError {
-            // Print an error message if signing out fails
+          
             print("Error signing out: \(signOutError)")
         }
     }

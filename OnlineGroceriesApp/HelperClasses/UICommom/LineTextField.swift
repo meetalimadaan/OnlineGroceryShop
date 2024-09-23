@@ -16,10 +16,19 @@ struct LineTextField: View {
     
     var body: some View {
         VStack {
-            Text(title)
-                .font(.customfont(.semibold, fontSize: 16))
-                .foregroundColor(.textTitle)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+//            Text(title)
+//                .font(.customfont(.semibold, fontSize: 16))
+//                .foregroundColor(.textTitle)
+//                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            // Adding * to indicate mandatory field
+                       HStack {
+                           Text(title)
+                               .font(.customfont(.semibold, fontSize: 16))
+                               .foregroundColor(.textTitle)
+                           Text("*")
+                               .foregroundColor(.red) // Make the asterisk red to emphasize importance
+                       }
+                       .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
             
             
                 TextField(placeholder, text: $txt)
@@ -44,10 +53,15 @@ struct LineSecureField: View {
     
     var body: some View {
         VStack {
-            Text(title)
-                .font(.customfont(.semibold, fontSize: 16))
-                .foregroundColor(.textTitle)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            // Adding * to indicate mandatory field
+                       HStack {
+                           Text(title)
+                               .font(.customfont(.semibold, fontSize: 16))
+                               .foregroundColor(.textTitle)
+                           Text("*")
+                               .foregroundColor(.red) // Make the asterisk red to emphasize importance
+                       }
+                       .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
             
             if (isShowPassword){
                 TextField(placeholder, text: $txt)

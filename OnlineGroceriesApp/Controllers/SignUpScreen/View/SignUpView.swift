@@ -12,7 +12,7 @@ struct SignUpView: View {
     @StateObject var signVM = SignUpViewModel.shared
     @State private var showAlert: Bool = false
     @State var isShowPassword: Bool = false
-    @State private var alertMessage: String = ""
+    @State private var isLoading: Bool = false
     @State private var navigateToHome: Bool = false
     @StateObject private var homeVM = HomeViewModel()
     
@@ -29,7 +29,7 @@ struct SignUpView: View {
                 Image("Group-2")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40)
+                    .frame(width: 40, height: 40)
                     .padding(.bottom, .screenWidth * 0.1)
                 
                 Text("Sign Up")
@@ -79,24 +79,25 @@ struct SignUpView: View {
                 if signVM.showingError {
                     Text(signVM.errorMessage)
                         .foregroundColor(.red)
+                        .fixedSize(horizontal: false, vertical: true)
                         .padding(.bottom, .screenWidth * 0.05)
                 }
                 
                 RoundButton(title: "Sign Up", didTap: {
-                    signVM.signUp { success in
-                        if success {
-                            alertMessage = "Sign-up successful!"
-                            showAlert = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                navigateToHome = true
-                            }
-                        } else {
-                            alertMessage = "Sign-up failed. Please try again."
-                            showAlert = true
-                        }
-                    }
-                })
-                .padding(.bottom, .screenWidth * 0.05)
+                                    isLoading = true
+                                    signVM.signUp { success in
+                                        if success {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                isLoading = false
+                                                navigateToHome = true
+                                            }
+                                        } else {
+                                            isLoading = false
+                                            showAlert = true
+                                        }
+                                    }
+                                })
+                                .padding(.bottom, .screenWidth * 0.05)
                 
                 NavigationLink(destination: MainTabView().environmentObject(homeVM), isActive: $navigateToHome) {
                     EmptyView()
@@ -128,8 +129,11 @@ struct SignUpView: View {
             .padding(.top, .topInsets + 64)
             .padding(.horizontal, 20)
             .padding(.bottom, .bottomInsets)
-            //                }
             
+            if isLoading {
+                           LoaderView()
+                       }
+           
             VStack {
                 HStack {
                     Button {
@@ -147,13 +151,13 @@ struct SignUpView: View {
             .padding(.top, .topInsets)
             .padding(.horizontal, 20)
         }
-        .navigationTitle("Sign Up")
+        .navigationTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .ignoresSafeArea()
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Notification"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-        }
+//        .alert(isPresented: $showAlert) {
+//            Alert(title: Text("Notification"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+//        }
     }
 }
 //}

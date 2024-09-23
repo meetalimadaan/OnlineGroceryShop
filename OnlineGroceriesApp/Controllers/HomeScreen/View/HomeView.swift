@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var homeVM = HomeViewModel()
+//    @StateObject var homeVM = HomeViewModel()
     @StateObject var exploreVM = ExploreVireModel()
+    @StateObject var orderVM = OrderViewModel()
+    @EnvironmentObject var homeVM: HomeViewModel
     
     @State var isLoadingExclusiveOffers = false
     @State var isLoadingBestSelling = false
@@ -56,11 +58,6 @@ struct HomeView: View {
                     }
                     .padding(.top, .topInsets)
                     
-                    //                    Image("banner")
-                    //                        .resizable()
-                    //                        .scaledToFit()
-                    //                        .frame(height: 115)
-                    //                        .padding(.horizontal, 20)
                     
                     TabView(selection: $selectedImageIndex) {
                         ForEach(0..<images.count, id: \.self) { index in
@@ -69,7 +66,7 @@ struct HomeView: View {
                                 .scaledToFit()
                                 .frame(width: 370, height: 150)
                                 .padding(.horizontal, 20)
-                                
+                            
                                 .tag(index)
                         }
                     }
@@ -77,10 +74,10 @@ struct HomeView: View {
                     .frame(width: 370, height: 150)
                     .padding(2)
                     
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-//                    )
+                    //                    .overlay(
+                    //                        RoundedRectangle(cornerRadius: 10)
+                    //                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                    //                    )
                     .onReceive(timer) { _ in
                         
                         withAnimation {
@@ -91,47 +88,63 @@ struct HomeView: View {
                     
                     SectionTitleAll(title: "Exclusive offer", titleAll: "See All") {}
                         .padding(.horizontal, 20)
-                    
-                    
-                    
+
                     if isLoadingExclusiveOffers {
                         ShimmerView()
                             .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 15) {
-                                ForEach(homeVM.filteredProducts) { product in
-                                    ProductCell(viewModel: ProductCellViewModel(product: product))
-                                    
+                        // Create a filtered list of products where the price is less than 20
+                        let exclusiveOfferProducts = homeVM.filteredProducts.filter { $0.price < 20 }
+                        
+                        if exclusiveOfferProducts.isEmpty {
+                            Text("No exclusive offers available")
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 4)
+                        } else {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack(spacing: 15) {
+                                    ForEach(exclusiveOfferProducts) { product in
+                                        ProductCell(viewModel: ProductCellViewModel(product: product))
+                                    }
                                 }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 4)
                             }
-                            
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 4)
                         }
                     }
-                    
                     SectionTitleAll(title: "Best Selling", titleAll: "See All") {}
                         .padding(.horizontal, 20)
-                    
+
                     if isLoadingBestSelling {
                         ShimmerView()
                             .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 15) {
-                                ForEach(homeVM.filteredProducts) { product in
-                                    ProductCell(viewModel: ProductCellViewModel(product: product))
-                                    
+                        // Create a filtered list of products that have been ordered more than 2 times
+                        let bestSellingProducts = homeVM.filteredProducts.filter { product in
+                            let orderCount = orderVM.productOrderCounts[product.id ?? ""] ?? 0
+                            return orderCount > 2
+                        }
+
+                        if bestSellingProducts.isEmpty {
+                            Text("No best-selling products available")
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 4)
+                        } else {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack(spacing: 15) {
+                                    ForEach(bestSellingProducts) { product in
+                                        ProductCell(viewModel: ProductCellViewModel(product: product))
+                                    }
                                 }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 4)
                             }
-                            
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 4)
                         }
                     }
+
+
                     
                     SectionTitleAll(title: "Groceries", titleAll: "See All") {}
                         .padding(.horizontal, 20)
@@ -167,6 +180,7 @@ struct HomeView: View {
             .ignoresSafeArea()
             
             .onAppear {
+                homeVM.fetchSavedAddress()
                 isLoadingExclusiveOffers = true
                 isLoadingBestSelling = true
                 isLoadingGroceries = true
@@ -176,12 +190,7 @@ struct HomeView: View {
                     isLoadingGroceries = false
                 }
             }
-            .onAppear {
-//                homeVM.fetchSavedAddress()
-                NotificationCenter.default.addObserver(forName: Notification.Name("AddressUpdated"), object: nil, queue: .main) { _ in
-                                   homeVM.fetchSavedAddress()
-                               }
-            }
+            
         }
     }
     

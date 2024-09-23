@@ -66,7 +66,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard let self = self, let placemark = placemarks?.first else { return }
-            let timestamp = Date() // Get current timestamp
+            let timestamp = Date()
             self.address = Address(
                 city: placemark.locality ?? "N/A",
                 state: placemark.administrativeArea ?? "N/A",

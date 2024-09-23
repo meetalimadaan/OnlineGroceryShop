@@ -117,4 +117,5 @@ struct CartItem: Identifiable {
     var price: Double
     var quantity: Int
     var img: String
+    
 }
