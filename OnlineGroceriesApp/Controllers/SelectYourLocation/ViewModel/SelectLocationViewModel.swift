@@ -18,6 +18,9 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
        @Published var zipCode: String = ""
     @Published var address: Address?
     @Published var isDefaultLocationChecked = false
+    @Published var isLoading: Bool = false
+    @Published var showAlert: Bool = false
+    @Published var alertMessage: String = ""
 
     private let locationManager = CLLocationManager()
     private var db = Firestore.firestore()
@@ -49,12 +52,15 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     }
 
     func requestLocation() {
+        isLoading = true
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
     }
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
+        guard let location = locations.first else {
+            isLoading = false
+            return
+        }
         fetchAddress(from: location)
     }
 
@@ -65,7 +71,9 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     private func fetchAddress(from location: CLLocation) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
-            guard let self = self, let placemark = placemarks?.first else { return }
+            guard let self = self else { return }
+            self.isLoading = false // Stop loading
+            guard let placemark = placemarks?.first else { return }
             let timestamp = Date()
             self.address = Address(
                 city: placemark.locality ?? "N/A",
@@ -78,7 +86,6 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         }
     }
 
-
     func saveAddress() {
         guard let userID = Auth.auth().currentUser?.uid else {
             print("User not logged in")
@@ -87,6 +94,13 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 
         guard var address = address else {
             print("No address to save")
+            return
+        }
+
+        // Validate address fields before saving
+        if address.city.isEmpty || address.state.isEmpty || address.country.isEmpty || address.zipCode.isEmpty {
+            print("Address fields cannot be empty.")
+            showAlert = true
             return
         }
 
@@ -114,14 +128,12 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 
             if let document = document, document.exists, let data = document.data(), let existingAddresses = data["addresses"] as? [[String: Any]] {
                 if address.isDefault {
-                    
                     for var existingAddress in existingAddresses {
                         var mutableAddress = existingAddress
                         mutableAddress["isDefault"] = false
                         addresses.append(mutableAddress)
                     }
                 } else {
-                   
                     addresses.append(contentsOf: existingAddresses)
                 }
             }
@@ -131,9 +143,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
                     print("Error saving address: \(error)")
                 } else {
                     print("Address successfully saved with default status: \(address.isDefault)")
-                    
-                    
-                    NotificationCenter.default.post(name: Notification.Name("AddressUpdated"), object: nil) // Notify that address has been saved
+                    NotificationCenter.default.post(name: Notification.Name("AddressUpdated"), object: nil)
                 }
             }
         }
@@ -148,15 +158,15 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 
 
 struct Address: Identifiable {
-    var id: String 
-    var city: String
-    var state: String
-    var country: String
-    var zipCode: String
-    var isDefault: Bool
+    var id: String
+    var city: String = ""
+    var state: String = ""
+    var country: String = ""
+    var zipCode: String = ""
+    var isDefault: Bool = false
     var timestamp: Date?
 
-    init(id: String = UUID().uuidString, city: String, state: String, country: String, zipCode: String, isDefault: Bool, timestamp: Date? = nil) {
+    init(id: String = UUID().uuidString, city: String = "", state: String = "", country: String = "", zipCode: String = "", isDefault: Bool = false, timestamp: Date? = nil) {
         self.id = id
         self.city = city
         self.state = state
@@ -166,3 +176,4 @@ struct Address: Identifiable {
         self.timestamp = timestamp
     }
 }
+

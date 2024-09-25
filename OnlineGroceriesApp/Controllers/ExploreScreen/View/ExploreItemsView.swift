@@ -15,8 +15,8 @@ struct ExploreItemsView: View {
     var category: Category
     
     var column = [
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20)
+        GridItem(.flexible(), spacing: 15),
+        GridItem(.flexible(), spacing: 15)
     ]
     
     var body: some View {
@@ -26,21 +26,20 @@ struct ExploreItemsView: View {
                     Button {
                         mode.wrappedValue.dismiss()
                     } label: {
-                        Image("back arrow")
-                            .resizable()
+                        Image(systemName: "chevron.left")
                             .scaledToFit()
-                            .frame(width: 25, height: 25)
+                            .frame(width: 32, height: 32)
                     }
                     
-                    Text(category.name ?? "")
+                    Text(category.name ?? "category")
                         .font(.customfont(.bold, fontSize: 20))
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     
                     Button {
                         showModal.toggle()
                     } label: {
-                        Image("Group 6839")
-                            .resizable()
+                        Image(systemName: "slider.horizontal.3")
+//                            .resizable()
                             .scaledToFit()
                             .frame(width: 20, height: 20)
                     }
@@ -49,21 +48,22 @@ struct ExploreItemsView: View {
                             .presentationDetents([.height(300)])
                     }
                 }
-                
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 24))
+        
                 ScrollView {
-                    LazyVGrid(columns: column, spacing: 20) {
+                    LazyVGrid(columns: column, spacing: 0) {
                         ForEach(filteredProducts) { product in
+                         
                             ProductCell(viewModel: ProductCellViewModel(product: product))
                                 .padding()
                         }
                     }
-//                    .padding(.vertical, 10)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal)
                     .padding(.bottom, .bottomInsets + 60)
                 }
             }
             .padding(.top, .topInsets)
-//            .padding(.horizontal, 5)
+            
         }
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
@@ -72,7 +72,8 @@ struct ExploreItemsView: View {
         .onAppear {
             exploreVM.fetchProducts(byCategoryID: category.id ?? "") { success, error in
                 if success {
-                    print("Products fetched successfully.......")
+                    print("Products fetched  successfully.......",filteredProducts)
+                    
                 } else {
                     print("Failed to fetch products: \(error ?? "Unknown error")")
                 }
@@ -94,6 +95,6 @@ struct ExploreItemsView: View {
 }
 
 
-//#Preview {
-//    ExploreItemsView()
-//}
+#Preview {
+    ExploreItemsView(category: Category(id: "G05A8sxjBMZ2qMGzne2V", name: "Dairy & Eggs", imgURL: ""))
+}

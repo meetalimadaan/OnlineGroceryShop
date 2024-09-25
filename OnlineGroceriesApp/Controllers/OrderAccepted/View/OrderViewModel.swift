@@ -29,7 +29,7 @@ class OrderViewModel: ObservableObject {
                 return
             }
 
-            // Use a snapshot listener for real-time updates
+           
             listener = db.collection("userOrders").document(userID).collection("orders")
                 .addSnapshotListener { snapshot, error in
                     if let error = error {

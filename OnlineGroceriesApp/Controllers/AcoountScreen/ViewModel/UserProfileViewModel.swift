@@ -10,40 +10,47 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import UIKit
+import FirebaseAuth
 
 class UserProfileViewModel: ObservableObject {
     @Published var user: User?
     @Published var userProfile: UserProfile?
     @Published var selectedImage: UIImage?
+    @Published var isImageUploaded = false
+    @Published var uploadCompleted = false
     private var db = Firestore.firestore()
     
     init() {
         fetchUserProfile()
     }
-    func uploadProfileImage() {
-          guard let userID = Auth.auth().currentUser?.uid,
-                let imageData = selectedImage?.jpegData(compressionQuality: 0.8) else { return }
-          
-          let storageRef = Storage.storage().reference().child("profile_images/\(userID).jpg")
-          
-          storageRef.putData(imageData, metadata: nil) { metadata, error in
-              if let error = error {
-                  print("Failed to upload image: \(error)")
-                  return
-              }
-              
-              storageRef.downloadURL { [weak self] url, error in
-                  if let error = error {
-                      print("Failed to get download URL: \(error)")
-                      return
-                  }
-                  
-                  if let profileImageURL = url?.absoluteString {
-                      self?.updateUserProfileImageURL(profileImageURL: profileImageURL)
-                  }
-              }
-          }
-      }
+    func uploadProfileImage(completion: @escaping () -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid,
+              let imageData = selectedImage?.jpegData(compressionQuality: 0.8) else { return }
+        
+        let storageRef = Storage.storage().reference().child("profile_images/\(userID).jpg")
+        
+        storageRef.putData(imageData, metadata: nil) { [weak self] metadata, error in
+            if let error = error {
+                print("Failed to upload image: \(error)")
+                completion()
+                return
+            }
+            
+            storageRef.downloadURL { [weak self] url, error in
+                if let error = error {
+                    print("Failed to get download URL: \(error)")
+                    completion()
+                    return
+                }
+                
+                if let profileImageURL = url?.absoluteString {
+                    self?.updateUserProfileImageURL(profileImageURL: profileImageURL)
+                }
+                self?.uploadCompleted = true
+                completion()
+            }
+        }
+    }
       
       private func updateUserProfileImageURL(profileImageURL: String) {
           guard let userID = Auth.auth().currentUser?.uid else { return }

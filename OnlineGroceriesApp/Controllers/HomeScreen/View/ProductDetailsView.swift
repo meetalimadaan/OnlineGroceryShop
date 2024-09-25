@@ -168,14 +168,14 @@ struct ProductDetailsView: View {
                     
                     Spacer()
                     
-                    Button {
-                        mode.wrappedValue.dismiss()
-                    } label: {
-                        Image("Vector-4")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                    }
+//                    Button {
+//                        mode.wrappedValue.dismiss()
+//                    } label: {
+//                        Image("Vector-4")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 25, height: 25)
+//                    }
                 }
                 
                 Spacer()

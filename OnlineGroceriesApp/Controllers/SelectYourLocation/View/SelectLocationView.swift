@@ -21,26 +21,41 @@ struct SelectLocationView: View {
                     Image("map")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 180, height: 180)
-                        .padding(.top, 20)
+                        .frame(width: 150, height: 150)
+                        .padding(.top, 10)
                     
                     Text("Hello \(viewModel.username), Select Your Location")
                         .font(.customfont(.semibold, fontSize: 16))
                         .foregroundColor(.primaryText)
                         .multilineTextAlignment(.leading)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 10)
                     
                     Button(action: {
                         viewModel.requestLocation()
                     }) {
-                        Text("Use My Current Location")
-                            .font(.customfont(.semibold, fontSize: 16))
-                            .foregroundColor(.white)
+                        if viewModel.isLoading {
+                            HStack(spacing: 8) {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                Text("Fetching Location...")
+                                    .font(.customfont(.semibold, fontSize: 16))
+                                    .foregroundColor(.white)
+                            }
                             .padding()
-                            .background(Color.blue)
+                            .background(Color.primaryApp)
                             .cornerRadius(8)
+                        } else {
+                            Text("Use My Current Location")
+                                .font(.customfont(.semibold, fontSize: 16))
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.primaryApp)
+                                .cornerRadius(8)
+                        }
                     }
                     .padding(.bottom, 20)
+
+
                     
                     AddLocationView(address: $viewModel.address)
                     
@@ -69,9 +84,10 @@ struct SelectLocationView: View {
                             .font(.customfont(.semibold, fontSize: 16))
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.green)
+                            .background(Color.primaryApp)
                             .cornerRadius(8)
                     }
+                    
                     .padding(.bottom, 30)
                     
                     Spacer()
@@ -80,6 +96,8 @@ struct SelectLocationView: View {
             }
             .onAppear {
                 viewModel.fetchUsername()
+                viewModel.address = Address()
+                
             }
             .navigationBarBackButtonHidden(true)
             .toolbar {
@@ -92,6 +110,9 @@ struct SelectLocationView: View {
                     }
                 }
             }
+            .alert(isPresented: $viewModel.showAlert) {
+                       Alert(title: Text("Error"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                   }
         }
     }
 }

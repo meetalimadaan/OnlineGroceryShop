@@ -26,8 +26,8 @@ struct AllProducts: View {
                         Button {
                             mode.wrappedValue.dismiss()
                         } label: {
-                            Image("back arrow")
-                                .resizable()
+                            Image(systemName: "chevron.left")
+//                                .resizable()
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
                         }
@@ -39,8 +39,8 @@ struct AllProducts: View {
                         Button {
                             showModal.toggle()
                         } label: {
-                            Image("Group 6839")
-                                .resizable()
+                            Image(systemName: "slider.horizontal.3")
+//                                .resizable()
                                 .scaledToFit()
                                 .frame(width: 20, height: 20)
                         }
@@ -50,6 +50,7 @@ struct AllProducts: View {
                                 .presentationDetents([.height(300)])
                         }
                     }
+                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 24))
 //                    HStack {
 //                        Spacer()
 //                        

@@ -12,6 +12,7 @@ class ExploreVireModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var products: [Product] = []
     @Published var searchText: String = ""
+    @Published var isLoading: Bool = true  
    
     private var db = Firestore.firestore()
     
@@ -27,6 +28,7 @@ class ExploreVireModel: ObservableObject {
     
     init() {
             fetchCategories { success, error in
+                self.isLoading = false
                 if success {
                     print("Categories fetched successfully.")
                 } else {

@@ -19,8 +19,8 @@ struct DeliveryAddresss: View {
                 Button {
                     mode.wrappedValue.dismiss()
                 } label: {
-                    Image("back arrow")
-                        .resizable()
+                    Image(systemName: "chevron.left")
+//                        .resizable()
                         .scaledToFit()
                         .frame(width: 25, height: 25)
                 }
@@ -37,9 +37,10 @@ struct DeliveryAddresss: View {
             
             if viewModel.addresses.isEmpty {
                 Text("No Address")
-                    .font(.customfont(.regular, fontSize: 18))
-                    .foregroundColor(.gray)
-                    .padding(.top, 20)
+                    .font(.customfont(.bold, fontSize: 18))
+                    .foregroundColor(.secondaryText)
+                    .padding(.top, .topInsets + 46)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             } else {
                 List {
                     ForEach(viewModel.addresses) { address in

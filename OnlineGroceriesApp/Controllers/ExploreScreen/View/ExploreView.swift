@@ -35,8 +35,11 @@ struct ExploreView: View {
                         .padding(.bottom, 4)
                     
                     ScrollView {
-                        if exploreVM.filteredCategories.isEmpty {
-                            Text("No matches")
+                        if exploreVM.isLoading {
+                            ProgressView() // Display a loading indicator
+                                .padding(.top, 50)
+                        } else if exploreVM.filteredCategories.isEmpty {
+                            Text("No Categories ")
                                 .font(.customfont(.bold, fontSize: 18))
                                 .foregroundColor(.gray)
                                 .padding(.top, 50)
@@ -61,11 +64,11 @@ struct ExploreView: View {
     }
 }
 
-    
+
 //    #Preview {
 //        NavigationView{
 //            ExploreView()
 //        }
-//        
+//
 //    }
 

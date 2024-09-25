@@ -19,8 +19,8 @@ struct OrderView: View {
                     Button {
                         mode.wrappedValue.dismiss()
                     } label: {
-                        Image("back arrow")
-                            .resizable()
+                        Image(systemName: "chevron.left")
+//                            .resizable()
                             .scaledToFit()
                             .frame(width: 25, height: 25)
                     }
@@ -34,8 +34,8 @@ struct OrderView: View {
                         showModal.toggle()
                         
                     }) {
-                        Image("Group 6839")
-                            .resizable()
+                        Image(systemName: "slider.horizontal.3")
+//                            .resizable()
                             .scaledToFit()
                             .frame(width: 24, height: 24)
                             .padding()
@@ -52,9 +52,10 @@ struct OrderView: View {
              
                 if viewModel.filteredOrders.isEmpty {
                                Text("No orders found")
-                                   .font(.headline)
-                                   .foregroundColor(.gray)
-                                   .padding()
+                        .font(.customfont(.bold, fontSize: 18))
+                        .foregroundColor(.secondaryText)
+                        .padding(.top, .topInsets + 46)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                            } else {
                                ScrollView {
                                    LazyVStack {

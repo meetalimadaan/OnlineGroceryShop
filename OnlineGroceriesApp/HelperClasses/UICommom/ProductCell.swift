@@ -17,7 +17,7 @@ struct ProductCell: View {
                 AsyncImage(url: URL(string: viewModel.product.img)) { image in
                     image.resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 80)
+//                        .frame(width: 100, height: 80)
 //                        .transition(.opacity)
                 } placeholder: {
                     ShimmerView()
@@ -49,7 +49,7 @@ struct ProductCell: View {
                 HStack {
                     if viewModel.showQuantity {
                         IncrementDecrementButton(viewModel: viewModel)
-                            .frame(width: 80, height: 45)
+//                            .frame(width: 80, height: 45)
                     } else {
                         Button {
                             viewModel.addProductToCart()
@@ -65,7 +65,7 @@ struct ProductCell: View {
                                     .foregroundColor(.white)
                             }
                             .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
+                            .padding(.vertical, 12)
                         }
                         .frame(width: 150, height: 45)
                         .background(Color.primaryApp)
@@ -74,14 +74,15 @@ struct ProductCell: View {
                 }
             }
             .padding(15)
-            .frame(width: 180, height: 230)
-//            .overlay(
+            .frame(width: 200, height: 230)
+
             .background(Color.white)
                         .cornerRadius(16)
                         .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
-//                RoundedRectangle(cornerRadius: 16)
-//                    .stroke(Color.primaryText.opacity(0.5), lineWidth: 1)
-//            )
         }
     }
+}
+
+#Preview {
+    ProductCell(viewModel: ProductCellViewModel(product: Product(name: "Hi", price: 200, img: "https://firebasestorage.googleapis.com/v0/b/grocery-shop-dabda.appspot.com/o/category_images%2FGroup%206837.png?alt=media&token=d8ad01f0-d4e5-422f-adb2-f77ea7c5fe68")))
 }

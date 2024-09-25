@@ -42,7 +42,7 @@ struct MainTabView: View {
                 }
                 .tag(4)
         }
-        .accentColor(.green)
+        .accentColor(Color.primaryApp)
         .navigationTitle("Online Groceries")
         .navigationBarHidden(true)
         .ignoresSafeArea()

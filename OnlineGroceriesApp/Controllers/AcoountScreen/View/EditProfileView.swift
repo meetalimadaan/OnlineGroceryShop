@@ -18,7 +18,7 @@ struct EditProfileView: View {
 
     var body: some View {
         VStack {
-            // Header
+            
             HStack {
                 Spacer()
                 Text("Edit Profile")

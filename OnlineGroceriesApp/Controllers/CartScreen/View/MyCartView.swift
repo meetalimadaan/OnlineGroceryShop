@@ -18,9 +18,10 @@ struct MyCartView: View {
             ZStack {
                 if viewModel.cartItems.isEmpty {
                     Text("Your cart is empty")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                        .padding()
+                        .font(.customfont(.bold, fontSize: 18))
+                        .foregroundColor(.secondaryText)
+                        .padding(.top, .topInsets + 46)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 } else {
                     ScrollView {
                         LazyVStack {

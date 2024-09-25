@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-//    @StateObject var homeVM = HomeViewModel()
+
     @StateObject var exploreVM = ExploreVireModel()
     @StateObject var orderVM = OrderViewModel()
     @EnvironmentObject var homeVM: HomeViewModel
@@ -74,10 +74,7 @@ struct HomeView: View {
                     .frame(width: 370, height: 150)
                     .padding(2)
                     
-                    //                    .overlay(
-                    //                        RoundedRectangle(cornerRadius: 10)
-                    //                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                    //                    )
+                  
                     .onReceive(timer) { _ in
                         
                         withAnimation {
@@ -86,7 +83,7 @@ struct HomeView: View {
                     }
                     
                     
-                    SectionTitleAll(title: "Exclusive offer", titleAll: "See All") {}
+                    SectionTitleAll(title: "Exclusive offer")
                         .padding(.horizontal, 20)
 
                     if isLoadingExclusiveOffers {
@@ -94,7 +91,7 @@ struct HomeView: View {
                             .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
-                        // Create a filtered list of products where the price is less than 20
+                      
                         let exclusiveOfferProducts = homeVM.filteredProducts.filter { $0.price < 20 }
                         
                         if exclusiveOfferProducts.isEmpty {
@@ -113,7 +110,7 @@ struct HomeView: View {
                             }
                         }
                     }
-                    SectionTitleAll(title: "Best Selling", titleAll: "See All") {}
+                    SectionTitleAll(title: "Previously Bought")
                         .padding(.horizontal, 20)
 
                     if isLoadingBestSelling {
@@ -121,10 +118,10 @@ struct HomeView: View {
                             .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
-                        // Create a filtered list of products that have been ordered more than 2 times
+                        
                         let bestSellingProducts = homeVM.filteredProducts.filter { product in
                             let orderCount = orderVM.productOrderCounts[product.id ?? ""] ?? 0
-                            return orderCount > 2
+                            return orderCount > 1
                         }
 
                         if bestSellingProducts.isEmpty {
@@ -146,7 +143,7 @@ struct HomeView: View {
 
 
                     
-                    SectionTitleAll(title: "Groceries", titleAll: "See All") {}
+                    SectionTitleAll(title: "Groceries")
                         .padding(.horizontal, 20)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -163,6 +160,15 @@ struct HomeView: View {
                     }
                     .padding(.bottom, 8)
                     
+                    SectionViewAllProducts(titleAll: "See all Products") {
+                    
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 8)
+                    .frame(maxWidth: .infinity)
+                    
+                    
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 15) {
                             ForEach(homeVM.filteredProducts) { product in
@@ -174,9 +180,11 @@ struct HomeView: View {
                         .padding(.horizontal, 20)
                         .padding(.vertical, 4)
                     }
+                    
                     .padding(.bottom, .bottomInsets + 60)
                 }
             }
+            
             .ignoresSafeArea()
             
             .onAppear {
