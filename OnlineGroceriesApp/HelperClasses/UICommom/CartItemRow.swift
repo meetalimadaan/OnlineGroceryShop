@@ -25,8 +25,9 @@ struct CartItemRow: View {
                 
                 
                 VStack(spacing:4){
-                    
+                    Spacer()
                     HStack{
+                     
                         Text(cartItem.name)
                             .font(.customfont(.bold, fontSize: 16))
                             .foregroundColor(.primaryText)
@@ -93,7 +94,7 @@ struct CartItemRow: View {
                         
                         Spacer()
                         
-                        Text("Rs\(Double(viewModel.cartQuantity) * cartItem.price, specifier: "%.1f")")
+                        Text("Rs \(Double(viewModel.cartQuantity) * cartItem.price, specifier: "%.2f")")
                                .font(.customfont(.semibold, fontSize: 18))
                                .foregroundColor(.primaryText)
                     }

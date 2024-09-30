@@ -17,10 +17,11 @@ struct ProductCell: View {
                 AsyncImage(url: URL(string: viewModel.product.img)) { image in
                     image.resizable()
                         .scaledToFit()
-//                        .frame(width: 100, height: 80)
+                        .frame(width: 80, height: 80)
 //                        .transition(.opacity)
                 } placeholder: {
                     ShimmerView()
+                    
                     .cornerRadius(8)
                 }
                 
@@ -30,8 +31,8 @@ struct ProductCell: View {
                     .font(.customfont(.bold, fontSize: 16))
                     .foregroundColor(.primaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                
-                Text("\(viewModel.product.stock ?? "") pcs")
+                    
+                Text("\(viewModel.product.stock ?? "")")
                     .font(.customfont(.medium, fontSize: 14))
                     .foregroundColor(.secondaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -67,14 +68,16 @@ struct ProductCell: View {
                             .padding(.horizontal, 8)
                             .padding(.vertical, 12)
                         }
-                        .frame(width: 150, height: 45)
+                        .frame(width: 130, height: 45)
+//                        .frame(maxWidth: .infinity, minHeight: 45)
                         .background(Color.primaryApp)
                         .cornerRadius(15)
                     }
                 }
             }
             .padding(15)
-            .frame(width: 200, height: 230)
+            .frame(width: 160, height: 230)
+//            .frame(maxWidth: .infinity)
 
             .background(Color.white)
                         .cornerRadius(16)
@@ -84,5 +87,5 @@ struct ProductCell: View {
 }
 
 #Preview {
-    ProductCell(viewModel: ProductCellViewModel(product: Product(name: "Hi", price: 200, img: "https://firebasestorage.googleapis.com/v0/b/grocery-shop-dabda.appspot.com/o/category_images%2FGroup%206837.png?alt=media&token=d8ad01f0-d4e5-422f-adb2-f77ea7c5fe68")))
+    ProductCell(viewModel: ProductCellViewModel(product: Product(name: "Hiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", price: 200, img: "https://firebasestorage.googleapis.com/v0/b/grocery-shop-dabda.appspot.com/o/category_images%2FGroup%206837.png?alt=media&token=d8ad01f0-d4e5-422f-adb2-f77ea7c5fe68")))
 }

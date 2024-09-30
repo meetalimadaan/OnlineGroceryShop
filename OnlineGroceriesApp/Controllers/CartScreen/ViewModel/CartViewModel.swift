@@ -8,9 +8,10 @@
 import SwiftUI
 import FirebaseFirestore
 import Firebase
-
+import FirebaseAuth
 class MyCartViewModel: ObservableObject {
     static let shared = MyCartViewModel()
+
 
     @Published var cartItems: [CartItem] = [] {
             didSet {
@@ -19,7 +20,7 @@ class MyCartViewModel: ObservableObject {
         }
     @Published var totalAmount: Double = 0.0
     
-    private init() {
+     init() {
         fetchCartItems()
     }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @EnvironmentObject var homeVM: HomeViewModel
+    
 
     var body: some View {
         TabView(selection: $homeVM.selectedTab) {

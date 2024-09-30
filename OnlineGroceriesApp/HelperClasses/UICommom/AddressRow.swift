@@ -4,35 +4,36 @@
 //
 //  Created by meetali on 29/08/24.
 //
-
 import SwiftUI
 
 struct AddressRow: View {
-    let address: Address
-    let onToggleDefault: () -> Void
-    
+    var address: Address
+    @Binding var isDefault: Bool 
+    var toggleDefaultStatus: () -> Void
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("\(address.city), \(address.state)")
-                Text("\(address.country) - \(address.zipCode)")
+                Text("\(address.city)")
+                    .font(.customfont(.regular, fontSize: 18))
+                Text("\(address.country)")
+                    .font(.customfont(.regular, fontSize: 14))
+                    .foregroundColor(.gray)
             }
             Spacer()
-            if address.isDefault {
+            if isDefault {
                 Image(systemName: "checkmark")
                     .foregroundColor(.green)
             }
-            Button(action: {
-                onToggleDefault()
-            }) {
-                Text(address.isDefault ? "" : "")
-                    .foregroundColor(.green)
-            }
         }
-        .padding() // Add padding for spacing inside the row
-         
-                .cornerRadius(8) // Optional: rounded corners for a more polished look
-                .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .padding(.horizontal)
+        .onTapGesture {
+            toggleDefaultStatus()
+        }
     }
 }
 

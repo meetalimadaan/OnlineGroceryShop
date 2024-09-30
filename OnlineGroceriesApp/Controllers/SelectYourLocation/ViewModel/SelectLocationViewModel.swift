@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import Firebase
 import FirebaseFirestore
+import FirebaseAuth
 
 class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var username: String = ""
@@ -19,7 +20,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     @Published var address: Address?
     @Published var isDefaultLocationChecked = false
     @Published var isLoading: Bool = false
-    @Published var showAlert: Bool = false
+    
     @Published var alertMessage: String = ""
 
     private let locationManager = CLLocationManager()
@@ -52,10 +53,16 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     }
 
     func requestLocation() {
-        isLoading = true
         locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
+        if CLLocationManager.locationServicesEnabled() {
+            isLoading = true
+            locationManager.requestLocation()
+        } else {
+            alertMessage = "Location services are not enabled."
+           
+        }
     }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
             isLoading = false
@@ -72,8 +79,20 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard let self = self else { return }
-            self.isLoading = false // Stop loading
-            guard let placemark = placemarks?.first else { return }
+            self.isLoading = false
+            
+            if let error = error {
+                self.alertMessage = "Failed to retrieve address: \(error.localizedDescription)"
+               
+                return
+            }
+            
+            guard let placemark = placemarks?.first else {
+                self.alertMessage = "No address found."
+              
+                return
+            }
+            
             let timestamp = Date()
             self.address = Address(
                 city: placemark.locality ?? "N/A",
@@ -97,13 +116,7 @@ class SelectLocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
             return
         }
 
-        // Validate address fields before saving
-        if address.city.isEmpty || address.state.isEmpty || address.country.isEmpty || address.zipCode.isEmpty {
-            print("Address fields cannot be empty.")
-            showAlert = true
-            return
-        }
-
+        
         address.isDefault = isDefaultLocationChecked
         address.timestamp = Date()
 

@@ -29,7 +29,7 @@ struct FavouriteRow: View {
                         .foregroundColor(.primaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
-                    Text("\(product.stock ?? "") pcs")
+                    Text("\(product.stock ?? "")")
                         .font(.customfont(.medium, fontSize: 14))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

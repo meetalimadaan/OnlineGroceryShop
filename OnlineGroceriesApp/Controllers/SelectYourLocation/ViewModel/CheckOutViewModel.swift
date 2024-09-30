@@ -10,7 +10,7 @@ class CheckOutViewModel: ObservableObject {
     @Published var orderDate: Date = Date() 
     
     private var db = Firestore.firestore()
-    private var cartViewModel = MyCartViewModel.shared
+    private var cartViewModel = MyCartViewModel()
    
     
     init() {

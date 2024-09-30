@@ -54,22 +54,28 @@ struct MyCartView: View {
                     
                     if !viewModel.cartItems.isEmpty {
                         VStack {
-                            Text("Total Amount: Rs \(viewModel.totalAmount, specifier: "%.2f")")
-                                .font(.customfont(.semibold, fontSize: 18))
-                                .foregroundColor(.primaryText)
-                                .padding()
-                            
-                            
                             NavigationLink(destination: CheckOut()) {
-                                Text("Proceed to Checkout")
-                                    .font(.customfont(.semibold, fontSize: 18))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                                    .contentShape(Rectangle())
-                                    .background(Color.primaryApp)
-                                    .cornerRadius(20)
-                                    .buttonStyle(PlainButtonStyle())
+                                HStack {
+                                    // Proceed to Checkout text
+                                    Text("Proceed to Checkout    Rs \(viewModel.totalAmount, specifier: "%.2f")")
+                                        .font(.customfont(.semibold, fontSize: 18))
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                                    
+                                    //                                                           Spacer()
+                                    //
+                                    //                                                           // Total Amount text
+                                    //                                                           Text("Rs \(viewModel.totalAmount, specifier: "%.2f")")
+                                    //                                                               .font(.customfont(.semibold, fontSize: 18))
+                                    //                                                               .foregroundColor(.white)
+                                    //                                                               .padding(.trailing)
+                                    
+                                }
+                                .contentShape(Rectangle())
+                                .background(Color.primaryApp)
+                                .cornerRadius(20)
+                                .buttonStyle(PlainButtonStyle())
                             }
                             .padding(.bottom, .bottomInsets + 80)
                             .padding(.horizontal, 20)

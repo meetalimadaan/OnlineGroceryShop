@@ -55,10 +55,11 @@ struct ExploreItemsView: View {
                         ForEach(filteredProducts) { product in
                          
                             ProductCell(viewModel: ProductCellViewModel(product: product))
+//                                .frame(width: 200, height: 230)
                                 .padding()
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, 15)
                     .padding(.bottom, .bottomInsets + 60)
                 }
             }

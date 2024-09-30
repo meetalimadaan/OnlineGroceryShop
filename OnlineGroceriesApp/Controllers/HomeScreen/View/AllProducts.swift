@@ -64,22 +64,25 @@ struct AllProducts: View {
                     
                     SearchTextField(placeholder: "Search Products", txt: $exploreVM.searchText)
                         .padding(.horizontal, 20)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 10)
                     
                     ScrollView {
-                        LazyVGrid(columns: column, spacing: 15) {
+                        LazyVGrid(columns: column, spacing: 0) {
                             ForEach(exploreVM.products.filter { exploreVM.searchText.isEmpty ? true : $0.name.contains(exploreVM.searchText) }) { product in
                                 ProductCell(viewModel: ProductCellViewModel(product: product))
+                                    .padding()
                             }
                         }
-                        .padding(.horizontal, 10)
-                        .padding(.bottom, .bottomInsets)
+                        .padding(.horizontal, 15)
+                        .padding(.bottom, .bottomInsets + 60 )
                     }
-                    Spacer()
+//                    Spacer()
                 }
+                .padding(.top, .topInsets)
             }
 //            .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
+            .ignoresSafeArea()
             .onAppear {
                 exploreVM.fetchAllProducts { success, error in
                     if success {

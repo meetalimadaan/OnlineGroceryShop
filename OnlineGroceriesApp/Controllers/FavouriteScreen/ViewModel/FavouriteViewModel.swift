@@ -19,7 +19,7 @@ class FavouriteViewModel: ObservableObject {
                 return
             }
             
-            isLoading = true // Start loading
+            isLoading = true
             
             let db = Firestore.firestore()
             let favDocRef = db.collection("userFavProducts").document(userId)
@@ -29,7 +29,7 @@ class FavouriteViewModel: ObservableObject {
                 
                 if let error = error {
                     print("Error fetching favorites: \(error.localizedDescription)")
-                    self.isLoading = false // Stop loading
+                    self.isLoading = false
                     return
                 }
                 
@@ -38,10 +38,10 @@ class FavouriteViewModel: ObservableObject {
                         self.fetchProductsByIds(ids)
                     } else {
                         self.favouriteProducts = []
-                        self.isLoading = false // Stop loading if no favorite IDs
+                        self.isLoading = false
                     }
                 } else {
-                    self.isLoading = false // Stop loading if no document exists
+                    self.isLoading = false
                 }
             }
         }
@@ -55,12 +55,12 @@ class FavouriteViewModel: ObservableObject {
                 
                 if let error = error {
                     print("Error fetching products: \(error.localizedDescription)")
-                    self.isLoading = false // Stop loading on error
+                    self.isLoading = false
                     return
                 }
                 
                 guard let documents = snapshot?.documents else {
-                    self.isLoading = false // Stop loading if no documents
+                    self.isLoading = false
                     return
                 }
                 
@@ -68,7 +68,7 @@ class FavouriteViewModel: ObservableObject {
                     try? document.data(as: Product.self)
                 }
                 
-                self.isLoading = false // Stop loading after products are fetched
+                self.isLoading = false
             }
         }
     }

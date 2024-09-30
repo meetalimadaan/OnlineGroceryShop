@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import Firebase
-
+import FirebaseAuth
 class HomeViewModel: ObservableObject {
     
     @Published var products: [Product] = []

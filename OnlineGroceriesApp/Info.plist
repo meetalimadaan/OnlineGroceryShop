@@ -11,8 +11,8 @@
 	</array>
     
     <key>NSLocationWhenInUseUsageDescription</key>
-        <string>We need your location to provide relevant services.</string>
+        <string>We need your location to provide you with nearby places.</string>
         <key>NSLocationAlwaysUsageDescription</key>
-        <string>We need your location to provide relevant services even when the app is in the background.</string>
+        <string>We need your location to provide you with nearby places.</string>
 </dict>
 </plist>

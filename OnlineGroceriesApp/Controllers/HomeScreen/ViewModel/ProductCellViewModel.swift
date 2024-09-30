@@ -7,7 +7,7 @@
     import SwiftUI
     import Firebase
     import FirebaseFirestore
-
+import FirebaseAuth
     class ProductCellViewModel: ObservableObject {
         @Published var cartQuantity: Int = 0
         @Published var showQuantity: Bool = false
@@ -37,19 +37,31 @@
 
             let userCartRef = Firestore.firestore().collection("userCart").document(userID)
             
-            userCartRef.getDocument { [weak self] (document, error) in
-                if let document = document, document.exists {
-                    let cartItems = document.data()?["cartItems"] as? [[String: Any]] ?? []
-                    
-                    if let item = cartItems.first(where: { $0["productID"] as? String == self?.product.id }) {
-                        self?.cartQuantity = item["quantity"] as? Int ?? 0
-                        self?.showQuantity = true
-                    } else {
-                        self?.showQuantity = false
-                    }
+            // Use a snapshot listener instead of a one-time fetch
+            userCartRef.addSnapshotListener { [weak self] (documentSnapshot, error) in
+                if let error = error {
+                    print("Error fetching document: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let document = documentSnapshot, document.exists else {
+                    self?.cartQuantity = 0
+                    self?.showQuantity = false
+                    return
+                }
+                
+                let cartItems = document.data()?["cartItems"] as? [[String: Any]] ?? []
+                
+                if let item = cartItems.first(where: { $0["productID"] as? String == self?.product.id }) {
+                    self?.cartQuantity = item["quantity"] as? Int ?? 0
+                    self?.showQuantity = true
+                } else {
+                    self?.cartQuantity = 0
+                    self?.showQuantity = false
                 }
             }
         }
+
         
         func addProductToCart() {
             guard let userID = getCurrentUserID() else {

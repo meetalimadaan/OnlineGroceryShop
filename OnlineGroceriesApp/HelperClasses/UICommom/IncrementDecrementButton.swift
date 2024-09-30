@@ -31,7 +31,7 @@ struct IncrementDecrementButton: View {
                 .font(.customfont(.semibold, fontSize: 16))
                 .foregroundColor(.primaryText)
                 .multilineTextAlignment(.center)
-                .frame(width: 45, height: 45, alignment: .center)
+                .frame(maxWidth: .infinity)
             
             Button {
                 viewModel.incrementQuantity()

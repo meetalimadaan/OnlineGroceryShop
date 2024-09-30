@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import GooglePlaces
 
 @main
 struct OnlineGroceriesAppApp: App {
@@ -15,6 +16,7 @@ struct OnlineGroceriesAppApp: App {
     
     init() {
         FirebaseApp.configure()
+        GMSPlacesClient.provideAPIKey("AIzaSyDMlNKm1oPYJRdL0QfVBRVpkOBQJZrjEWk")
     }
     
     var body: some Scene {

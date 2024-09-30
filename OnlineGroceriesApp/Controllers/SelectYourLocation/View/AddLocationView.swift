@@ -13,79 +13,63 @@ struct AddLocationView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // City Section
             Text("City")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.gray)
             
-            VStack {
-                TextField("Enter City", text: Binding(
-                    get: { address?.city ?? "" },
-                    set: { newValue in address?.city = newValue }
-                ))
+            // Removed TextField
+            Text(address?.city ?? "No City Entered")
                 .padding(.vertical, 8)
                 .foregroundColor(.primary)
-                
-                Divider()
-                    .background(Color.gray)
-            }
-            .padding(.bottom, .screenWidth * 0.07)
             
+            Divider()
+                .background(Color.gray)
+                .padding(.bottom, .screenWidth * 0.07)
+            
+            // State Section
             Text("State")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.gray)
             
-            VStack {
-                TextField("Enter State", text: Binding(
-                    get: { address?.state ?? "" },
-                    set: { newValue in address?.state = newValue }
-                ))
+            // Removed TextField
+            Text(address?.state ?? "No State Entered")
                 .padding(.vertical, 8)
                 .foregroundColor(.primary)
-                
-                Divider()
-                    .background(Color.gray)
-            }
-            .padding(.bottom, .screenWidth * 0.07)
             
+            Divider()
+                .background(Color.gray)
+                .padding(.bottom, .screenWidth * 0.07)
+            
+            // Country Section
             Text("Country")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.gray)
             
-            VStack {
-                TextField("Enter Country", text: Binding(
-                    get: { address?.country ?? "" },
-                    set: { newValue in address?.country = newValue }
-                ))
+            // Removed TextField
+            Text(address?.country ?? "No Country Entered")
                 .padding(.vertical, 8)
                 .foregroundColor(.primary)
-                
-                Divider()
-                    .background(Color.gray)
-            }
-            .padding(.bottom, .screenWidth * 0.07)
             
+            Divider()
+                .background(Color.gray)
+                .padding(.bottom, .screenWidth * 0.07)
+            
+            // Zipcode Section
             Text("Zipcode")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.gray)
             
-            VStack {
-                TextField("Enter Zipcode", text: Binding(
-                    get: { address?.zipCode ?? "" },
-                    set: { newValue in address?.zipCode = newValue }
-                ))
+            // Removed TextField
+            Text(address?.zipCode ?? "No Zipcode Entered")
                 .padding(.vertical, 8)
                 .foregroundColor(.primary)
-                
-                Divider()
-                    .background(Color.gray)
-            }
-            .padding(.bottom, .screenWidth * 0.07)
+            
+            Divider()
+                .background(Color.gray)
+                .padding(.bottom, .screenWidth * 0.07)
         }
-        .padding(.horizontal, 25)
+        .padding(.horizontal, 10)
     }
 }
 
-
-//#Preview {
-//    AddLocationView()
-//}
