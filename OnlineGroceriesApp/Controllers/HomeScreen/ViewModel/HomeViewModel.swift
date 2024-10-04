@@ -13,7 +13,9 @@ class HomeViewModel: ObservableObject {
     
     @Published var products: [Product] = []
     @Published var selectedTab: Int = 0
+    
     @Published var searchText: String = ""
+    @Published var cartItemCount: Int = 0
     @Published var savedAddress: Address?
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
@@ -36,6 +38,8 @@ class HomeViewModel: ObservableObject {
             }
         fetchSavedAddress()
         }
+    
+    
 
     func fetchProducts(completion: @escaping (_ isSuccess: Bool) -> Void) {
             let db = Firestore.firestore()
@@ -67,6 +71,39 @@ class HomeViewModel: ObservableObject {
             }
         }
     
+ 
+    func fetchProductsByCategory(categoryID: String, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("products")
+            .whereField("categoryID", isEqualTo: categoryID)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching products by category: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+
+                guard let documents = snapshot?.documents else {
+                    print("No products found for category ID: \(categoryID)")
+                    completion(false)
+                    return
+                }
+
+                self.products = documents.compactMap { doc in
+                    do {
+                        var product = try doc.data(as: Product.self)
+                        product.id = doc.documentID
+                        return product
+                    } catch {
+                        print("Error decoding product: \(error.localizedDescription)")
+                        return nil
+                    }
+                }
+
+                completion(true)
+            }
+    }
+
     func fetchSavedAddress() {
             guard let userID = Auth.auth().currentUser?.uid else {
                 print("User not logged in")
@@ -101,6 +138,7 @@ class HomeViewModel: ObservableObject {
                     }
                 }
         }
+    
 
         deinit {
             
@@ -115,6 +153,7 @@ struct Product: Identifiable, Codable {
     var description: String? = nil
     var img: String
     var stock: String? = nil
+    var images: [String]?
     
 }
 

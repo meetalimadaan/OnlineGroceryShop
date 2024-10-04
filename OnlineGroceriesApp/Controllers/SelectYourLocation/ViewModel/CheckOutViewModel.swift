@@ -155,18 +155,17 @@ class CheckOutViewModel: ObservableObject {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         print("Toggling default status for address: \(address)")
         
+        // If the clicked address is already default, do nothing
+        if address.isDefault {
+            return
+        }
+
         var updatedAddresses = addresses.map { addr in
             var updatedAddress = addr
-            if addr.id == address.id {
-                updatedAddress.isDefault = !addr.isDefault
-                print("Updated address to be default: \(updatedAddress)")
-            } else {
-                updatedAddress.isDefault = false
-            }
+            updatedAddress.isDefault = addr.id == address.id // Set to true only if it's the clicked address
             return updatedAddress
         }
 
-  
         let addressData: [[String: Any]] = updatedAddresses.map { addr in
             [
                 "id": addr.id,
@@ -179,12 +178,13 @@ class CheckOutViewModel: ObservableObject {
             ]
         }
         
+        // Update Firestore
         db.collection("userAddress").document(userID).setData(["addresses": addressData], merge: true) { error in
             if let error = error {
                 print("Error updating address status: \(error)")
             } else {
                 print("Address default status updated successfully")
-                self.fetchSavedAddresses()
+                self.fetchSavedAddresses() // Refresh the addresses
             }
         }
     }

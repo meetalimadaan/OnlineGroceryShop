@@ -12,9 +12,10 @@ import Firebase
 struct MyCartView: View {
     
     @ObservedObject private var viewModel = MyCartViewModel.shared
+    @State private var navigateToCheckout: Bool = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack {
                 if viewModel.cartItems.isEmpty {
                     Text("Your cart is empty")
@@ -54,33 +55,38 @@ struct MyCartView: View {
                     
                     if !viewModel.cartItems.isEmpty {
                         VStack {
-                            NavigationLink(destination: CheckOut()) {
+                            
+                            Button(action: {
+                                navigateToCheckout = true
+                            }) {
                                 HStack {
-                                    // Proceed to Checkout text
-                                    Text("Proceed to Checkout    Rs \(viewModel.totalAmount, specifier: "%.2f")")
+                                    
+                                    Text("Proceed to Checkout")
                                         .font(.customfont(.semibold, fontSize: 18))
                                         .foregroundColor(.white)
-                                        .multilineTextAlignment(.center)
-                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
                                     
-                                    //                                                           Spacer()
-                                    //
-                                    //                                                           // Total Amount text
-                                    //                                                           Text("Rs \(viewModel.totalAmount, specifier: "%.2f")")
-                                    //                                                               .font(.customfont(.semibold, fontSize: 18))
-                                    //                                                               .foregroundColor(.white)
-                                    //                                                               .padding(.trailing)
                                     
+                                    Text("Rs \(viewModel.totalAmount, specifier: "%.2f")")
+                                        .font(.customfont(.semibold, fontSize: 18))
+                                        .foregroundColor(.white)
                                 }
+                                .multilineTextAlignment(.center)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
                                 .contentShape(Rectangle())
                                 .background(Color.primaryApp)
                                 .cornerRadius(20)
                                 .buttonStyle(PlainButtonStyle())
                             }
-                            .padding(.bottom, .bottomInsets + 80)
                             .padding(.horizontal, 20)
+                            .padding(.bottom, .bottomInsets + 80)
+                            
+                            
+                            NavigationLink(destination: CheckOut(), isActive: $navigateToCheckout) {
+                                EmptyView()
+                            }
                         }
                     }
+                    
                 }
             }
             

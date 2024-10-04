@@ -16,16 +16,18 @@ struct HomeView: View {
     @State var isLoadingExclusiveOffers = false
     @State var isLoadingBestSelling = false
     @State var isLoadingGroceries = false
+    @State var isLoadingBeverages = false
     
     @State private var searchText1: String = ""
     @State private var selectedImageIndex: Int = 0
     @State private var showLocationModal: Bool = false
+    @State private var beverages: [Product] = []
     
     let images = ["grocery-ordering-and-delivery-word-vector", "istockphoto-1198965879-612x612", "1000_F_147219646_hVUhKxNhgX6A1nR5l7UUwYamVKGJULJ1"]
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack {
                 ScrollView {
                     VStack {
@@ -151,7 +153,7 @@ struct HomeView: View {
                     
                     
                     
-                    SectionTitleAll(title: "Groceries")
+                    SectionTitleAll(title: "Shop by Category ")
                         .padding(.horizontal, 20)
                     
                     if isLoadingGroceries {
@@ -179,39 +181,62 @@ struct HomeView: View {
                         .padding(.bottom, 8)
                         .frame(maxWidth: .infinity)
                         
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 15) {
-                                ForEach(homeVM.filteredProducts) { product in
-                                    ProductCell(viewModel: ProductCellViewModel(product: product))
-                                }
-                            }
+                        SectionTitleAll(title: "Beverages")
                             .padding(.horizontal, 20)
-                            .padding(.vertical, 4)
+                        
+                        if isLoadingBeverages {
+                            ShimmerView()
+                                .frame(height: 120)
+                                .padding(.horizontal, 20)
+                        } else {
+                            // Display beverages products
+                            if beverages.isEmpty {
+                                Text("No Beverages available")
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 4)
+                            } else {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    LazyHStack(spacing: 15) {
+                                        ForEach(beverages) { product in
+                                            ProductCell(viewModel: ProductCellViewModel(product: product))
+                                        }
+                                    }
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 4)
+                                }
+                                
+                            }
                         }
-                        .padding(.bottom, .bottomInsets + 60)
                     }
-                    
                 }
+                .padding(.bottom, .bottomInsets + 60)
                 .ignoresSafeArea()
-                
+                .navigationBarBackButtonHidden(true)
                 .onAppear {
                     homeVM.fetchSavedAddress()
                     isLoadingExclusiveOffers = true
                     isLoadingBestSelling = true
                     isLoadingGroceries = true
+                    isLoadingBeverages = true
                     homeVM.fetchProducts { isSuccess in
                         isLoadingExclusiveOffers = false
                         isLoadingBestSelling = false
                         isLoadingGroceries = false
                     }
+                    let beveragesCategoryID = "fpaaIzidMFtiPECtIhEz"
+                    homeVM.fetchProductsByCategory(categoryID: beveragesCategoryID) { isSuccess in
+                        isLoadingBeverages = false
+                        if isSuccess {
+                            beverages = homeVM.products
+                        }
+                    }
                 }
                 
             }
             .sheet(isPresented: $showLocationModal) {
-                            SelectLocationView()
-                    .presentationDetents([.height(400)])
-                        }
+                SelectLocationView()
+                    .presentationDetents([.height(500)])
+            }
         }
         
     }

@@ -13,7 +13,7 @@ struct AccountView: View {
     @State private var needToShowLoginView = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack{
             ZStack {
                 VStack {
                     VStack {

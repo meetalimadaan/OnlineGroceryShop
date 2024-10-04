@@ -16,11 +16,11 @@ struct ProductCellAll: View {
                 AsyncImage(url: URL(string: product.img)) { image in
                     image.resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100) // Adjust the size as needed
+                        .frame(width: 80, height: 80) // Adjust the size as needed
                         .cornerRadius(10)
                 } placeholder: {
                     ProgressView()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 80, height: 80)
                 }
                 
                 // Display product name
@@ -29,11 +29,13 @@ struct ProductCellAll: View {
                     .foregroundColor(.primaryText)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
-                    .padding(.top, 5)
+//                    .padding(.top, 5)
+                    .frame(maxWidth: 100)
             }
             .padding(10)
+            .frame(width: 150, height: 120)
             .background(Color.white) // Background for each cell
             .cornerRadius(10)
-            .shadow(radius: 5) // Optional: Add shadow for better appearance
+           /* .shadow(radius: 5)*/ // Optional: Add shadow for better appearance
         }
     }

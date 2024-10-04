@@ -4,17 +4,33 @@ struct CheckOut: View {
     @ObservedObject var viewModel = CheckOutViewModel()
     
     @Environment(\.presentationMode) var presentationMode
+    @State private var navigateToSelectLocation = false
     @State private var navigateToOrderAccepted = false
     @State private var showAddressErrorMessage = false
+    
     var body: some View {
         VStack {
             
             HStack {
+              
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "chevron.backward")
+                    
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.primaryApp)
+                }
+             
                 Spacer()
+                
                 Text("CheckOut")
                     .font(.customfont(.bold, fontSize: 20))
                     .frame(height: 46)
+                
                 Spacer()
+                
             }
             .padding(.top, .topInsets)
             .background(Color.white)
@@ -29,39 +45,54 @@ struct CheckOut: View {
                     .foregroundColor(.gray)
                     .padding(.top, 20)
             } else {
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach(viewModel.addresses.indices, id: \.self) { index in
-                            AddressRow(address: viewModel.addresses[index],
-                                       isDefault: $viewModel.addresses[index].isDefault,
-                                       toggleDefaultStatus: {
-                                viewModel.toggleDefaultStatus(for: viewModel.addresses[index])
-                            })
-                        }
-                        
-                    }
-                    .padding(.top, 10)
-                }
+                
+                               List(viewModel.addresses) { address in
+                                   HStack {
+                                       VStack(alignment: .leading) {
+                                           Text("\(address.city), \(address.country)")
+                                               .font(.customfont(.medium, fontSize: 16))
+//
+                                               .foregroundColor(.gray)
+                                       }
+                                       Spacer()
+                                       
+                                       if viewModel.selectedAddress?.id == address.id {
+                                           Image(systemName: "checkmark.circle.fill")
+                                               .foregroundColor(.primaryApp)
+                                       }
+                                   }
+                                   .contentShape(Rectangle())
+                                   .onTapGesture {
+                                       viewModel.selectedAddress = address
+                                       viewModel.toggleDefaultStatus(for: address)
+                                   }
+                               }
+                               .listStyle(PlainListStyle())
             }
             
             Spacer()
             
-            // "Add New Address" button
-            NavigationLink(destination: SelectLocationView(viewModal1: viewModel).navigationBarBackButtonHidden(true)) {
-                Text("Add New Address")
-                    .font(.customfont(.semibold, fontSize: 22))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                    .contentShape(Rectangle())
-                    .background(Color.primaryApp)
-                    .cornerRadius(20)
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.horizontal, 20)
-            }
-            .navigationBarBackButtonHidden(true)
-            .padding(.bottom, 10)
-            
+          
+                        Button(action: {
+                            navigateToSelectLocation = true
+                        }) {
+                            Text("Add New Address")
+                                .font(.customfont(.semibold, fontSize: 22))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                                .background(Color.primaryApp)
+                                .cornerRadius(20)
+                                .padding(.horizontal, 20)
+                        }
+                        .padding(.bottom, 10)
+                        .background(
+                            NavigationLink(destination: SelectLocationView(viewModal1: viewModel)
+                                            .navigationBarBackButtonHidden(true),
+                                           isActive: $navigateToSelectLocation) {
+                                EmptyView()
+                            }
+                        )
             
             
             if showAddressErrorMessage {
@@ -96,6 +127,7 @@ struct CheckOut: View {
                 .background(
                     NavigationLink(destination: OrderAcceptedView(), isActive: $navigateToOrderAccepted) {
                         EmptyView()
+                        
                     }
                 )
             }
@@ -108,18 +140,19 @@ struct CheckOut: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.backward")
-                    Text("Back")
-                }
-            }
-        }
+        //        .toolbar {
+        //            ToolbarItem(placement: .navigationBarLeading) {
+        //                Button(action: {
+        //                    presentationMode.wrappedValue.dismiss()
+        //                }) {
+        //                    Image(systemName: "chevron.backward")
+        //                    Text("Back")
+        //                }
+        //            }
+        //        }
         .ignoresSafeArea()
     }
+    
 }
 
 // Preview code

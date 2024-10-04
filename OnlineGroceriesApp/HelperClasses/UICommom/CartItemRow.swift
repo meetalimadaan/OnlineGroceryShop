@@ -43,7 +43,7 @@ struct CartItemRow: View {
                     }
                     
                     
-                    Text("\(cartItem.quantity) pcs. price")
+                    Text("\(cartItem.quantity)")
                         .font(.customfont(.medium, fontSize: 14))
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

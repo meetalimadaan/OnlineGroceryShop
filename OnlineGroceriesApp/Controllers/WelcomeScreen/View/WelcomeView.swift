@@ -12,7 +12,7 @@ struct WelcomeView: View {
     @State private var navigateToLogin = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack {
                 Image("8140 1")
                     .resizable()

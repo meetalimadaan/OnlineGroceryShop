@@ -16,7 +16,7 @@ struct OrderSummaryView: View {
     var body: some View {
         
         VStack {
-            // Header
+            
             HStack {
                 Spacer()
                 Text("Order Summary")
@@ -36,7 +36,7 @@ struct OrderSummaryView: View {
             
             
             ScrollView {
-                //                Product Items Section
+                
                 LazyVStack(spacing: 20) {
                     ForEach(order.cartItems) { item in
                         ProductRow(item: item)
@@ -46,25 +46,25 @@ struct OrderSummaryView: View {
                 
                 Spacer()
                 
-//                // Bill Details Section
-//                VStack(alignment: .leading, spacing: 10) {
-//                    Text("Bill Details")
-//                        .font(.customfont(.bold, fontSize: 18))
-//                        .padding(.top, 10)
-//                    
-//                    HStack {
-//                        Text("Total Amount:")
-//                            .font(.customfont(.regular, fontSize: 16))
-//                        Spacer()
-//                        Text("Rs\(totalAmount, specifier: "%.2f")")
-//                            .font(.customfont(.bold, fontSize: 16))
-//                    }
-//                    .padding(.vertical, 5)
-//                }
-//                .padding()
-//                .background(Color.gray.opacity(0.2))
-//                .cornerRadius(10)
-//                .padding(.horizontal)
+                //                // Bill Details Section
+                //                VStack(alignment: .leading, spacing: 10) {
+                //                    Text("Bill Details")
+                //                        .font(.customfont(.bold, fontSize: 18))
+                //                        .padding(.top, 10)
+                //                    
+                //                    HStack {
+                //                        Text("Total Amount:")
+                //                            .font(.customfont(.regular, fontSize: 16))
+                //                        Spacer()
+                //                        Text("Rs\(totalAmount, specifier: "%.2f")")
+                //                            .font(.customfont(.bold, fontSize: 16))
+                //                    }
+                //                    .padding(.vertical, 5)
+                //                }
+                //                .padding()
+                //                .background(Color.gray.opacity(0.2))
+                //                .cornerRadius(10)
+                //                .padding(.horizontal)
                 
                 
                 // Order Details Section
@@ -123,7 +123,7 @@ struct OrderSummaryView: View {
                 .padding(.horizontal)
             }
             
-            // Bill Details Section
+            
             VStack(alignment: .leading, spacing: 10) {
                 Text("Bill Details")
                     .font(.customfont(.bold, fontSize: 18))
@@ -142,7 +142,7 @@ struct OrderSummaryView: View {
             .background(Color.gray.opacity(0.2))
             .cornerRadius(10)
             .padding(.horizontal)
-           
+            
         }
         .edgesIgnoringSafeArea(.top)
     }

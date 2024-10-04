@@ -17,19 +17,27 @@ struct ProductDetailsView: View {
     var body: some View {
         ZStack {
             ScrollView {
+                
                 ZStack {
                     Rectangle()
                         .foregroundColor(Color(hex: "F2F2F2"))
                         .frame(width: .screenWidth, height: .screenWidth * 0.8)
                         .cornerRadius(20, corner: [.bottomLeft, .bottomRight])
                     
-                    AsyncImage(url: URL(string: viewModel.product.img)) { image in
-                        image.resizable()
-                            .scaledToFit()
-                            .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
-                    } placeholder: {
-                        ProgressView()
+                    TabView {
+                        ForEach(viewModel.product.images!, id: \.self) { imageUrl in
+                            AsyncImage(url: URL(string: imageUrl)) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: .screenWidth * 0.8, height: .screenWidth * 0.8)
+                                    .cornerRadius(10)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                        }
                     }
+                    .tabViewStyle(PageTabViewStyle())
                 }
                 .frame(width: .screenWidth, height: .screenWidth * 0.8)
                 
@@ -62,7 +70,7 @@ struct ProductDetailsView: View {
                     
                     HStack {
                         if viewModel.showQuantity {
-                           
+                            
                             Button {
                                 viewModel.decrementQuantity()
                             } label: {
@@ -134,34 +142,41 @@ struct ProductDetailsView: View {
                 .padding(.top, 20)
                 
                 
-                
-                
-                // Display Category Name
-                Text("Top Products in  \(categoryName)")
-                    .font(.customfont(.semibold, fontSize: 18))
-                    .foregroundColor(.primaryText)
-                    .padding(.top, 10)
-                
-              
-                // Display Products in the Category
-                VStack(alignment: .leading) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                           HStack(spacing: 20) {
-                               ForEach(productsInCategory) { product in
-                                   ProductCellAll(product: product) // Use your new ProductCellAll here
-                               }
-                           }
-                           .padding(.horizontal)
-                       }
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(Color(hex: "F2F2F2"))
+                        .cornerRadius(10)
+                 
+                    
+                    
+                    VStack(alignment: .center) {
+                        Text("Top Products in this Category")
+                            .font(.customfont(.semibold, fontSize: 18))
+                            .foregroundColor(.primaryText)
+                            .padding(.top, 10)
+                        
+                      
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                            ForEach(productsInCategory, id: \.id) { product in
+                                ProductCellAll(product: product)
+                            }
+                        }
+                        
+                        .padding(.top, 10)
+                    }
+                    .padding(10)
                 }
+                
+                .padding(.horizontal, 20)
                 .padding(.top, 10)
-                .padding(10)
-//                .background(Color.gray.opacity(0.1)) // Set the background color here
-                .cornerRadius(10)
-                .shadow(radius: 5)
+                
+                
+                
+                
+                
             }
             
-            
+            .padding(.bottom, 80)
             
             VStack {
                 HStack {
@@ -169,7 +184,7 @@ struct ProductDetailsView: View {
                         mode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "chevron.left")
-                      
+                        
                             .scaledToFit()
                             .frame(width: 25, height: 25)
                     }
@@ -183,7 +198,7 @@ struct ProductDetailsView: View {
                             navigateToAllProducts = true
                         } label: {
                             Image(systemName: "magnifyingglass")
-                                        
+                            
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
                         }
@@ -191,8 +206,7 @@ struct ProductDetailsView: View {
                 }
                 
                 Spacer()
-//                issue ye hai ki yha se pro
-              
+                
                 if viewModel.showQuantity {
                     NavigationLink(
                         destination: MyCartView()
@@ -210,13 +224,14 @@ struct ProductDetailsView: View {
             .padding(.top, .topInsets)
             .padding(.horizontal, 20)
         }
+        
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         .ignoresSafeArea()
         .onAppear {
             fetchCategoryNameAndProducts()
-           
+            
             viewModel.fetchCartQuantity()
         }
     }
@@ -226,7 +241,7 @@ struct ProductDetailsView: View {
         
         let db = Firestore.firestore()
         
-       
+        
         db.collection("categories").document(categoryID).getDocument { (document, error) in
             if let document = document, document.exists {
                 do {
@@ -240,7 +255,7 @@ struct ProductDetailsView: View {
             }
         }
         
-  
+        
         db.collection("products").whereField("categoryID", isEqualTo: categoryID).getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error fetching products in category: \(error)")
@@ -252,7 +267,7 @@ struct ProductDetailsView: View {
                 return
             }
             
-         
+            
             self.productsInCategory = documents.compactMap { document in
                 try? document.data(as: Product.self)
             }
@@ -262,7 +277,7 @@ struct ProductDetailsView: View {
 }
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create a sample ProductCellViewModel with mock data
+       
         let sampleProduct = Product(
             id: "sample_id",
             name: "Sample Product",
@@ -273,6 +288,6 @@ struct ProductDetailsView_Previews: PreviewProvider {
         let sampleViewModel = ProductCellViewModel(product: sampleProduct)
         
         ProductDetailsView(viewModel: sampleViewModel)
-            .preferredColorScheme(.light) // Change to .dark for dark mode preview
+            .preferredColorScheme(.light)
     }
 }

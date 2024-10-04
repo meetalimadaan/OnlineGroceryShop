@@ -21,23 +21,32 @@ struct SelectLocationView: View {
     @State private var placesClient = GMSPlacesClient.shared()
     
     var body: some View {
+        Text("Add New Address") // <-- New label added here
+                               .font(.customfont(.semibold, fontSize: 20)) // Adjust font as needed
+                               .foregroundColor(.primaryText)
+                               .padding(.top, 20) // Add some padding at the top
         ScrollView {
+            
             ZStack {
                 VStack {
+                    
+                    Image("map")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .padding(.top, 10)
+                    
+                    
+
                     SearchTextField(placeholder: "Search Location...", txt: $query)
                         .onChange(of: query) { newValue in
                             fetchAutocompletePredictions(for: newValue)
                         }
                         .padding(.top, 10)
+                        .padding(.horizontal, 15)
                     
-                
                     if query.isEmpty {
-                        // Display the "OR" text and button
-                        Text("OR")
-                            .font(.customfont(.semibold, fontSize: 16))
-                            .foregroundColor(.gray)
-                            .padding(.vertical, 10)
-
+                        
                         Button(action: {
                             viewModel.requestLocation()
                         }) {
@@ -50,19 +59,31 @@ struct SelectLocationView: View {
                                         .foregroundColor(Color.primaryApp)
                                 }
                             } else {
-                                Text("Go to Current Location")
-                                    .font(.customfont(.semibold, fontSize: 16))
-                                    .foregroundColor(Color.primaryApp)
+                                HStack(spacing:15){
+                                    Image(systemName: "mappin.and.ellipse")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(.green)
+                                  
+                                    Text("Go to Current Location")
+                                        .font(.customfont(.semibold, fontSize: 16))
+                                        .foregroundColor(Color.primaryApp)
+                                }
+                               
                             }
                         }
-                        .padding(.bottom, 5)
-
-                        Image("map")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 150, height: 100)
+                        .frame(maxWidth: .infinity, alignment: .leading) // Make the button full width
+                                                  .padding()
+                                                  .background(Color.white) // Background color to match SearchTextField
+                                                  .cornerRadius(8)
+                                                  .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                                                  .padding(.top, 10) // Padding above the button
+                                                  .padding(.horizontal, 15) // Ensure horizontal padding
+                        
+                        //
                     } else {
-                        // Show predictions if available
+                        
                         if !predictions.isEmpty {
                             ScrollView {
                                 VStack(spacing: 0) {
@@ -75,25 +96,24 @@ struct SelectLocationView: View {
                                                 .foregroundColor(.primaryText)
                                                 .padding()
                                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                                .background(Color.white) // Change background color as needed
+                                                .background(Color.white)
                                                 .cornerRadius(8)
                                                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                                         }
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 5)
                                         
-//                                        Divider() // Add a separator between predictions
-//                                            .background(Color.gray.opacity(0.2))
+                                        //
                                     }
                                 }
                                 .padding(.top, 10)
                             }
-                            .frame(height: 200) 
+                            .frame(height: 200)
                         }
-
-
+                        
+                        
                     }
-
+                    
                     // Display the fetched address
                     if let address = viewModel.address {
                         Text("\(address.city) \(address.state) \(address.country) \(address.zipCode)")
@@ -101,50 +121,50 @@ struct SelectLocationView: View {
                             .foregroundColor(.primaryText)
                             .padding(.top, 10)
                     }
-
+                    
                     if showError {
                         Text("Please Add New Address.")
                             .foregroundColor(.red)
                             .font(.customfont(.semibold, fontSize: 14))
                             .padding(.bottom, 10)
                     }
-
+                    
                     HStack(alignment: .center) {
                         Image(systemName: viewModel.isDefaultLocationChecked ? "checkmark.square.fill" : "square")
                             .foregroundColor(viewModel.isDefaultLocationChecked ? .primaryApp : .gray)
                             .onTapGesture {
                                 viewModel.isDefaultLocationChecked.toggle()
                             }
-
+                        
                         Text("Set My Default Location")
                             .font(.customfont(.semibold, fontSize: 16))
                             .foregroundColor(.primaryText)
-
+                        
                         Spacer()
                     }
                     .padding(.leading, 25)
                     .padding(.bottom, 10)
                     .padding(.top, 10)
-
+                    
                     Button(action: {
-                                          
-                                            if viewModel.address?.isValid() == true {
-                                                viewModel.saveAddress()
-                                                presentationMode.wrappedValue.dismiss()
-                                            } else {
-                                                showError = true
-                                            }
-                                        }) {
-                                            Text("Save")
-                                                .font(.customfont(.semibold, fontSize: 16))
-                                                .foregroundColor(.white)
-                                                .padding()
-                                                .background(Color.primaryApp)
-                                                .cornerRadius(8)
-                                        }
-                                        .disabled(viewModel.address == nil)
-                                        .padding(.bottom, 30)
-
+                        
+                        if viewModel.address?.isValid() == true {
+                            viewModel.saveAddress()
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            showError = true
+                        }
+                    }) {
+                        Text("Save")
+                            .font(.customfont(.semibold, fontSize: 16))
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.primaryApp)
+                            .cornerRadius(8)
+                    }
+                    .disabled(viewModel.address == nil)
+                    .padding(.bottom, 30)
+                    
                     Spacer()
                 }
                 .padding(.horizontal, 25)
@@ -166,7 +186,8 @@ struct SelectLocationView: View {
             }
         }
     }
-
+    
+    
     
     
     func fetchAutocompletePredictions(for query: String) {
@@ -222,7 +243,7 @@ struct AutocompleteView: UIViewControllerRepresentable {
         
         
         let filter = GMSAutocompleteFilter()
-        filter.type = .region
+        filter.type = .city
         autocompleteController.autocompleteFilter = filter
         
         return autocompleteController

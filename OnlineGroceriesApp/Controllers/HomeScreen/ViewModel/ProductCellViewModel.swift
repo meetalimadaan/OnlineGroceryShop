@@ -7,7 +7,7 @@
     import SwiftUI
     import Firebase
     import FirebaseFirestore
-import FirebaseAuth
+    import FirebaseAuth
     class ProductCellViewModel: ObservableObject {
         @Published var cartQuantity: Int = 0
         @Published var showQuantity: Bool = false
@@ -100,7 +100,8 @@ import FirebaseAuth
                             print("Error updating cart: \(error.localizedDescription)")
                         } else {
                             print("Product quantity updated/added successfully.")
-                            // The UI is already updated above
+                            
+                            
                         }
                     }
 
@@ -120,7 +121,8 @@ import FirebaseAuth
                             print("Error creating user cart: \(error.localizedDescription)")
                         } else {
                             print("User cart created and product added successfully.")
-                            // The UI is already updated above
+                            
+                           
                         }
                     }
                 }
@@ -192,7 +194,7 @@ import FirebaseAuth
                    return
                }
 
-               // Immediately update UI state
+         
                showQuantity = false
                
                let userCartRef = db.collection("userCart").document(userID)
@@ -205,7 +207,7 @@ import FirebaseAuth
                        if let index = cartItems.firstIndex(where: { $0["productID"] as? String == self.product.id }) {
                            cartItems.remove(at: index)
                            
-                           // Update the cartItems array in MyCartViewModel
+                           
                            if let cartItemIndex = MyCartViewModel.shared.cartItems.firstIndex(where: { $0.id == self.product.id }) {
                                MyCartViewModel.shared.cartItems.remove(at: cartItemIndex)
                            }
@@ -240,7 +242,7 @@ import FirebaseAuth
         }
         
         func toggleFavorite() {
-            // Toggle the UI state immediately
+         
             isFavorite.toggle()
             
             let db = Firestore.firestore()
@@ -250,9 +252,9 @@ import FirebaseAuth
             }
             
             let favDocRef = db.collection("userFavProducts").document(userId)
-            let productId = product.id // Ensure product.id is correctly assigned
+            let productId = product.id
             
-            // First check if the document exists
+         
             favDocRef.getDocument { document, error in
                 if let error = error {
                     print("Error fetching document: \(error.localizedDescription)")
@@ -260,38 +262,38 @@ import FirebaseAuth
                 }
                 
                 if let document = document, document.exists {
-                    // Document exists, proceed to update
+                 
                     if self.isFavorite {
-                        // Add to favorites
+                    
                         favDocRef.updateData([
                             "IDs": FieldValue.arrayUnion([productId])
                         ]) { error in
                             if let error = error {
                                 print("Error adding favorite: \(error.localizedDescription)")
-                                // Revert the UI change if there's an error
+                             
                                 self.isFavorite.toggle()
                             }
                         }
                     } else {
-                        // Remove from favorites
+                     
                         favDocRef.updateData([
                             "IDs": FieldValue.arrayRemove([productId])
                         ]) { error in
                             if let error = error {
                                 print("Error removing favorite: \(error.localizedDescription)")
-                                // Revert the UI change if there's an error
+                                
                                 self.isFavorite.toggle()
                             }
                         }
                     }
                 } else {
-                    // Document does not exist, create it with initial data
+                 
                     favDocRef.setData([
                         "IDs": [productId]
                     ]) { error in
                         if let error = error {
                             print("Error creating document: \(error.localizedDescription)")
-                            // Revert the UI change if there's an error
+                          
                             self.isFavorite.toggle()
                         }
                     }
