@@ -17,11 +17,13 @@ struct ProductCell: View {
                 AsyncImage(url: URL(string: viewModel.product.img)) { image in
                     image.resizable()
                         .scaledToFit()
-                        .frame(width: 80, height: 80)
+                        .frame(width: 70, height: 70)
 //                        .transition(.opacity)
                 } placeholder: {
                     ShimmerView()
-                    
+//                        .resizable()
+                            .scaledToFit()
+                        .frame(width: 70, height: 70)
                     .cornerRadius(8)
                 }
                 
@@ -31,16 +33,21 @@ struct ProductCell: View {
                     .font(.customfont(.bold, fontSize: 16))
                     .foregroundColor(.primaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(height: 40)
+
+                
                     
                 Text("\(viewModel.product.stock ?? "")")
                     .font(.customfont(.medium, fontSize: 14))
                     .foregroundColor(.secondaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 
-                Spacer()
-                Spacer()
-                
-                Text("Rs\(viewModel.product.price, specifier: "%.2f")")
+//                Spacer()
+//                Spacer()
+//                
+                Text("Rs \(viewModel.product.price, specifier: "%.2f")")
                     .font(.customfont(.semibold, fontSize: 18))
                     .foregroundColor(.primaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -76,12 +83,12 @@ struct ProductCell: View {
                 }
             }
             .padding(15)
-            .frame(width: 160, height: 230)
+            .frame(width: 160, height: 250)
 //            .frame(maxWidth: .infinity)
 
             .background(Color.white)
                         .cornerRadius(16)
-                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                        .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
         }
     }
 }

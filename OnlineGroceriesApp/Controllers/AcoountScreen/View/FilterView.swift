@@ -19,12 +19,13 @@ struct FilterView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Select Filter")
-                            .font(.headline)
-                            .padding(.top, 20)
-                            .padding(.bottom, 10)
-            ScrollView {
+        GeometryReader { geometry in
+            VStack {
+                Text("Select Filter")
+                    .font(.headline)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
+                
                 LazyVStack {
                     ForEach(statuses, id: \.self) { status in
                         FilterRow(status: status, isSelected: status == temporaryStatus) {
@@ -33,23 +34,29 @@ struct FilterView: View {
                         Divider()
                     }
                 }
+                .frame(maxHeight: geometry.size.height * 0.6)
+                
+                Spacer()
+                
+               
+                Button(action: {
+                    selectedStatus = temporaryStatus
+                    dismiss()
+                }) {
+                    Text("Apply Filter")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.primaryApp)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                .padding(.bottom, geometry.safeAreaInsets.bottom + 20) 
+                
             }
-            .frame(maxHeight: 200)
-            
-            Button(action: {
-                selectedStatus = temporaryStatus
-                dismiss()
-            }) {
-                Text("Apply Filter")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
         }
     }
 }

@@ -30,6 +30,7 @@ struct AllProducts: View {
 //                                .resizable()
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
+                                .foregroundColor(Color.primaryApp)
                         }
                         
                         Text("All Products")
@@ -43,11 +44,12 @@ struct AllProducts: View {
 //                                .resizable()
                                 .scaledToFit()
                                 .frame(width: 20, height: 20)
+                                .foregroundColor(Color.primaryApp)
                         }
                         .sheet(isPresented: $showModal) {
                             FilterProductsWithCategory(selectedCategory: $selectedCategory)
                                 .environmentObject(exploreVM)
-                                .presentationDetents([.height(300)])
+                                .presentationDetents([.height(560)])
                         }
                     }
                     .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 24))
@@ -93,6 +95,7 @@ struct AllProducts: View {
                 }
             }
         }
+    
     }
     //#Preview {
     //    AllProducts()

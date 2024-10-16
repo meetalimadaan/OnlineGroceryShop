@@ -35,7 +35,7 @@ struct FavouriteRow: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 }
                 
-                Text("Rs\(product.price, specifier: "%.2f")")
+                Text("Rs \(product.price, specifier: "%.2f")")
                     .font(.customfont(.semibold, fontSize: 18))
                     .foregroundColor(.primaryText)
                 //                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)

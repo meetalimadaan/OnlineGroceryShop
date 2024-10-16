@@ -53,13 +53,13 @@ struct LineSecureField: View {
     
     var body: some View {
         VStack {
-            // Adding * to indicate mandatory field
+        
                        HStack {
                            Text(title)
                                .font(.customfont(.semibold, fontSize: 16))
                                .foregroundColor(.textTitle)
                            Text("*")
-                               .foregroundColor(.red) // Make the asterisk red to emphasize importance
+                               .foregroundColor(.red)
                        }
                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
             

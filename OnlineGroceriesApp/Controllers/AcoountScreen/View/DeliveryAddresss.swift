@@ -14,6 +14,7 @@ struct DeliveryAddresss: View {
                     Image(systemName: "chevron.left")
                         .scaledToFit()
                         .frame(width: 25, height: 25)
+                        .foregroundColor(.primaryApp)
                 }
                 Spacer()
                 
@@ -27,23 +28,26 @@ struct DeliveryAddresss: View {
             Spacer()
 
             if viewModel.addresses.isEmpty {
-                Text("No Address")
-                    .font(.customfont(.bold, fontSize: 18))
-                    .foregroundColor(.secondaryText)
-                    .padding(.top, .topInsets + 46)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                GeometryReader { geometry in
+                    Text("No Address")
+                        .font(.customfont(.bold, fontSize: 18))
+                        .foregroundColor(.secondaryText)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                }
+                .frame(maxHeight: .infinity)
             } else {
-                // Use ScrollView + VStack instead of List
                 ScrollView {
                     VStack(spacing: 16) {
                         ForEach(viewModel.addresses) { address in
-                            AddressRow11(address: address, toggleDefaultAction: {
+                            AddressRow11(address: address, isSelected: viewModel.selectedAddress?.id == address.id) {
+                                viewModel.selectedAddress = address
                                 viewModel.toggleDefaultStatus(for: address)
-                            })
+                            }
                             .padding()
                             .background(Color(.white))
                             .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 3)
                         }
                     }
                     .padding(.top, 20)
@@ -57,29 +61,39 @@ struct DeliveryAddresss: View {
 
 struct AddressRow11: View {
     let address: Address
+    let isSelected: Bool
     let toggleDefaultAction: () -> Void
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("\(address.city), \(address.country)")
-//                Text("\(address.country)")
+                
+                Text(address.flatHouseNo)
+                                .font(.headline)
+                                .foregroundColor(.black)
+                            Text(address.village)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text("\(address.city), \(address.state), \(address.zipCode)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text(address.country)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
             }
             Spacer()
-//            if address.isDefault {
-//                Image(systemName: "checkmark")
-//                    .foregroundColor(.green)
-//            }
-//            Button(action: {
-//                toggleDefaultAction() // Call the toggle action when button is pressed
-//            }) {
-//                Text(address.isDefault ? "Default" : "Make Default")
-//                    .foregroundColor(.blue)
-//            }
+            // Checkmark icon
+            if isSelected {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.primaryApp)
+            }
+        }
+        .contentShape(Rectangle()) // Make the entire row tappable
+        .onTapGesture {
+            toggleDefaultAction()
         }
     }
 }
-
 //#Preview {
 //    DeliveryAddresses()
 //}

@@ -20,14 +20,14 @@ struct CartItemRow: View {
                         .scaledToFit()
                         .frame(width: 60, height: 60)
                 } placeholder: {
-                  ProgressView()
+                    ProgressView()
                 }
                 
                 
                 VStack(spacing:4){
                     Spacer()
                     HStack{
-                     
+                        
                         Text(cartItem.name)
                             .font(.customfont(.bold, fontSize: 16))
                             .foregroundColor(.primaryText)
@@ -95,8 +95,8 @@ struct CartItemRow: View {
                         Spacer()
                         
                         Text("Rs \(Double(viewModel.cartQuantity) * cartItem.price, specifier: "%.2f")")
-                               .font(.customfont(.semibold, fontSize: 18))
-                               .foregroundColor(.primaryText)
+                            .font(.customfont(.semibold, fontSize: 18))
+                            .foregroundColor(.primaryText)
                     }
                 }
                 
@@ -119,4 +119,24 @@ struct CartItem: Identifiable {
     var quantity: Int
     var img: String
     
+    
+    init(id: String, name: String, price: Double, quantity: Int, img: String) {
+        self.id = id
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+        self.img = img
+    }
+    
+    
+    init?(dictionary: [String: Any]) {
+        guard let id = dictionary["productID"] as? String,
+              let name = dictionary["name"] as? String,
+              let price = dictionary["price"] as? Double,
+              let quantity = dictionary["quantity"] as? Int,
+              let img = dictionary["img"] as? String else {
+            return nil
+        }
+        self.init(id: id, name: name, price: price, quantity: quantity, img: img)
+    }
 }

@@ -12,68 +12,65 @@ struct OrderView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-      
-            VStack {
-                HStack {
-                    Spacer()
-                    Button {
-                        mode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-//                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                    }
-                    
-                    Text("Your Orders")
-                        .font(.customfont(.bold, fontSize: 20))
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                    
-                    Button(action: {
-                        print("Button tapped")
-                        showModal.toggle()
-                        
-                    }) {
-                        Image(systemName: "slider.horizontal.3")
-//                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
-                            .padding()
-                    }
-                    .sheet(isPresented: $showModal) {
-                        
-                        FilterView(selectedStatus: $viewModel.selectedStatus)
-                            .presentationDetents([.height(300)])
-                    }
+        VStack {
+            HStack {
+                Spacer()
+                Button {
+                    mode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.primaryApp)
                 }
                 
+                Text("Your Orders")
+                    .font(.customfont(.bold, fontSize: 20))
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 
-                Spacer()
-             
-                if viewModel.filteredOrders.isEmpty {
-                               Text("No orders found")
-                        .font(.customfont(.bold, fontSize: 18))
-                        .foregroundColor(.secondaryText)
-                        .padding(.top, .topInsets + 46)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                           } else {
-                               ScrollView {
-                                   LazyVStack {
-                                       ForEach(viewModel.filteredOrders) { order in
-                                           NavigationLink(destination: OrderSummaryView(order: order)) {
-                                               OrderRow(order: order)
-                                           }
-                                       }
-                                   }
-                                   .padding()
-                               }
-                           }
-                           
-                 Spacer()
+                Button(action: {
+                    print("Button tapped")
+                    showModal.toggle()
+                }) {
+                    Image(systemName: "slider.horizontal.3")
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.primaryApp)
+                        .padding()
+                }
+                .sheet(isPresented: $showModal) {
+                    FilterView(selectedStatus: $viewModel.selectedStatus)
+                        .presentationDetents([.height(550)])
+                }
             }
             
-            .navigationBarHidden(true)
-       
+            Spacer()
+            
+            if viewModel.filteredOrders.isEmpty {
+                GeometryReader { geometry in
+                    Text("No orders found")
+                        .font(.customfont(.bold, fontSize: 18))
+                        .foregroundColor(.secondaryText)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                }
+                .frame(maxHeight: .infinity) // Ensure the GeometryReader takes all available height
+            } else {
+                ScrollView {
+                    LazyVStack {
+                        ForEach(viewModel.filteredOrders) { order in
+                            NavigationLink(destination: OrderSummaryView(order: order)) {
+                                OrderRow(order: order)
+                            }
+                        }
+                    }
+                    .padding()
+                }
+            }
+            
+            Spacer()
+        }
+        .navigationBarHidden(true)
         .onAppear {
             viewModel.fetchUserOrders()
         }

@@ -34,7 +34,7 @@ class CheckOutViewModel: ObservableObject {
             print("User not logged in")
             return
         }
-        
+
         db.collection("userAddress").document(userID).getDocument { [weak self] (document, error) in
             if let error = error {
                 print("Error fetching addresses: \(error)")
@@ -44,22 +44,33 @@ class CheckOutViewModel: ObservableObject {
             if let document = document, document.exists {
                 let data = document.data()
                 if let addressesData = data?["addresses"] as? [[String: Any]] {
+                    
                     let addresses = addressesData.map { addressData in
+                        
                         Address(
                             id: addressData["id"] as? String ?? UUID().uuidString,
                             city: addressData["city"] as? String ?? "Unknown",
                             state: addressData["state"] as? String ?? "Unknown",
                             country: addressData["country"] as? String ?? "Unknown",
                             zipCode: addressData["zipCode"] as? String ?? "Unknown",
+                            street: addressData["street"] as? String ?? "Unknown",
+                            sector: addressData["sector"] as? String ?? "Unknown",
+                            village: addressData["village"] as? String ?? "Unknown",
+                            flatHouseNo: addressData["flatHouseNo"] as? String ?? "Unknown",
                             isDefault: addressData["isDefault"] as? Bool ?? false,
                             timestamp: addressData["timestamp"] as? Date
                         )
                     }
                     self?.addresses = addresses
-                    // Find the default address
+                    
+                   
+                    for address in addresses {
+                        print("Fetched address: \(address.flatHouseNo), \(address.village), \(address.city), \(address.country)")
+                    }
+
                     if let defaultAddress = addresses.first(where: { $0.isDefault }) {
                         self?.selectedAddress = defaultAddress
-                        print("Selected address: \(self?.selectedAddress ?? Address(id: "", city: "", state: "", country: "", zipCode: "", isDefault: false))")
+                        print("Selected address: \(self?.selectedAddress ?? Address())")
                     } else {
                         self?.selectedAddress = nil
                         print("No default address found")
@@ -76,6 +87,7 @@ class CheckOutViewModel: ObservableObject {
             }
         }
     }
+
     
    
     func addOrder()  {
@@ -104,9 +116,12 @@ class CheckOutViewModel: ObservableObject {
                 "id": address.id,
                 "city": address.city,
                 "state": address.state,
+                "village": address.village,
                 "country": address.country,
-                "zipCode": address.zipCode
+                "zipCode": address.zipCode,
+                "flatHouseNo": address.flatHouseNo
             ]
+            print("Selected Address flatHouseNo: \(address.flatHouseNo)")
         }
         
      
@@ -155,14 +170,14 @@ class CheckOutViewModel: ObservableObject {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         print("Toggling default status for address: \(address)")
         
-        // If the clicked address is already default, do nothing
+       
         if address.isDefault {
             return
         }
 
         var updatedAddresses = addresses.map { addr in
             var updatedAddress = addr
-            updatedAddress.isDefault = addr.id == address.id // Set to true only if it's the clicked address
+            updatedAddress.isDefault = addr.id == address.id 
             return updatedAddress
         }
 
@@ -173,18 +188,21 @@ class CheckOutViewModel: ObservableObject {
                 "state": addr.state,
                 "country": addr.country,
                 "zipCode": addr.zipCode,
+                "village": addr.village,
+                "flatHouseNo": addr.flatHouseNo,
                 "isDefault": addr.isDefault,
                 "timestamp": addr.timestamp ?? Date()
             ]
+         
         }
         
-        // Update Firestore
+        
         db.collection("userAddress").document(userID).setData(["addresses": addressData], merge: true) { error in
             if let error = error {
                 print("Error updating address status: \(error)")
             } else {
                 print("Address default status updated successfully")
-                self.fetchSavedAddresses() // Refresh the addresses
+                self.fetchSavedAddresses()
             }
         }
     }

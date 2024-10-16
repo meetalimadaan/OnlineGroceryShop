@@ -12,7 +12,7 @@ struct ProductRow: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            // Product Image
+          
             if let url = URL(string: item.img) {
                 AsyncImage(url: url) { image in
                     image

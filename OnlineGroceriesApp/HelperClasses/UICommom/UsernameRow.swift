@@ -7,47 +7,47 @@
 import SwiftUI
 
 struct UsernameRow: View {
-    var username: String // The fetched username
+    var username: String
     var title: String
-    var iconName: String // The icon name for the HStack
-    var editAction: () -> Void // Closure for the edit action
+    var iconName: String
+    var editAction: () -> Void
 
     var body: some View {
         HStack {
-            // Icon on the left
+           
             Image(systemName: iconName) 
                 .resizable()
                 .scaledToFit()
                 .frame(width: 20, height: 20)
             
-            // VStack for the username details
+         
             VStack(alignment: .leading) {
-                Text(title) // Title
+                Text(title)
                     .font(.customfont(.semibold, fontSize: 18))
                     .foregroundColor(.primaryText)
                 
-                Text(username) // Fetched username
+                Text(username)
                     .font(.customfont(.regular, fontSize: 16))
-                    .foregroundColor(.secondary) // Optional: Use a secondary color for distinction
+                    .foregroundColor(.secondary)
             }
-            .padding(.leading, 10) // Add some space between icon and text
+            .padding(.leading, 10)
             
-            Spacer() // Pushes the content to the left
+            Spacer()
             
-            // Edit pencil icon on the right
+           
             Button(action: editAction) {
                 Image(systemName: "pencil")
 //                    .resizable()
                     .scaledToFit()
                     .frame(width: 20, height: 20)
-                    .foregroundColor(.primaryApp) // Change to your desired color
+                    .foregroundColor(.primaryApp)
             }
-            .padding(.leading, 10) // Space between text and icon
+            .padding(.leading, 10)
         }
-        .padding(20) // Padding around the entire HStack
-//        .background(Color(.systemGray6)) // Optional: background color for better visibility
-        .cornerRadius(8) // Optional: rounded corners for styling
-        .padding(.bottom, 5) // Space below this row
+        .padding(20)
+//        .background(Color(.systemGray6))
+        .cornerRadius(8)
+        .padding(.bottom, 5)
     }
 }
 

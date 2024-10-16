@@ -10,7 +10,7 @@ import FirebaseFirestore
 import Firebase
 import FirebaseAuth
 class HomeViewModel: ObservableObject {
-    
+  
     @Published var products: [Product] = []
     @Published var selectedTab: Int = 0
     
@@ -39,7 +39,7 @@ class HomeViewModel: ObservableObject {
         fetchSavedAddress()
         }
     
-    
+   
 
     func fetchProducts(completion: @escaping (_ isSuccess: Bool) -> Void) {
             let db = Firestore.firestore()
@@ -130,6 +130,9 @@ class HomeViewModel: ObservableObject {
                                 state: firstAddress["state"] as? String ?? "Unknown",
                                 country: firstAddress["country"] as? String ?? "Unknown",
                                 zipCode: firstAddress["zipCode"] as? String ?? "Unknown",
+                                street: firstAddress["street"] as? String ?? "Unknown",
+                                                       sector: firstAddress["sector"] as? String ?? "Unknown",
+                                                       village: firstAddress["village"] as? String ?? "Unknown",
                                 isDefault: true
                             )
                         }
@@ -138,7 +141,7 @@ class HomeViewModel: ObservableObject {
                     }
                 }
         }
-    
+   
 
         deinit {
             
@@ -150,9 +153,11 @@ struct Product: Identifiable, Codable {
     var name: String
     var categoryID: String?
     var price: Double
+    var productID: String?
     var description: String? = nil
     var img: String
     var stock: String? = nil
+    var nutritions: String? = nil
     var images: [String]?
     
 }

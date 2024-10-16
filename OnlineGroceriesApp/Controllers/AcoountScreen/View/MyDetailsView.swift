@@ -30,6 +30,7 @@ struct MyDetailsView: View {
                     Image(systemName: "chevron.left")
                         .scaledToFit()
                         .frame(width: 25, height: 25)
+                        .foregroundColor(.primaryApp)
                 }
                 
                 Text("User Profile")
@@ -57,7 +58,7 @@ struct MyDetailsView: View {
                         Circle()
                             .fill(Color.gray.opacity(0.3))
                             .frame(width: radius * 2, height: radius * 2)
-                            .overlay(Text("No Image"))
+                            .clipShape(Circle())
                     }
                 } else if let selectedImage = viewModel.selectedImage {
                     
@@ -68,10 +69,10 @@ struct MyDetailsView: View {
                         .clipShape(Circle())
                 } else {
                     
-                    Circle()
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(width: radius * 2, height: radius * 2)
-                        .overlay(Text("No Image"))
+                    Image("original 1")
+                           .resizable()
+                           .frame(width: radius * 2, height: radius * 2)
+                           .clipShape(Circle())
                 }
                 
                 

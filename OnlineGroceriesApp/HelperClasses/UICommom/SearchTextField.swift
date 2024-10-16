@@ -30,7 +30,7 @@ struct SearchTextField: View {
                     .frame(minWidth: 0, maxWidth: .infinity)
             
         }
-        .frame(height: 20)
+        .frame(height: 10)
         .padding(15)
         .background(Color(hex: "F2F3F2"))
         .cornerRadius(16)

@@ -143,6 +143,7 @@ struct SignUpView: View {
 //                            .resizable()
                             .scaledToFit()
                             .frame(width: 25, height: 25)
+                            .foregroundColor(Color.primaryApp)
                     }
                     Spacer()
                 }

@@ -12,18 +12,18 @@ struct ProductCellAll: View {
         
         var body: some View {
             VStack {
-                // Display product image
+             
                 AsyncImage(url: URL(string: product.img)) { image in
                     image.resizable()
                         .scaledToFit()
-                        .frame(width: 80, height: 80) // Adjust the size as needed
+                        .frame(width: 80, height: 80)
                         .cornerRadius(10)
                 } placeholder: {
                     ProgressView()
                         .frame(width: 80, height: 80)
                 }
                 
-                // Display product name
+                
                 Text(product.name)
                     .font(.customfont(.medium, fontSize: 14))
                     .foregroundColor(.primaryText)
@@ -34,8 +34,8 @@ struct ProductCellAll: View {
             }
             .padding(10)
             .frame(width: 150, height: 120)
-            .background(Color.white) // Background for each cell
+            .background(Color.white)
             .cornerRadius(10)
-           /* .shadow(radius: 5)*/ // Optional: Add shadow for better appearance
+           /* .shadow(radius: 5)*/
         }
     }

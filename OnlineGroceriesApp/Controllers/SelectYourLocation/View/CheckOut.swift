@@ -32,6 +32,7 @@ struct CheckOut: View {
                 Spacer()
                 
             }
+            .padding(.horizontal, 10)
             .padding(.top, .topInsets)
             .background(Color.white)
             .shadow(color: Color.black.opacity(0.2), radius: 2)
@@ -46,28 +47,27 @@ struct CheckOut: View {
                     .padding(.top, 20)
             } else {
                 
-                               List(viewModel.addresses) { address in
-                                   HStack {
-                                       VStack(alignment: .leading) {
-                                           Text("\(address.city), \(address.country)")
-                                               .font(.customfont(.medium, fontSize: 16))
-//
-                                               .foregroundColor(.gray)
-                                       }
-                                       Spacer()
-                                       
-                                       if viewModel.selectedAddress?.id == address.id {
-                                           Image(systemName: "checkmark.circle.fill")
-                                               .foregroundColor(.primaryApp)
-                                       }
-                                   }
-                                   .contentShape(Rectangle())
-                                   .onTapGesture {
-                                       viewModel.selectedAddress = address
-                                       viewModel.toggleDefaultStatus(for: address)
-                                   }
-                               }
-                               .listStyle(PlainListStyle())
+                ScrollView {
+                    VStack(spacing: 16) {
+                        Text("Saved Addresses")
+                                                .font(.customfont(.regular, fontSize: 16))
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+//                                                .padding(.vertical, 10)
+                        ForEach(viewModel.addresses) { address in
+                            AddressRow11(address: address, isSelected: viewModel.selectedAddress?.id == address.id) {
+                                viewModel.selectedAddress = address
+                                viewModel.toggleDefaultStatus(for: address)
+                            }
+                            .padding()
+                            .background(Color(.white))
+                            .cornerRadius(8)
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 3)
+                        }
+                    }
+                    .padding(.top, 5)
+                    .padding(.horizontal)
+                }
+//                               .listStyle(PlainListStyle())
             }
             
             Spacer()
@@ -77,22 +77,23 @@ struct CheckOut: View {
                             navigateToSelectLocation = true
                         }) {
                             Text("Add New Address")
-                                .font(.customfont(.semibold, fontSize: 22))
+                                .font(.customfont(.semibold, fontSize: 20))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
                                 .background(Color.primaryApp)
-                                .cornerRadius(20)
+                                .cornerRadius(8)
                                 .padding(.horizontal, 20)
                         }
                         .padding(.bottom, 10)
                         .background(
-                            NavigationLink(destination: SelectLocationView(viewModal1: viewModel)
+                            NavigationLink(destination: SelectLocationView(viewModal1: viewModel, isPresentedFromCheckOut: true)
                                             .navigationBarBackButtonHidden(true),
                                            isActive: $navigateToSelectLocation) {
                                 EmptyView()
                             }
                         )
+
             
             
             if showAddressErrorMessage {
@@ -114,14 +115,14 @@ struct CheckOut: View {
                     }
                 }) {
                     Text("Confirm & Place Order")
-                        .font(.customfont(.semibold, fontSize: 22))
+                        .font(.customfont(.semibold, fontSize: 20))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                        .contentShape(Rectangle())
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+//                        .contentShape(Rectangle())
                         .background(viewModel.selectedAddress != nil ? Color.primaryApp : Color.gray)
-                        .cornerRadius(20)
-                        .buttonStyle(PlainButtonStyle())
+                        .cornerRadius(8)
+//                        .buttonStyle(PlainButtonStyle())
                 }
                 .padding(.horizontal, 20)
                 .background(
@@ -132,7 +133,7 @@ struct CheckOut: View {
                 )
             }
         }
-        .padding(.bottom, .bottomInsets + 80)
+        .padding(.bottom, .bottomInsets + 40)
         .onAppear {
             NotificationCenter.default.addObserver(forName: Notification.Name("AddressUpdated"), object: nil, queue: .main) { _ in
                 viewModel.fetchSavedAddresses()
@@ -140,16 +141,7 @@ struct CheckOut: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        //        .toolbar {
-        //            ToolbarItem(placement: .navigationBarLeading) {
-        //                Button(action: {
-        //                    presentationMode.wrappedValue.dismiss()
-        //                }) {
-        //                    Image(systemName: "chevron.backward")
-        //                    Text("Back")
-        //                }
-        //            }
-        //        }
+        
         .ignoresSafeArea()
     }
     

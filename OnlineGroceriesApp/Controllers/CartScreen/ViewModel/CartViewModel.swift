@@ -11,8 +11,8 @@ import Firebase
 import FirebaseAuth
 class MyCartViewModel: ObservableObject {
     static let shared = MyCartViewModel()
-
-
+    
+    private var db = Firestore.firestore()
     @Published var cartItems: [CartItem] = [] {
             didSet {
                 calculateTotalAmount()
@@ -25,26 +25,20 @@ class MyCartViewModel: ObservableObject {
     }
 
     func fetchCartItems() {
-        guard let userID = getCurrentUserID() else { return }
+           guard let userID = getCurrentUserID() else { return }
 
-        let userCartRef = Firestore.firestore().collection("userCart").document(userID)
-
-        userCartRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                let cartItemsData = document.data()?["cartItems"] as? [[String: Any]] ?? []
-
-                self?.cartItems = cartItemsData.compactMap { data in
-                    return CartItem(
-                        id: data["productID"] as? String ?? "",
-                        name: data["name"] as? String ?? "",
-                        price: data["price"] as? Double ?? 0.0,
-                        quantity: data["quantity"] as? Int ?? 0,
-                        img: data["img"] as? String ?? ""
-                    )
-                }
-            }
-        }
-    }
+           let userCartRef = db.collection("userCart").document(userID)
+           userCartRef.getDocument { [weak self] (document, error) in
+               if let document = document, document.exists {
+                   if let data = document.data(), let items = data["cartItems"] as? [[String: Any]] {
+                       self?.cartItems = items.compactMap { CartItem(dictionary: $0) }
+                   }
+               } else {
+                   print("No cart items found for user: \(userID)")
+                   self?.cartItems = [] // Clear cart items if none found
+               }
+           }
+       }
     func calculateTotalAmount() {
            totalAmount = cartItems.reduce(0) { $0 + ($1.price * Double($1.quantity)) }
        }

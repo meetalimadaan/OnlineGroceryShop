@@ -9,7 +9,7 @@ struct ProductDetailsView: View {
     @State private var isDetailExpanded: Bool = false
     @State private var navigateToCart = false
     @State private var navigateToAllProducts = false
-    
+    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     init(viewModel: ProductCellViewModel) {
         self.viewModel = viewModel
     }
@@ -25,7 +25,7 @@ struct ProductDetailsView: View {
                         .cornerRadius(20, corner: [.bottomLeft, .bottomRight])
                     
                     TabView {
-                        ForEach(viewModel.product.images!, id: \.self) { imageUrl in
+                        ForEach(viewModel.product.images ?? [""], id: \.self) { imageUrl in
                             AsyncImage(url: URL(string: imageUrl)) { image in
                                 image
                                     .resizable()
@@ -65,6 +65,7 @@ struct ProductDetailsView: View {
                         .foregroundColor(.secondaryText)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     
+                    
                     Spacer()
                     Spacer()
                     
@@ -79,10 +80,10 @@ struct ProductDetailsView: View {
                                     .scaledToFit()
                                     .frame(width: 20, height: 20)
                                     .padding(10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 16)
-                                            .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
-                                    )
+                                //                                    .overlay(
+                                //                                        RoundedRectangle(cornerRadius: 16)
+                                //                                            .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
+                                //                                    )
                             }
                             .foregroundColor(Color.secondaryText)
                             
@@ -91,10 +92,10 @@ struct ProductDetailsView: View {
                                 .foregroundColor(.primaryText)
                                 .multilineTextAlignment(.center)
                                 .frame(width: 40, height: 40, alignment: .center)
-                            //                                .overlay(
-                            //                                    RoundedRectangle(cornerRadius: 16)
-                            //                                        .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
-                            //                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
+                                )
                             
                             Button {
                                 viewModel.incrementQuantity()
@@ -103,10 +104,10 @@ struct ProductDetailsView: View {
                                     .scaledToFit()
                                     .frame(width: 20, height: 20)
                                     .padding(10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 16)
-                                            .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
-                                    )
+                                //                                    .overlay(
+                                //                                        RoundedRectangle(cornerRadius: 16)
+                                //                                            .stroke(Color.secondaryText.opacity(0.5), lineWidth: 1)
+                                //                                    )
                             }
                             .foregroundColor(Color.secondaryText)
                             
@@ -136,47 +137,87 @@ struct ProductDetailsView: View {
                             .font(.customfont(.bold, fontSize: 24))
                             .foregroundColor(.primaryText)
                     }
+                    .padding(.top, 10)
+                    .padding(.bottom, 10)
+                    Spacer()
+                    Spacer()
                     Divider()
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 20)
+                .padding(.top, 30)
                 
                 
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(Color(hex: "F2F2F2"))
-                        .cornerRadius(10)
-                 
+                VStack(alignment: .leading) {
+                   
+                    Text("Product Detail")
+                        .font(.customfont(.semibold, fontSize: 18))
+                        .foregroundColor(.primaryText)
+                        .padding(.top, 10)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
                     
+                   
+                    Text(viewModel.product.description!)
+                        .font(.customfont(.regular, fontSize: 16))
+                        .foregroundColor(.secondaryText)
+                        .padding(.top, 5)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
+                }
+                    Divider()
+                        .padding(.horizontal, 20)
+                
                     
-                    VStack(alignment: .center) {
-                        Text("Top Products in this Category")
+                
+                    HStack {
+                     
+                        Text("Nutrition")
                             .font(.customfont(.semibold, fontSize: 18))
                             .foregroundColor(.primaryText)
                             .padding(.top, 10)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 20)
                         
                       
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                            ForEach(productsInCategory, id: \.id) { product in
-                                ProductCellAll(product: product)
-                            }
-                        }
-                        
-                        .padding(.top, 10)
+                      
+                        Text(viewModel.product.nutritions ?? " ")
+                            .font(.customfont(.regular, fontSize: 16))
+                            .foregroundColor(.secondaryText)
+                            .padding(.top, 5)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                            .padding(.horizontal, 20)
                     }
-                    .padding(10)
-                }
+                    
+                   
+                    Divider()
+                        .padding(.horizontal, 20)
+                        .padding(.top, 10)
                 
-                .padding(.horizontal, 20)
-                .padding(.top, 10)
-                
-                
-                
-                
-                
+//                VStack(alignment: .leading) {
+//                            Text("Top Products in \(categoryName)")
+//                                .font(.customfont(.semibold, fontSize: 18))
+//                                .foregroundColor(.primaryText)
+//                                .padding(.top, 10)
+//
+//                            // Display Products in the Category
+//                            ScrollView(.vertical, showsIndicators: true) {
+//                                LazyVGrid(columns: columns, spacing: 20) { // Use LazyVGrid for grid layout
+//                                    ForEach(productsInCategory) { product in
+//                                        ProductCellAll(product: product) // Your ProductCellAll here
+//                                    }
+//                                }
+//                                .padding(.horizontal)
+//                                .padding(.top, 10)
+//                            }
+//                            .padding(10)
+//                            .background(Color.white.opacity(0.1)) // Optional: Set the background color
+//                            .cornerRadius(10)
+//                            .shadow(radius: 2)
+//                        }
+//                        .padding(.horizontal)
             }
             
-            .padding(.bottom, 80)
+            .padding(.bottom, 20)
             
             VStack {
                 HStack {
@@ -187,6 +228,7 @@ struct ProductDetailsView: View {
                         
                             .scaledToFit()
                             .frame(width: 25, height: 25)
+                            .foregroundColor(Color.primaryApp)
                     }
                     
                     Spacer()
@@ -201,6 +243,7 @@ struct ProductDetailsView: View {
                             
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
+                                .foregroundColor(Color.primaryApp)
                         }
                     }
                 }
@@ -209,7 +252,7 @@ struct ProductDetailsView: View {
                 
                 if viewModel.showQuantity {
                     NavigationLink(
-                        destination: MyCartView()
+                        destination: MyCartView(showBackButton: true)
                             .environmentObject(viewModel),
                         isActive: $navigateToCart
                     ) {
@@ -217,7 +260,7 @@ struct ProductDetailsView: View {
                             navigateToCart = true
                         })
                         .padding(.horizontal, 20)
-                        .padding(.bottom, .bottomInsets + 80)
+                        .padding(.bottom, .bottomInsets + 30)
                     }
                 }
             }

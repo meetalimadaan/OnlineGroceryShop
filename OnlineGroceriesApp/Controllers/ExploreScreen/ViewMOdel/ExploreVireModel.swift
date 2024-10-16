@@ -13,6 +13,7 @@ class ExploreVireModel: ObservableObject {
     @Published var products: [Product] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = true  
+    
    
     private var db = Firestore.firestore()
     
@@ -63,32 +64,62 @@ class ExploreVireModel: ObservableObject {
     }
 
     
+//    func fetchProducts(byCategoryID categoryID: String, completion: @escaping (Bool, String?) -> Void) {
+//        db.collection("products")
+//            .whereField("categoryID", isEqualTo: categoryID)
+//            .getDocuments { snapshot, error in
+//                if let error = error {
+//                    completion(false, "Error fetching products: \(error.localizedDescription)")
+//                    return
+//                }
+//                
+//                if let documents = snapshot?.documents {
+//                    self.products = documents.compactMap { doc in
+//                        do {
+//                            let product = try doc.data(as: Product.self)
+//                            print("Fetched product: \(product)")
+//                            return product
+//                        } catch {
+//                            print("Error decoding product: \(error.localizedDescription)")
+//                            return nil
+//                        }
+//                    }
+//                    completion(true, nil)
+//                } else {
+//                    completion(false, "No products found.")
+//                }
+//            }
+//    }
     func fetchProducts(byCategoryID categoryID: String, completion: @escaping (Bool, String?) -> Void) {
-        db.collection("products")
-            .whereField("categoryID", isEqualTo: categoryID)
-            .getDocuments { snapshot, error in
-                if let error = error {
-                    completion(false, "Error fetching products: \(error.localizedDescription)")
-                    return
-                }
-                
-                if let documents = snapshot?.documents {
-                    self.products = documents.compactMap { doc in
-                        do {
-                            let product = try doc.data(as: Product.self)
-                            print("Fetched product: \(product)")
-                            return product
-                        } catch {
-                            print("Error decoding product: \(error.localizedDescription)")
-                            return nil
+            if categoryID == "All" {
+                fetchAllProducts(completion: completion) // Fetch all products if "All" is selected
+            } else {
+                db.collection("products")
+                    .whereField("categoryID", isEqualTo: categoryID)
+                    .getDocuments { snapshot, error in
+                        if let error = error {
+                            completion(false, "Error fetching products: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        if let documents = snapshot?.documents {
+                            self.products = documents.compactMap { doc in
+                                do {
+                                    let product = try doc.data(as: Product.self)
+                                    print("Fetched product: \(product)")
+                                    return product
+                                } catch {
+                                    print("Error decoding product: \(error.localizedDescription)")
+                                    return nil
+                                }
+                            }
+                            completion(true, nil)
+                        } else {
+                            completion(false, "No products found.")
                         }
                     }
-                    completion(true, nil)
-                } else {
-                    completion(false, "No products found.")
-                }
             }
-    }
+        }
 
     
     func fetchAllProducts(completion: @escaping (Bool, String?) -> Void) {

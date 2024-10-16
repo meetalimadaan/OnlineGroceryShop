@@ -12,27 +12,34 @@ import FirebaseFirestore
 class AccountViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var email: String = ""
+    @Published var profileImageURL: String?
     @Published var isLoading: Bool = false
     @Published var currentUser: User?
+  
     static let shared = AccountViewModel()
     
     private let db = Firestore.firestore()
     
     func fetchUserData() {
-        guard let userID = Auth.auth().currentUser?.uid else { return }
-        
-        isLoading = true
-        db.collection("users").document(userID).getDocument { document, error in
-            self.isLoading = false
-            if let document = document, document.exists {
-                let data = document.data()
-                self.username = data?["username"] as? String ?? "Unknown"
-                self.email = data?["email"] as? String ?? "Unknown"
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
+          
+           guard let userID = Auth.auth().currentUser?.uid else { return }
+           
+           Firestore.firestore().collection("users").document(userID).getDocument { (document, error) in
+               if let document = document, document.exists {
+                   do {
+                       let data = try document.data(as: UserProfile.self)
+                       self.username = data.username ?? ""
+                       self.email = data.email ?? ""
+                       self.profileImageURL = data.profileImageURL
+                   } catch {
+                       print("Error decoding user profile: \(error)")
+                   }
+               } else {
+                   print("Document does not exist")
+               }
+           }
+       }
+   
     
     func logout(completion : @escaping(_ success : Bool)->()) {
         do {

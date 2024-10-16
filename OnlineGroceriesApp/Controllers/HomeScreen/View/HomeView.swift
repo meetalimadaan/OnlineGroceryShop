@@ -22,20 +22,25 @@ struct HomeView: View {
     @State private var selectedImageIndex: Int = 0
     @State private var showLocationModal: Bool = false
     @State private var beverages: [Product] = []
+    @State private var showChatView: Bool = false
+    @State private var hasFetchedProducts: Bool = false  // New state variable
     
     let images = ["grocery-ordering-and-delivery-word-vector", "istockphoto-1198965879-612x612", "1000_F_147219646_hVUhKxNhgX6A1nR5l7UUwYamVKGJULJ1"]
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    var column = [
+        GridItem(.flexible(), spacing: 30),
+        GridItem(.flexible(), spacing: 30)
+    ]
     
     var body: some View {
         NavigationStack{
-            ZStack {
+            ZStack(alignment: .bottomTrailing) {
                 ScrollView {
                     VStack {
                         Image("Group-2")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 25)
-                        
                         
                         Button(action: {
                             showLocationModal.toggle()
@@ -46,7 +51,7 @@ struct HomeView: View {
                                 .frame(width: 16, height: 16)
                             
                             if let savedAddress = homeVM.savedAddress {
-                                Text("\(savedAddress.city), \(savedAddress.country)")
+                                Text("\(savedAddress.city)")
                                     .font(.customfont(.semibold, fontSize: 18))
                                     .foregroundColor(.darkGray)
                             } else {
@@ -55,12 +60,8 @@ struct HomeView: View {
                                     .foregroundColor(.darkGray)
                             }
                         }
-                        //                        SearchTextField(placeholder: "Search Store", txt: $homeVM.searchText)
-                        //                            .padding(.horizontal, 20)
-                        //                            .padding(.vertical, 10)
                     }
                     .padding(.top, .topInsets)
-                    
                     
                     TabView(selection: $selectedImageIndex) {
                         ForEach(0..<images.count, id: \.self) { index in
@@ -75,15 +76,11 @@ struct HomeView: View {
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                     .frame(width: 370, height: 150)
                     .padding(2)
-                    
-                    
                     .onReceive(timer) { _ in
-                        
                         withAnimation {
                             selectedImageIndex = (selectedImageIndex + 1) % images.count
                         }
                     }
-                    
                     
                     SectionTitleAll(title: "Exclusive offer")
                         .padding(.horizontal, 20)
@@ -93,7 +90,6 @@ struct HomeView: View {
                             .frame(height: 120)
                             .padding(.horizontal, 20)
                     } else {
-                        
                         let exclusiveOfferProducts = homeVM.filteredProducts.filter { $0.price < 20 }
                         
                         if exclusiveOfferProducts.isEmpty {
@@ -102,7 +98,7 @@ struct HomeView: View {
                                 .padding(.vertical, 4)
                         } else {
                             ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHStack(spacing: 15) {
+                                LazyVGrid(columns: column, spacing: 15) {
                                     ForEach(exclusiveOfferProducts) { product in
                                         ProductCell(viewModel: ProductCellViewModel(product: product))
                                     }
@@ -113,24 +109,22 @@ struct HomeView: View {
                         }
                     }
                     
+                    SectionTitleAll(title: "Previously Bought")
+                        .padding(.horizontal, 20)
                     
-                    // Filter delivered orders
-                    let deliveredOrders = orderVM.orders.filter { $0.status == "Delivered" }
-                    
-                    
-                    let deliveredProductIDs = Set(deliveredOrders.flatMap { order in
-                        order.cartItems.map { $0.id }
-                    })
-                    
-                    
-                    let previouslyBoughtProducts = homeVM.filteredProducts.filter { product in
-                        deliveredProductIDs.contains(product.id ?? "")
-                    }
-                    
-                    
-                    if !previouslyBoughtProducts.isEmpty {
-                        SectionTitleAll(title: "Previously Bought")
+                    if isLoadingBestSelling {
+                        ShimmerView()
+                            .frame(height: 120)
                             .padding(.horizontal, 20)
+                    } else {
+                        let deliveredOrders = orderVM.orders.filter { $0.status == "Pending" }
+                        let deliveredProductIDs = Set(deliveredOrders.flatMap { order in
+                            order.cartItems.map { $0.id }
+                        })
+                        
+                        let previouslyBoughtProducts = homeVM.filteredProducts.filter { product in
+                            deliveredProductIDs.contains(product.id ?? "")
+                        }
                         
                         if isLoadingBestSelling {
                             ShimmerView()
@@ -138,7 +132,7 @@ struct HomeView: View {
                                 .padding(.horizontal, 20)
                         } else {
                             ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHStack(spacing: 15) {
+                                LazyVGrid(columns: column, spacing: 15) {
                                     ForEach(previouslyBoughtProducts) { product in
                                         ProductCell(viewModel: ProductCellViewModel(product: product))
                                     }
@@ -148,10 +142,6 @@ struct HomeView: View {
                             }
                         }
                     }
-                    
-                    
-                    
-                    
                     
                     SectionTitleAll(title: "Shop by Category ")
                         .padding(.horizontal, 20)
@@ -174,12 +164,10 @@ struct HomeView: View {
                         }
                         .padding(.bottom, 8)
                         
-                        SectionViewAllProducts(titleAll: "See all Products") {
-                            
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 8)
-                        .frame(maxWidth: .infinity)
+                        SectionViewAllProducts(titleAll: "See all Products") {}
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 8)
+                            .frame(maxWidth: .infinity)
                         
                         SectionTitleAll(title: "Beverages")
                             .padding(.horizontal, 20)
@@ -189,59 +177,89 @@ struct HomeView: View {
                                 .frame(height: 120)
                                 .padding(.horizontal, 20)
                         } else {
-                            // Display beverages products
-                            if beverages.isEmpty {
+                            
+                            let beveragesCategoryID = "o7O2VO4o4nLLYWtaMDsh"
+                            
+                            
+                            let beverageProducts = homeVM.filteredProducts.filter { product in
+                                product.categoryID == beveragesCategoryID
+                            }
+                            
+                            if beverageProducts.isEmpty {
                                 Text("No Beverages available")
                                     .padding(.horizontal, 20)
                                     .padding(.vertical, 4)
                             } else {
                                 ScrollView(.horizontal, showsIndicators: false) {
-                                    LazyHStack(spacing: 15) {
-                                        ForEach(beverages) { product in
+                                    LazyVGrid(columns: column, spacing: 15) {
+                                        ForEach(beverageProducts) { product in
                                             ProductCell(viewModel: ProductCellViewModel(product: product))
                                         }
                                     }
                                     .padding(.horizontal, 20)
                                     .padding(.vertical, 4)
                                 }
-                                
                             }
                         }
+                        
                     }
                 }
                 .padding(.bottom, .bottomInsets + 60)
+                
                 .ignoresSafeArea()
-                .navigationBarBackButtonHidden(true)
-                .onAppear {
-                    homeVM.fetchSavedAddress()
+                .refreshable {
+                    
                     isLoadingExclusiveOffers = true
                     isLoadingBestSelling = true
                     isLoadingGroceries = true
                     isLoadingBeverages = true
+                    
+                    
                     homeVM.fetchProducts { isSuccess in
+                        
                         isLoadingExclusiveOffers = false
                         isLoadingBestSelling = false
                         isLoadingGroceries = false
-                    }
-                    let beveragesCategoryID = "fpaaIzidMFtiPECtIhEz"
-                    homeVM.fetchProductsByCategory(categoryID: beveragesCategoryID) { isSuccess in
                         isLoadingBeverages = false
-                        if isSuccess {
-                            beverages = homeVM.products
-                        }
+                    }}
+                .onAppear {
+                                   homeVM.fetchSavedAddress()
+                                   
+                                 
+                                   if !hasFetchedProducts {
+                                       isLoadingExclusiveOffers = true
+                                       isLoadingBestSelling = true
+                                       isLoadingGroceries = true
+                                       isLoadingBeverages = true
+                                       
+                                       homeVM.fetchProducts { isSuccess in
+                                           hasFetchedProducts = true
+                                           isLoadingExclusiveOffers = false
+                                           isLoadingBestSelling = false
+                                           isLoadingGroceries = false
+                                           isLoadingBeverages = false
+                                       }
+                                   }
+                               }
+                    FloatingActionButton {
+                        showChatView = true
+                        print("FAB tapped!")
+                    }
+                    
+                    NavigationLink(destination: ChatView(), isActive: $showChatView) {
+                        EmptyView()
                     }
                 }
-                
-            }
-            .sheet(isPresented: $showLocationModal) {
-                SelectLocationView()
-                    .presentationDetents([.height(500)])
+                .sheet(isPresented: $showLocationModal) {
+                    SelectLocationView()
+                        .presentationDetents([.height(800)])
+                }
             }
         }
         
     }
-}
+    
+    //#Preview {
+    //    HomeView(homeVM: HomeViewModel(), exploreVM: ExploreVireModel())
+    //}
 
-//#Preview {
-//    HomeView(homeVM: HomeViewModel(), exploreVM: ExploreVireModel())
-//}

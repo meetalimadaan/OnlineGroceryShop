@@ -26,7 +26,7 @@ struct OrderRow: View {
             .foregroundColor(.gray)
             
           
-            // Horizontal ScrollView for images
+         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
                                 ForEach(order.cartItems) { item in
@@ -45,9 +45,9 @@ struct OrderRow: View {
                                     }
                                 }
                             }
-                            .padding(.vertical, 5) // Optional: Add vertical padding for aesthetics
+                            .padding(.vertical, 5)
                         }
-                        .frame(height: 60) // Adjust height based on image size
+                        .frame(height: 60)
                     }
                     .padding()
                     .background(Color.white)

@@ -29,6 +29,7 @@ struct ExploreItemsView: View {
                         Image(systemName: "chevron.left")
                             .scaledToFit()
                             .frame(width: 32, height: 32)
+                            .foregroundColor(.primaryApp)
                     }
                     
                     Text(category.name ?? "category")
@@ -42,6 +43,7 @@ struct ExploreItemsView: View {
 //                            .resizable()
                             .scaledToFit()
                             .frame(width: 20, height: 20)
+                            .foregroundColor(.primaryApp)
                     }
                     .sheet(isPresented: $showModal) {
                         FilterProductsView(selectedStatus: $selectedStatus)

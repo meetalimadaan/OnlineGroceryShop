@@ -14,18 +14,21 @@ struct FavouriteView: View {
         NavigationView {
             ZStack {
                 if viewModel.isLoading {
-                    // Show loader while fetching data
+                   
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .primary))
                         .foregroundColor(.primary)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 } else {
                     if viewModel.favouriteProducts.isEmpty {
-                        Text("No Favourite Product")
-                            .font(.customfont(.bold, fontSize: 18))
-                            .foregroundColor(.secondaryText)
-                            .padding(.top, .topInsets + 46)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        GeometryReader { geometry in
+                            Text("No Favourite Product")
+                                .font(.customfont(.bold, fontSize: 18))
+                                .foregroundColor(.secondaryText)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                        }
+                        .frame(maxHeight: .infinity)
                     } else {
                         ScrollView {
                             LazyVStack {
@@ -56,10 +59,7 @@ struct FavouriteView: View {
                             
                             Spacer()
                             
-                            // Uncomment if you want to add "Add All To Cart" button
-                            // RoundButton(title: "Add All To Cart")
-                            //     .padding(.horizontal, 20)
-                            //     .padding(.bottom, .bottomInsets + 80)
+                           
                         }
                     }
                 }
@@ -75,6 +75,8 @@ struct FavouriteView: View {
     }
 }
 
+// Preview code
 #Preview {
     FavouriteView()
 }
+

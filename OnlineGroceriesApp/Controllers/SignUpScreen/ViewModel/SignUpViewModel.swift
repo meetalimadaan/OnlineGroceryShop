@@ -49,6 +49,12 @@ class SignUpViewModel: ObservableObject {
             errorMessage = "All fields are required"
             return false
         }
+        
+        // Validate username
+           if !isValidUsername(txtUsername) {
+               errorMessage = "Username must be at least 4 characters long and contain only letters."
+               return false
+           }
 
         // Validate email format
         if !isValidEmail(txtEmail) {
@@ -71,6 +77,14 @@ class SignUpViewModel: ObservableObject {
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: email)
     }
+    
+    private func isValidUsername(_ username: String) -> Bool {
+        // Check if username is at least 4 characters long and contains only letters
+        let usernameRegex = "^[A-Za-z]{4,}$" // At least 4 letters only
+        let usernamePredicate = NSPredicate(format: "SELF MATCHES %@", usernameRegex)
+        return usernamePredicate.evaluate(with: username)
+    }
+
 
     private func saveUserInfo(uid: String, email: String, username: String, completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
@@ -83,6 +97,7 @@ class SignUpViewModel: ObservableObject {
                 self.showingError = true
                 completion(false)
             } else {
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
                 UserDefaultsManager.shared.setUsername(username)
                 UserDefaultsManager.shared.setEmail(email)
                 UserDefaultsManager.shared.setUID(uid)
